@@ -6,8 +6,8 @@
 6
 7    <uses-sdk
 8        android:minSdkVersion="16"
-8-->/Users/lsparedes/Downloads/OpenCV-Android-Object-Detection-master/openCVLibrary310/src/main/AndroidManifest.xml
+8-->/Applications/MAMP/htdocs/pelotatufe-huella/openCVLibrary310/src/main/AndroidManifest.xml
 9        android:targetSdkVersion="29" />
-9-->/Users/lsparedes/Downloads/OpenCV-Android-Object-Detection-master/openCVLibrary310/src/main/AndroidManifest.xml
+9-->/Applications/MAMP/htdocs/pelotatufe-huella/openCVLibrary310/src/main/AndroidManifest.xml
 10
 11</manifest>

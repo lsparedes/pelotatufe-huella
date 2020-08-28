@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="5c7b9225-4bfd-496e-9747-fee28f07f57d" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -7,7 +15,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_XL_API_24" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="ZY322NPRDJ" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -28,7 +36,16 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="ProjectId" id="1gi9GcKTeWAyrbuzUTI9mHYD1XT" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="memory.settings.postsync.last.time.stamp" value="1598586473502" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -41,7 +58,7 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App">
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
       <module name="app" />
       <option name="DEPLOY" value="true" />
       <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
@@ -97,9 +114,32 @@
     <configuration />
   </component>
   <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5c7b9225-4bfd-496e-9747-fee28f07f57d" name="Default Changelist" comment="" />
+      <created>1598586450766</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1598586450766</updated>
+    </task>
     <servers />
   </component>
   <component name="WindowStateProjectService">
+    <state width="1358" height="321" key="GridCell.Tab.0.bottom" timestamp="1598587451958">
+      <screen x="0" y="23" width="1440" height="825" />
+    </state>
+    <state width="1358" height="321" key="GridCell.Tab.0.bottom/0.23.1440.825@0.23.1440.825" timestamp="1598587451958" />
+    <state width="1358" height="321" key="GridCell.Tab.0.center" timestamp="1598587451957">
+      <screen x="0" y="23" width="1440" height="825" />
+    </state>
+    <state width="1358" height="321" key="GridCell.Tab.0.center/0.23.1440.825@0.23.1440.825" timestamp="1598587451957" />
+    <state width="1358" height="321" key="GridCell.Tab.0.left" timestamp="1598587451956">
+      <screen x="0" y="23" width="1440" height="825" />
+    </state>
+    <state width="1358" height="321" key="GridCell.Tab.0.left/0.23.1440.825@0.23.1440.825" timestamp="1598587451956" />
+    <state width="1358" height="321" key="GridCell.Tab.0.right" timestamp="1598587451958">
+      <screen x="0" y="23" width="1440" height="825" />
+    </state>
+    <state width="1358" height="321" key="GridCell.Tab.0.right/0.23.1440.825@0.23.1440.825" timestamp="1598587451958" />
     <state x="208" y="31" key="SettingsEditor" timestamp="1598584958449">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
