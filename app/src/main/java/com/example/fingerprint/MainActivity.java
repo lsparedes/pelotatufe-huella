@@ -55,8 +55,8 @@ public class MainActivity extends AppCompatActivity {
                         byte[] buffer = bmpUtil.convertToBmp24bit(img);
 
                         //imgDecodableString = Base64.encodeToString(img, Base64.DEFAULT);
-                        ivFinger.setImageBitmap(bm);
-                        //texto.setText(Arrays.toString(buffer));
+                        //ivFinger.setImageBitmap(bm);
+                        texto.setText(Arrays.toString(buffer));
                         //Toast.makeText(getApplicationContext(), imgDecodableString , Toast.LENGTH_LONG).show();
 
                     } else {
