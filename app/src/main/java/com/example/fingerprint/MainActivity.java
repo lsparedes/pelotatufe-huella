@@ -124,10 +124,14 @@ public class MainActivity extends AppCompatActivity {
         AssetManager assetManager = getAssets();
         InputStream istr = assetManager.open("dedo2.png");
         bitmap = BitmapFactory.decodeStream(istr);
+        Utils.bitmapToMat(bitmap, img1);
+        Imgproc.cvtColor(img1, img1, Imgproc.COLOR_RGB2GRAY);
+        descriptors1 = new Mat();
+        keypoints1 = new MatOfKeyPoint();
+        detector.detect(img1, keypoints1);
         mOpenCvCameraView.setImageBitmap(bitmap);
     }
 
-    //imprimiendo la imagen desde la huella
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         int status;
