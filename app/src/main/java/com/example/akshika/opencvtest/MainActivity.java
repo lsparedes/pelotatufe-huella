@@ -13,9 +13,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-
-import java.util.Arrays;
-
 import asia.kanopi.fingerscan.Status;
 
 public class MainActivity extends AppCompatActivity {
@@ -58,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
                         imgDecodableString = Base64.encodeToString(img, Base64.DEFAULT);
                         ivFinger.setImageBitmap(bm);
                         //texto.setText(Arrays.toString(buffer));
-                        Toast.makeText(getApplicationContext(), imgDecodableString , Toast.LENGTH_LONG).show();
+                       // Toast.makeText(getApplicationContext(), imgDecodableString , Toast.LENGTH_LONG).show();
 
                     } else {
                         errorMesssage = data.getStringExtra("errorMessage");
