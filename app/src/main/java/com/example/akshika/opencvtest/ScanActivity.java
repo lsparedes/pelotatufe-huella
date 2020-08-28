@@ -3,13 +3,20 @@ package com.example.akshika.opencvtest;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 import android.view.WindowManager;
 import android.widget.TextView;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 import asia.kanopi.fingerscan.Fingerprint;
 import asia.kanopi.fingerscan.Status;
@@ -123,6 +130,7 @@ public class ScanActivity extends Activity  {
             if (status == Status.SUCCESS) {
                 image = msg.getData().getByteArray("img");
                 intent.putExtra("img", image);
+
             } else {
                 errorMessage = msg.getData().getString("errorMessage");
                 intent.putExtra("errorMessage", errorMessage);
@@ -131,11 +139,6 @@ public class ScanActivity extends Activity  {
             finish();
         }
     };
-
-
-
-
-
 
 
 

@@ -1,11 +1,23 @@
 package com.example.akshika.opencvtest;
 
+import android.Manifest;
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
@@ -28,8 +40,13 @@ import org.opencv.features2d.DescriptorMatcher;
 import org.opencv.features2d.FeatureDetector;
 import org.opencv.imgproc.Imgproc;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
 
 import asia.kanopi.fingerscan.Status;
 
@@ -61,6 +78,10 @@ public class MainActivity extends AppCompatActivity {
     private static MatOfDMatch matches, matches_final_mat;
     DescriptorMatcher matcher;
 
+    OutputStream fileOutStream = null;
+    Uri uri;
+    private static final int CODIGO_SOLICITUD_PERMISO=123;
+
     static {
         if (!OpenCVLoader.initDebug())
             Log.d("ERROR", "Unable to load OpenCV");
@@ -76,6 +97,10 @@ public class MainActivity extends AppCompatActivity {
         texto = (TextView) findViewById(R.id.texto);
         ivFinger = (ImageView) findViewById(R.id.ivFingerDisplay);
         ivFinger2 = (ImageView) findViewById(R.id.ivFingerDisplay2);
+
+        requestAppPermissions();
+
+
     }
 
     public void startScan(View view) {
@@ -95,11 +120,14 @@ public class MainActivity extends AppCompatActivity {
                         tvMessage.setText("Fingerprint captured");
                         img = data.getByteArrayExtra("img");
                         bm = BitmapFactory.decodeByteArray(img, 0, img.length);
+
                         AndroidBmpUtil bmpUtil = new AndroidBmpUtil();
                         byte[] buffer = bmpUtil.convertToBmp24bit(img);
 
                         imgDecodableString = Base64.encodeToString(img, Base64.DEFAULT);
                         ivFinger.setImageBitmap(bm);
+
+
                         //texto.setText(Arrays.toString(buffer));
                         // Toast.makeText(getApplicationContext(), imgDecodableString , Toast.LENGTH_LONG).show();
 
@@ -150,8 +178,60 @@ public class MainActivity extends AppCompatActivity {
 
         ivFinger2.setImageBitmap(bitmap);
 
+        String nombreDirectorioPrivado = "pictures";
+        crearDirectorioPrivado(this, nombreDirectorioPrivado);
+        //new guardarimagen().execute();
 
 
+
+    }
+
+    public File crearDirectorioPrivado(Context context, String nombreDirectorio) {
+        //Crear directorio privado en la carpeta Pictures.
+        File directorio =new File(
+                context.getExternalFilesDir(Environment.DIRECTORY_PICTURES),
+                nombreDirectorio);
+        //Muestro un mensaje en el logcat si no se creo la carpeta por algun motivo
+        if (!directorio.mkdirs())
+            Log.e(TAG, "Error: No se creo el directorio privado");
+
+        return directorio;
+    }
+
+    private class guardarimagen extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... arg0) {
+            Log.d(TAG, "estoy creando la carpeta");
+            File nuevaCarpeta = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "miCarpeta");
+            nuevaCarpeta.mkdirs();
+            return null;
+        }
+
+    }
+
+    private void requestAppPermissions() {
+        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            return;
+        }
+
+        if (hasReadPermissions() && hasWritePermissions()) {
+            return;
+        }
+
+        ActivityCompat.requestPermissions(this,
+                new String[] {
+                        Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE
+                }, CODIGO_SOLICITUD_PERMISO); // your request code
+    }
+
+    private boolean hasReadPermissions() {
+        return (ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
+    }
+
+    private boolean hasWritePermissions() {
+        return (ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
     }
 
     @Override
