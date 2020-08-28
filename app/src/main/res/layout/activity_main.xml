@@ -33,8 +33,18 @@
         android:layout_height="290dp"
         android:scaleType="fitXY"
         android:layout_gravity="center"
-        android:contentDescription="Scanned fingerprint"
         android:layout_below="@+id/texto"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <ImageView
+        android:id="@+id/imagenasset"
+        android:layout_width="384dp"
+        android:layout_height="290dp"
+        android:scaleType="fitXY"
+        android:layout_gravity="center"
+        android:contentDescription="Scanned fingerprint"
+        android:layout_below="@+id/ivFingerDisplay"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
@@ -44,9 +54,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_below="@+id/ivFingerDisplay"
+        android:layout_below="@+id/imagenasset"
         android:layout_centerHorizontal="true"
         />
+
+
 
 
 </RelativeLayout>

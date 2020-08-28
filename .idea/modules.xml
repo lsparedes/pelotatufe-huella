@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/FingerPrint.iml" filepath="$PROJECT_DIR$/.idea/modules/FingerPrint.iml" group="FingerPrint" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="FingerPrint/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/openCVLibrary310/openCVLibrary310.iml" filepath="$PROJECT_DIR$/.idea/modules/openCVLibrary310/openCVLibrary310.iml" group="FingerPrint/openCVLibrary310" />
     </modules>
   </component>
 </project>
