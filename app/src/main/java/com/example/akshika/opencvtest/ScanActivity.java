@@ -12,6 +12,7 @@ import android.os.Message;
 import android.util.Log;
 import android.view.WindowManager;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -28,7 +29,7 @@ public class ScanActivity extends Activity  {
     private TextView tvStatus;
     private TextView tvError;
     private Fingerprint fingerprint;
-
+    String idRecibidoScan;
 
 
     public ScanActivity() {
@@ -49,7 +50,8 @@ public class ScanActivity extends Activity  {
         tvStatus = (TextView) findViewById(R.id.tvStatus);
         tvError = (TextView) findViewById(R.id.tvError);
         fingerprint = new Fingerprint();
-
+        idRecibidoScan = getIntent().getStringExtra("id_scan");
+        Toast.makeText(getApplicationContext(), "Id jugador Scan: " + idRecibidoScan, Toast.LENGTH_SHORT).show();
     }
 
     @Override

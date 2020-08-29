@@ -79,8 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static MatOfDMatch matches, matches_final_mat;
     DescriptorMatcher matcher;
-
-
+    String idRecibido;
     private static final int CODIGO_SOLICITUD_PERMISO=123;
 
     static {
@@ -106,7 +105,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void startScan(View view) {
         Intent intent = new Intent(this, ScanActivity.class);
-        startActivityForResult(intent, SCAN_FINGER);
+        idRecibido = getIntent().getStringExtra("id");
+        intent.putExtra("id_scan", idRecibido);
+        intent.putExtra("SCAN_FINGER", SCAN_FINGER);
+        startActivity(intent);
+
     }
 
     @Override
@@ -128,9 +131,6 @@ public class MainActivity extends AppCompatActivity {
                         imgDecodableString = Base64.encodeToString(img, Base64.DEFAULT);
                         ivFinger.setImageBitmap(bm);
 
-
-                        //texto.setText(Arrays.toString(buffer));
-                        // Toast.makeText(getApplicationContext(), imgDecodableString , Toast.LENGTH_LONG).show();
 
                     } else {
                         errorMesssage = data.getStringExtra("errorMessage");
