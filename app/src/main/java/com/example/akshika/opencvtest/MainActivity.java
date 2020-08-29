@@ -179,10 +179,9 @@ public class MainActivity extends AppCompatActivity {
 
         ivFinger2.setImageBitmap(bitmap);
 
-        //String nombreDirectorioPrivado = "pictures";
-        //crearDirectorioPrivado(this, nombreDirectorioPrivado);
+
         storeImage(bitmap);
-        //new guardarimagen().execute();
+
 
 
 
@@ -197,20 +196,16 @@ public class MainActivity extends AppCompatActivity {
         if (!directorio.mkdirs())
             Log.e(TAG, "Error: No se creo el directorio privado");
 
-        return directorio;
-    }
+        // Create a media file name
+        String timeStamp = new SimpleDateFormat("ddMMyyyy_HHmm").format(new Date());
+        File mediaFile;
+        String mImageName="MI_"+ timeStamp +".jpg";
+        mediaFile = new File(directorio.getPath() + File.separator + mImageName);
+        return mediaFile;
 
-    private class guardarimagen extends AsyncTask<Void, Void, Void> {
-
-        @Override
-        protected Void doInBackground(Void... arg0) {
-            Log.d(TAG, "estoy creando la carpeta");
-            File nuevaCarpeta = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "miCarpeta");
-            nuevaCarpeta.mkdirs();
-            return null;
-        }
 
     }
+
 
     private void requestAppPermissions() {
         if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
@@ -237,7 +232,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void storeImage(Bitmap image) {
-        File pictureFile = getOutputMediaFile();
+        File pictureFile = crearDirectorioPrivado(this, "imagenes");
         if (pictureFile == null) {
             Log.d(TAG,
                     "Error creating media file, check storage permissions: ");// e.getMessage());
@@ -252,32 +247,6 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             Log.d(TAG, "Error accessing file: " + e.getMessage());
         }
-    }
-
-    /** Create a File for saving an image or video */
-    private  File getOutputMediaFile(){
-        // To be safe, you should check that the SDCard is mounted
-        // using Environment.getExternalStorageState() before doing this.
-        File mediaStorageDir = new File(Environment.getExternalStorageDirectory()
-                + "/Android/data/"
-                + getApplicationContext().getPackageName()
-                + "/Files");
-
-        // This location works best if you want the created images to be shared
-        // between applications and persist after your app has been uninstalled.
-
-        // Create the storage directory if it does not exist
-        if (! mediaStorageDir.exists()){
-            if (! mediaStorageDir.mkdirs()){
-                return null;
-            }
-        }
-        // Create a media file name
-        String timeStamp = new SimpleDateFormat("ddMMyyyy_HHmm").format(new Date());
-        File mediaFile;
-        String mImageName="MI_"+ timeStamp +".jpg";
-        mediaFile = new File(mediaStorageDir.getPath() + File.separator + mImageName);
-        return mediaFile;
     }
 
     @Override
