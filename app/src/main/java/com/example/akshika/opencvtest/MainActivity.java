@@ -180,31 +180,14 @@ public class MainActivity extends AppCompatActivity {
         ivFinger2.setImageBitmap(bitmap);
 
 
-        storeImage(bitmap);
 
 
 
-
-    }
-
-    public File crearDirectorioPrivado(Context context, String nombreDirectorio) {
-        //Crear directorio privado en la carpeta Pictures.
-        File directorio =new File(
-                context.getExternalFilesDir(Environment.DIRECTORY_PICTURES),
-                nombreDirectorio);
-        //Muestro un mensaje en el logcat si no se creo la carpeta por algun motivo
-        if (!directorio.mkdirs())
-            Log.e(TAG, "Error: No se creo el directorio privado");
-
-        // Create a media file name
-        String timeStamp = new SimpleDateFormat("ddMMyyyy_HHmm").format(new Date());
-        File mediaFile;
-        String mImageName="MI_"+ timeStamp +".jpg";
-        mediaFile = new File(directorio.getPath() + File.separator + mImageName);
-        return mediaFile;
 
 
     }
+
+
 
 
     private void requestAppPermissions() {
@@ -231,23 +214,6 @@ public class MainActivity extends AppCompatActivity {
         return (ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED);
     }
 
-    private void storeImage(Bitmap image) {
-        File pictureFile = crearDirectorioPrivado(this, "imagenes");
-        if (pictureFile == null) {
-            Log.d(TAG,
-                    "Error creating media file, check storage permissions: ");// e.getMessage());
-            return;
-        }
-        try {
-            FileOutputStream fos = new FileOutputStream(pictureFile);
-            image.compress(Bitmap.CompressFormat.PNG, 90, fos);
-            fos.close();
-        } catch (FileNotFoundException e) {
-            Log.d(TAG, "File not found: " + e.getMessage());
-        } catch (IOException e) {
-            Log.d(TAG, "Error accessing file: " + e.getMessage());
-        }
-    }
 
     @Override
     public void onResume() {

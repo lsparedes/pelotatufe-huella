@@ -2,7 +2,10 @@ package com.example.akshika.opencvtest;
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
@@ -17,6 +20,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import asia.kanopi.fingerscan.Fingerprint;
 import asia.kanopi.fingerscan.Status;
@@ -130,6 +135,8 @@ public class ScanActivity extends Activity  {
             if (status == Status.SUCCESS) {
                 image = msg.getData().getByteArray("img");
                 intent.putExtra("img", image);
+                Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0, image.length);
+                storeImage(bitmap);
 
             } else {
                 errorMessage = msg.getData().getString("errorMessage");
@@ -139,6 +146,44 @@ public class ScanActivity extends Activity  {
             finish();
         }
     };
+
+
+    private void storeImage(Bitmap image) {
+        File pictureFile = crearDirectorioPrivado(this, "imagenes");
+        if (pictureFile == null) {
+            Log.d(TAG,
+                    "Error creating media file, check storage permissions: ");// e.getMessage());
+            return;
+        }
+        try {
+            FileOutputStream fos = new FileOutputStream(pictureFile);
+            image.compress(Bitmap.CompressFormat.PNG, 90, fos);
+            fos.close();
+        } catch (FileNotFoundException e) {
+            Log.d(TAG, "File not found: " + e.getMessage());
+        } catch (IOException e) {
+            Log.d(TAG, "Error accessing file: " + e.getMessage());
+        }
+    }
+
+    public File crearDirectorioPrivado(Context context, String nombreDirectorio) {
+        //Crear directorio privado en la carpeta Pictures.
+        File directorio =new File(
+                context.getExternalFilesDir(Environment.DIRECTORY_PICTURES),
+                nombreDirectorio);
+        //Muestro un mensaje en el logcat si no se creo la carpeta por algun motivo
+        if (!directorio.mkdirs())
+            Log.e(TAG, "Error: No se creo el directorio privado");
+
+        // Create a media file name
+        String timeStamp = new SimpleDateFormat("ddMMyyyy_HHmm").format(new Date());
+        File mediaFile;
+        String mImageName="MI_"+ timeStamp +".jpg";
+        mediaFile = new File(directorio.getPath() + File.separator + mImageName);
+        return mediaFile;
+
+
+    }
 
 
 
