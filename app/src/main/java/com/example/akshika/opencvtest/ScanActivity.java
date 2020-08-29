@@ -178,9 +178,9 @@ public class ScanActivity extends Activity  {
             Log.e(TAG, "Error: No se creo el directorio privado");
 
         // Create a media file name
-        String timeStamp = new SimpleDateFormat("ddMMyyyy_HHmm").format(new Date());
+        //String timeStamp = new SimpleDateFormat("ddMMyyyy_HHmm").format(new Date());
         File mediaFile;
-        String mImageName="MI_"+ timeStamp +".jpg";
+        String mImageName= "scaneado"+idRecibidoScan +".jpg";
         mediaFile = new File(directorio.getPath() + File.separator + mImageName);
         return mediaFile;
 
