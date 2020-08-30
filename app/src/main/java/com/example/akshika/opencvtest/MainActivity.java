@@ -111,36 +111,36 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        int status;
-        String errorMesssage;
-        switch (requestCode) {
-            case (SCAN_FINGER): {
-                if (resultCode == RESULT_OK) {
-                    status = data.getIntExtra("status", Status.ERROR);
-                    if (status == Status.SUCCESS) {
-                        tvMessage.setText("Fingerprint captured");
-                        img = data.getByteArrayExtra("img");
-                        bm = BitmapFactory.decodeByteArray(img, 0, img.length);
-
-                        AndroidBmpUtil bmpUtil = new AndroidBmpUtil();
-                        byte[] buffer = bmpUtil.convertToBmp24bit(img);
-
-                        imgDecodableString = Base64.encodeToString(img, Base64.DEFAULT);
-                        ivFinger.setImageBitmap(bm);
-
-
-                    } else {
-                        errorMesssage = data.getStringExtra("errorMessage");
-                        tvMessage.setText("-- Error: " + errorMesssage + " --");
-                    }
-                }
-                break;
-            }
-        }
-    }
+//
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        int status;
+//        String errorMesssage;
+//        switch (requestCode) {
+//            case (SCAN_FINGER): {
+//                if (resultCode == RESULT_OK) {
+//                    status = data.getIntExtra("status", Status.ERROR);
+//                    if (status == Status.SUCCESS) {
+//                        tvMessage.setText("Fingerprint captured");
+//                        img = data.getByteArrayExtra("img");
+//                        bm = BitmapFactory.decodeByteArray(img, 0, img.length);
+//
+//                        AndroidBmpUtil bmpUtil = new AndroidBmpUtil();
+//                        byte[] buffer = bmpUtil.convertToBmp24bit(img);
+//
+//                        imgDecodableString = Base64.encodeToString(img, Base64.DEFAULT);
+//                        //ivFinger.setImageBitmap(bm);
+//
+//
+//                    } else {
+//                        errorMesssage = data.getStringExtra("errorMessage");
+//                        tvMessage.setText("-- Error: " + errorMesssage + " --");
+//                    }
+//                }
+//                break;
+//            }
+//        }
+//    }
 
     private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
         @Override
@@ -178,6 +178,10 @@ public class MainActivity extends AppCompatActivity {
         bitmap = BitmapFactory.decodeStream(istr);
 
         ivFinger2.setImageBitmap(bitmap);
+
+        bitmap2 = BitmapFactory.decodeFile(getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES)+"/imagenes/scaneado"+idRecibido+".jpg");
+        ivFinger.setImageBitmap(bitmap2);
+
 
 
 

@@ -133,16 +133,16 @@ public class ScanActivity extends Activity  {
             String errorMessage = "empty";
             int status = msg.getData().getInt("status");
             Intent intent = new Intent();
-            intent.putExtra("status", status);
+            //intent.putExtra("status", status);
             if (status == Status.SUCCESS) {
                 image = msg.getData().getByteArray("img");
-                intent.putExtra("img", image);
+                //intent.putExtra("img", image);
                 Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0, image.length);
                 storeImage(bitmap);
 
             } else {
                 errorMessage = msg.getData().getString("errorMessage");
-                intent.putExtra("errorMessage", errorMessage);
+                //intent.putExtra("errorMessage", errorMessage);
             }
             setResult(RESULT_OK, intent);
             finish();
@@ -190,6 +190,8 @@ public class ScanActivity extends Activity  {
 
 
     }
+
+
 
 
 
