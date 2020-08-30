@@ -9,13 +9,22 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     >
 
-    <Button
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/buttonScan"
+        android:backgroundTint="@android:color/holo_red_light"
+        android:layout_width="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_height="match_parent"
+        android:src="@drawable/ic_baseline_touch"
+        android:onClick="startScan"/>
+
+ <!--   <Button
         android:id="@+id/buttonScan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Validar Jugador"
+        android:background="@drawable/circle"
         android:layout_centerHorizontal="true"
-        android:onClick="startScan"/>
+        android:onClick="startScan"/>-->
 
     <TextView
         android:id="@+id/texto"

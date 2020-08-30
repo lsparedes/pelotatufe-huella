@@ -49,7 +49,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_2_API_28" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="ZY322NPRDJ" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -224,5 +224,9 @@
     </state>
     <state x="389" y="287" key="com.intellij.ide.util.TipDialog/0.23.1440.825/-1366.-15.1366.745@0.23.1440.825" timestamp="1598731432615" />
     <state x="389" y="287" key="com.intellij.ide.util.TipDialog/0.23.1440.825@0.23.1440.825" timestamp="1598635157501" />
+    <state x="-1366" y="-15" width="850" height="745" key="find.popup" timestamp="1598747736633">
+      <screen x="-1366" y="-15" width="1366" height="745" />
+    </state>
+    <state x="-1366" y="-15" width="850" height="745" key="find.popup/0.23.1440.825/-1366.-15.1366.745@-1366.-15.1366.745" timestamp="1598747736633" />
   </component>
 </project>

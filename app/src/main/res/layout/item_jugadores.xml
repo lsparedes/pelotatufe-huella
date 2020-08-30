@@ -41,7 +41,7 @@
         android:id="@+id/nombre"
         android:text="nombre"
         android:paddingTop="12dp"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@android:color/black"
         android:layout_marginLeft="100dp" />
 
 

@@ -181,8 +181,16 @@ public class ScanActivity extends Activity  {
         //String timeStamp = new SimpleDateFormat("ddMMyyyy_HHmm").format(new Date());
         File mediaFile;
         String mImageName= "scaneado"+idRecibidoScan +".jpg";
+
         mediaFile = new File(directorio.getPath() + File.separator + mImageName);
-        return mediaFile;
+
+        if(!mediaFile.exists()){
+            return mediaFile;
+        }
+        else{
+            return null;
+        }
+
 
 
     }
