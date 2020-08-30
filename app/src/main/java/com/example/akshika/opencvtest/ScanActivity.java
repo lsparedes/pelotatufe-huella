@@ -184,12 +184,8 @@ public class ScanActivity extends Activity  {
 
         mediaFile = new File(directorio.getPath() + File.separator + mImageName);
 
-        if(!mediaFile.exists()){
+
             return mediaFile;
-        }
-        else{
-            return null;
-        }
 
 
 
