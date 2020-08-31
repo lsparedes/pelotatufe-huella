@@ -31,12 +31,8 @@ import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
 import org.opencv.android.Utils;
-import org.opencv.core.Core;
-import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfDMatch;
-import org.opencv.core.MatOfFloat;
-import org.opencv.core.MatOfInt;
 import org.opencv.core.MatOfKeyPoint;
 import org.opencv.core.Scalar;
 import org.opencv.features2d.DescriptorExtractor;
@@ -52,7 +48,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 import asia.kanopi.fingerscan.Status;
@@ -104,7 +99,6 @@ public class MainActivity extends AppCompatActivity {
         ivFinger2 = (ImageView) findViewById(R.id.ivFingerDisplay2);
 
         requestAppPermissions();
-        getSupportActionBar().hide();
 
 
     }
@@ -117,7 +111,36 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
-
+//
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        int status;
+//        String errorMesssage;
+//        switch (requestCode) {
+//            case (SCAN_FINGER): {
+//                if (resultCode == RESULT_OK) {
+//                    status = data.getIntExtra("status", Status.ERROR);
+//                    if (status == Status.SUCCESS) {
+//                        tvMessage.setText("Fingerprint captured");
+//                        img = data.getByteArrayExtra("img");
+//                        bm = BitmapFactory.decodeByteArray(img, 0, img.length);
+//
+//                        AndroidBmpUtil bmpUtil = new AndroidBmpUtil();
+//                        byte[] buffer = bmpUtil.convertToBmp24bit(img);
+//
+//                        imgDecodableString = Base64.encodeToString(img, Base64.DEFAULT);
+//                        //ivFinger.setImageBitmap(bm);
+//
+//
+//                    } else {
+//                        errorMesssage = data.getStringExtra("errorMessage");
+//                        tvMessage.setText("-- Error: " + errorMesssage + " --");
+//                    }
+//                }
+//                break;
+//            }
+//        }
+//    }
 
     private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
         @Override
@@ -150,15 +173,17 @@ public class MainActivity extends AppCompatActivity {
         matcher = DescriptorMatcher.create(DescriptorMatcher.BRUTEFORCE_HAMMING);
         matches = new MatOfDMatch();
         img1 = new Mat();
-        img2 = new Mat();
         AssetManager assetManager = getAssets();
         InputStream istr = assetManager.open("dedo2.png");
         bitmap = BitmapFactory.decodeStream(istr);
-        bitmap2 = BitmapFactory.decodeFile(getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES)+"/imagenes/scaneado"+idRecibido+".jpg");
-        Utils.bitmapToMat(bitmap, img1);
-        Utils.bitmapToMat(bitmap2, img2);
-        ivFinger.setImageBitmap(bitmap2);
+
         ivFinger2.setImageBitmap(bitmap);
+
+        bitmap2 = BitmapFactory.decodeFile(getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES)+"/imagenes/scaneado"+idRecibido+".jpg");
+        ivFinger.setImageBitmap(bitmap2);
+
+
+
 
 
 
