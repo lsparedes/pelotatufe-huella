@@ -31,7 +31,7 @@ public class JugadorActivity extends AppCompatActivity {
         listajugadores = (ListView) findViewById(R.id.lista_jugadores);
         listajugadores.setEmptyView(findViewById(R.id.mensajevacio));
 
-
+        getSupportActionBar().hide();
 
         lista_bd = new ArrayList<>();
         new Jugadores().execute();
