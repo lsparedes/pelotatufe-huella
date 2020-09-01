@@ -50,6 +50,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -61,12 +62,13 @@ public class MainActivity extends AppCompatActivity {
     ImageView ivFinger, ivFinger2;
     TextView tvMessage, texto;
     byte[] img;
-    Bitmap bm;
+    //Bitmap bm, myBitmap;
     String imgDecodableString;
+    private static InputStream input;
     private static final int SCAN_FINGER = 0;
 
     private static final String TAG = "OCVSample::Activity";
-    private static Bitmap bitmap, bitmap2;
+    private static Bitmap bitmap, bitmap2, myBitmap;
     private static final int REQUEST_PERMISSION = 100;
     private int w, h;
 
@@ -142,6 +144,21 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    public static Bitmap getBitmapFromURL(String src) {
+        try {
+            URL url = new URL(src);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setDoInput(true);
+            connection.connect();
+            input = connection.getInputStream();
+            myBitmap = BitmapFactory.decodeStream(input);
+            return myBitmap;
+        } catch (IOException e) {
+            // Log exception
+            return null;
+        }
+    }
+
     private void initializeOpenCVDependencies() throws IOException {
 
 
@@ -153,8 +170,16 @@ public class MainActivity extends AppCompatActivity {
         img2 = new Mat();
         AssetManager assetManager = getAssets();
         InputStream istr = assetManager.open("dedo2.png");
+        URL url = new URL("https://picsum.photos/200.jpg");
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setDoInput(true);
+        connection.connect();
+        input = connection.getInputStream();
+        myBitmap = BitmapFactory.decodeStream(input);
+        //InputStream istr2 = assetManager.open("dedo1.png");
         bitmap = BitmapFactory.decodeStream(istr);
-        bitmap2 = BitmapFactory.decodeFile(getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES)+"/imagenes/scaneado"+idRecibido+".jpg");
+        bitmap2 = BitmapFactory.decodeStream(input);
+        //bitmap2 = BitmapFactory.decodeFile(getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES)+"/imagenes/scaneado"+idRecibido+".jpg");
         Utils.bitmapToMat(bitmap, img1);
         Utils.bitmapToMat(bitmap2, img2);
         ivFinger.setImageBitmap(bitmap2);
