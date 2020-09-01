@@ -18,13 +18,6 @@
         android:src="@drawable/ic_baseline_touch"
         android:onClick="startScan"/>
 
- <!--   <Button
-        android:id="@+id/buttonScan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/circle"
-        android:layout_centerHorizontal="true"
-        android:onClick="startScan"/>-->
 
     <TextView
         android:id="@+id/texto"
@@ -37,24 +30,22 @@
 
 
     <ImageView
-        android:id="@+id/ivFingerDisplay"
+        android:id="@+id/huella"
         android:layout_width="384dp"
         android:layout_height="290dp"
         android:scaleType="fitXY"
         android:layout_gravity="center"
-        android:contentDescription="Scanned fingerprint"
         android:layout_below="@+id/texto"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
     <ImageView
-        android:id="@+id/ivFingerDisplay2"
+        android:id="@+id/imagen"
         android:layout_width="384dp"
         android:layout_height="290dp"
         android:scaleType="fitXY"
         android:layout_gravity="center"
-        android:contentDescription="Scanned fingerprint"
-        android:layout_below="@+id/ivFingerDisplay"
+        android:layout_below="@+id/huella"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
@@ -64,7 +55,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_below="@+id/ivFingerDisplay"
+        android:layout_below="@+id/imagen"
         android:layout_centerHorizontal="true"
         />
 

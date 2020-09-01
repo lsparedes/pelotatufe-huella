@@ -41,6 +41,7 @@ import org.opencv.features2d.FeatureDetector;
 import org.opencv.imgproc.Imgproc;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -54,31 +55,19 @@ import java.util.Date;
 import asia.kanopi.fingerscan.Status;
 
 public class MainActivity extends AppCompatActivity {
-    ImageView ivFinger, ivFinger2;
+    ImageView huella, imagen;
     TextView tvMessage, texto;
-    byte[] img;
-    //Bitmap bm, myBitmap;
-    String imgDecodableString;
-    private static InputStream input;
+    String uri;
     private static final int SCAN_FINGER = 0;
 
     private static final String TAG = "OCVSample::Activity";
-    private static Bitmap bitmap, bitmap2, myBitmap;
-    private static final int REQUEST_PERMISSION = 100;
-    private int w, h;
-
-    TextView tvName;
+    private static Bitmap bitmap, bitmap2;
     Scalar RED = new Scalar(255, 0, 0);
     Scalar GREEN = new Scalar(0, 255, 0);
     FeatureDetector detector;
     DescriptorExtractor descriptor;
 
-    Mat descriptors2, descriptors1;
     Mat img1, img2;
-    MatOfKeyPoint keypoints1, keypoints2;
-    private static int min_dist = 10;
-    private static int min_matches = 750;
-
     private static MatOfDMatch matches, matches_final_mat;
     DescriptorMatcher matcher;
     String idRecibido;
@@ -97,8 +86,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.layout);
         tvMessage = (TextView) findViewById(R.id.tvMessage);
         texto = (TextView) findViewById(R.id.texto);
-        ivFinger = (ImageView) findViewById(R.id.ivFingerDisplay);
-        ivFinger2 = (ImageView) findViewById(R.id.ivFingerDisplay2);
+        huella = (ImageView) findViewById(R.id.huella);
+        imagen = (ImageView) findViewById(R.id.imagen);
 
         requestAppPermissions();
 
@@ -167,20 +156,7 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    public static Bitmap getBitmapFromURL(String src) {
-        try {
-            URL url = new URL(src);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setDoInput(true);
-            connection.connect();
-            input = connection.getInputStream();
-            myBitmap = BitmapFactory.decodeStream(input);
-            return myBitmap;
-        } catch (IOException e) {
-            // Log exception
-            return null;
-        }
-    }
+
 
     private void initializeOpenCVDependencies() throws IOException {
 
@@ -190,21 +166,22 @@ public class MainActivity extends AppCompatActivity {
         matcher = DescriptorMatcher.create(DescriptorMatcher.BRUTEFORCE_HAMMING);
         matches = new MatOfDMatch();
         img1 = new Mat();
+        img2 = new Mat();
         AssetManager assetManager = getAssets();
         InputStream istr = assetManager.open("dedo2.png");
-        URL url = new URL("https://picsum.photos/200.jpg");
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-        connection.setDoInput(true);
-        connection.connect();
-        input = connection.getInputStream();
-        myBitmap = BitmapFactory.decodeStream(input);
-        //InputStream istr2 = assetManager.open("dedo1.png");
+        Log.d(TAG, "Istr" +istr);
+        uri= getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES).toString();
+        uri = uri +"/icon4.png";
+        Log.d(TAG, "RUTA" +uri);
+        InputStream fileInputStream = new FileInputStream(uri);
+        Log.d(TAG, "FiLeinputStream" +fileInputStream);
         bitmap = BitmapFactory.decodeStream(istr);
-        bitmap2 = BitmapFactory.decodeStream(input);
+        bitmap2 = BitmapFactory.decodeStream(fileInputStream);
         //bitmap2 = BitmapFactory.decodeFile(getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES)+"/imagenes/scaneado"+idRecibido+".jpg");
         Utils.bitmapToMat(bitmap, img1);
         Utils.bitmapToMat(bitmap2, img2);
-        ivFinger.setImageBitmap(bitmap2);
+        imagen.setImageBitmap(bitmap);
+        huella.setImageBitmap(bitmap2);
 
 
 
