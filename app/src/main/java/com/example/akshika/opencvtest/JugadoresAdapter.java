@@ -56,8 +56,8 @@ public class JugadoresAdapter extends BaseAdapter {
         nombre.setText(arrayList.get(position).getNombre());
         iv_main.setImageResource(R.drawable.circle);
         //int color = Color.argb(255, random.nextInt(250), random.nextInt(250), random.nextInt(250));
-        //int color = Color.argb(255, 0,0,0);
-        //iv_main.setColorFilter(color);
+        int color = Color.argb(255, 0,0,0);
+        iv_main.setColorFilter(color);
         tv_main.setImageResource(R.drawable.ic_baseline_sports_handball_24);
 
         convertView.setOnClickListener(new View.OnClickListener() {
