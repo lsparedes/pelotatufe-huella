@@ -102,6 +102,7 @@
         android:scaleType="fitXY"
         android:layout_gravity="center"
         android:layout_below="@+id/texto"
+        android:visibility="invisible"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
@@ -110,6 +111,7 @@
         android:layout_width="384dp"
         android:layout_height="290dp"
         android:scaleType="fitXY"
+        android:visibility="invisible"
         android:layout_gravity="center"
         android:layout_below="@+id/huella"
         android:layout_alignParentRight="true"
