@@ -49,16 +49,16 @@ public class JugadoresAdapter extends BaseAdapter {
             convertView = layoutInflater.inflate(R.layout.item_jugadores, null);
         }
 
-        ImageView iv_main = (ImageView) convertView.findViewById(R.id.iv_main);
+        //ImageView iv_main = (ImageView) convertView.findViewById(R.id.iv_main);
         TextView nombre = (TextView) convertView.findViewById(R.id.nombre);
-        ImageView tv_main = (ImageView) convertView.findViewById(R.id.tv_main);
+        //ImageView tv_main = (ImageView) convertView.findViewById(R.id.tv_main);
 
         nombre.setText(arrayList.get(position).getNombre());
-        iv_main.setImageResource(R.drawable.circle);
+        //iv_main.setImageResource(R.drawable.circle);
         //int color = Color.argb(255, random.nextInt(250), random.nextInt(250), random.nextInt(250));
         int color = Color.argb(255, 0,0,0);
-        iv_main.setColorFilter(color);
-        tv_main.setImageResource(R.drawable.ic_baseline_sports_handball_24);
+        //iv_main.setColorFilter(color);
+        //tv_main.setImageResource(R.drawable.ic_baseline_sports_handball_24);
 
         convertView.setOnClickListener(new View.OnClickListener() {
 

@@ -19,9 +19,11 @@ import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -63,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView huella, imagen;
     TextView tvMessage, texto;
     String uri;
+    Button consultar, enrolar;
     private static final int SCAN_FINGER = 0;
 
     private static final String TAG = "OCVSample::Activity";
@@ -98,7 +101,12 @@ public class MainActivity extends AppCompatActivity {
         texto = (TextView) findViewById(R.id.texto);
         huella = (ImageView) findViewById(R.id.huella);
         imagen = (ImageView) findViewById(R.id.imagen);
-
+        consultar = (Button) findViewById(R.id.buttonScan);
+        enrolar = (Button) findViewById(R.id.enrolar);
+        consultar.setText(Html.fromHtml("<b><big>" + "Consultar" + "</big></b>" +  "<br />" +
+                "<small>" + "Validar huella digital" + "</small>" + "<br />"));
+        enrolar.setText(Html.fromHtml("<b><big>" + "Enrolar" + "</big></b>" +  "<br />" +
+                "<small>" + "Registrar huella digital" + "</small>" + "<br />"));
         requestAppPermissions();
 
 

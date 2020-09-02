@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -30,6 +31,7 @@ public class JugadorActivity extends AppCompatActivity {
 
         listajugadores = (ListView) findViewById(R.id.lista_jugadores);
         listajugadores.setEmptyView(findViewById(R.id.mensajevacio));
+
 
 
 

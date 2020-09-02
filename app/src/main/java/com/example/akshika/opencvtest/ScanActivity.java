@@ -56,7 +56,7 @@ public class ScanActivity extends Activity  {
         tvError = (TextView) findViewById(R.id.tvError);
         fingerprint = new Fingerprint();
         idRecibidoScan = getIntent().getStringExtra("id_scan");
-        Toast.makeText(getApplicationContext(), "Id jugador Scan: " + idRecibidoScan, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "Id jugador Scan: " + idRecibidoScan, Toast.LENGTH_SHORT).show();
     }
 
     @Override
