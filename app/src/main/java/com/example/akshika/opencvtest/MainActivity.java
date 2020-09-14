@@ -16,9 +16,7 @@ import android.os.Bundle;
 
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
+
 import android.text.Html;
 import android.util.Base64;
 import android.util.Log;
@@ -28,6 +26,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.LoaderCallbackInterface;
@@ -97,16 +99,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout);
-        tvMessage = (TextView) findViewById(R.id.tvMessage);
-        texto = (TextView) findViewById(R.id.texto);
+        //tvMessage = (TextView) findViewById(R.id.tvMessage);
+        //texto = (TextView) findViewById(R.id.texto);
         huella = (ImageView) findViewById(R.id.huella);
         imagen = (ImageView) findViewById(R.id.imagen);
-        consultar = (Button) findViewById(R.id.buttonScan);
-        enrolar = (Button) findViewById(R.id.enrolar);
-        consultar.setText(Html.fromHtml("<b><big>" + "Consultar" + "</big></b>" +  "<br />" +
+        //consultar = (Button) findViewById(R.id.buttonScan);
+        //enrolar = (Button) findViewById(R.id.enrolar);
+        /*consultar.setText(Html.fromHtml("<b><big>" + "Consultar" + "</big></b>" +  "<br />" +
                 "<small>" + "Validar huella digital" + "</small>" + "<br />"));
         enrolar.setText(Html.fromHtml("<b><big>" + "Enrolar" + "</big></b>" +  "<br />" +
-                "<small>" + "Registrar huella digital" + "</small>" + "<br />"));
+                "<small>" + "Registrar huella digital" + "</small>" + "<br />"));*/
         requestAppPermissions();
 
 

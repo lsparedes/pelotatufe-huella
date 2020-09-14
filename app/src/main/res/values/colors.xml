@@ -2,7 +2,9 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#FFFF</color>
     <color name="fondo">#bc0823</color>
     <color name="lista">#9FA3A6</color>
+    <color name="mtrl_textinput_default_box_stroke_color">#fff</color>
+    <color name="azul">#00135B</color>
 </resources>

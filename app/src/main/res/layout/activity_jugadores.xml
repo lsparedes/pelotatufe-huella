@@ -2,73 +2,135 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:layout_centerInParent="true"
+    android:gravity="center"
     android:background="@color/fondo"
-    android:layout_gravity="center_vertical"
     >
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="20dp"
-                android:text="JUGADORES"
-                android:textStyle="bold"
-                android:textSize="20dp"
-                android:textColor="#00135B"
-
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:layout_marginTop="20dp"
-                android:text="2020."
-                android:textStyle="bold"
-                android:textSize="20dp"
-                android:textColor="@android:color/white"
-
-                />
-
-        </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:background="@android:color/white"
-        />
-
-    <ListView
-        android:id="@+id/lista_jugadores"
-        android:layout_width="match_parent"
-        android:padding="20dp"
-        android:background="@color/fondo"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:divider="@android:color/white"
-        android:layout_alignParentEnd="true"
-        >
-    </ListView>
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_below="@+id/logo"
+        android:background="@color/cardview_shadow_end_color"
+        android:backgroundTint="@android:color/white"
+        app:srcCompat="@drawable/logo_blanco" />
 
     <TextView
+        android:id="@+id/bienvenida"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/mensajevacio"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="Su registro se encuentra vacio."
+        android:fontFamily="@font/roboto_medium"
+        android:text="Bienvenido a Pelotatufe"
+        android:textColor="@android:color/white"
+
+
+        android:textSize="22dp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/filledTextField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_below="@+id/bienvenida"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:hint="@string/rut"
+        app:helperTextEnabled="true"
+        app:boxStrokeColor="@android:color/white"
+        android:textColorHint="@android:color/white"
+        app:hintTextColor="@android:color/white"
+        app:hintTextAppearance="@android:color/white"
+        app:helperTextTextColor="@android:color/white"
+        app:helperTextTextAppearance="@android:color/white"
+        app:helperText="@string/helper_text">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/rut"
+            android:textColor="@android:color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/siguiente"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="Consultar"
+        android:backgroundTint="@color/azul"
+        android:layout_below="@+id/filledTextField"
 
         />
+
+    <!--
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="JUGADORES"
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    android:textColor="#00135B"
+
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="20dp"
+                    android:text="2020."
+                    android:textStyle="bold"
+                    android:textSize="20dp"
+                    android:textColor="@android:color/white"
+
+                    />
+
+            </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@android:color/white"
+            />
+
+        <ListView
+            android:id="@+id/lista_jugadores"
+            android:layout_width="match_parent"
+            android:padding="20dp"
+            android:background="@color/fondo"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:divider="@android:color/white"
+            android:layout_alignParentEnd="true"
+            >
+        </ListView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/mensajevacio"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="Su registro se encuentra vacio."
+
+            />
+    -->
 
 
 

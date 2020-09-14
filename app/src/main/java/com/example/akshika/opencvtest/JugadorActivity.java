@@ -2,15 +2,22 @@ package com.example.akshika.opencvtest;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+
+import com.google.android.material.textfield.TextInputEditText;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,20 +30,29 @@ public class JugadorActivity extends AppCompatActivity {
     private ListView listajugadores;
     static ArrayList<ItemJugadores> lista_bd;
     JugadoresAdapter adaptador_jugadores;
+    TextInputEditText rut;
+    Button siguiente;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jugadores);
 
-        listajugadores = (ListView) findViewById(R.id.lista_jugadores);
-        listajugadores.setEmptyView(findViewById(R.id.mensajevacio));
+        rut = (TextInputEditText) findViewById(R.id.rut);
+        siguiente = (Button) findViewById(R.id.siguiente);
+        //listajugadores = (ListView) findViewById(R.id.lista_jugadores);
+        //listajugadores.setEmptyView(findViewById(R.id.mensajevacio));
 
+        siguiente.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
-
-
-        lista_bd = new ArrayList<>();
-        new Jugadores().execute();
+        //getSupportActionBar().hide();
+        //lista_bd = new ArrayList<>();
+        //new Jugadores().execute();
 
 
     }
