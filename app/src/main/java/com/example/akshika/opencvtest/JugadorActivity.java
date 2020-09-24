@@ -17,6 +17,14 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.textfield.TextInputEditText;
 
 import org.json.JSONArray;
@@ -24,13 +32,15 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class JugadorActivity extends AppCompatActivity {
 
     private ListView listajugadores;
     static ArrayList<ItemJugadores> lista_bd;
     JugadoresAdapter adaptador_jugadores;
-    TextInputEditText rut;
+    public static TextInputEditText rut;
     Button siguiente;
 
     @Override
@@ -45,79 +55,74 @@ public class JugadorActivity extends AppCompatActivity {
 
         siguiente.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
+
+                EventDetails();
             }
         });
 
         //getSupportActionBar().hide();
         //lista_bd = new ArrayList<>();
-        //new Jugadores().execute();
 
 
     }
 
-    private class Jugadores extends AsyncTask<Void, Void, Void> {
-        private ProgressDialog pDialog;
+    public void EventDetails(){
+        final ProgressDialog loading = new ProgressDialog(JugadorActivity.this);
+        loading.setMessage("Please Wait...");
+        loading.setCanceledOnTouchOutside(false);
+        loading.show();
 
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            pDialog = new ProgressDialog(JugadorActivity.this);
-            pDialog.setMessage("Cargando información...");
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(true);
-            pDialog.show();
+        JSONObject object = new JSONObject();
+        try {
+            //input your API parameters
+            object.put("rut",rut.getText().toString());
+
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
+        // Enter the correct url for your api service site
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, "http://proyectos.drup.cl/pelotatufe/api/v1/players/verified", object,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+//                        Toast.makeText(Login_screen.this,"String Response : "+ response.toString(),Toast.LENGTH_LONG).show();
 
-        @Override
-        protected Void doInBackground(Void... arg0) {
+                            //Log.i("JSON", String.valueOf(response));
+                            //loading.dismiss();
+                        try {
 
-            String url = "https://jsonplaceholder.typicode.com/users";
-            HttpHandler sh = new HttpHandler();
-            String jsonStr = sh.makeServiceCall(url);
-            Log.d("JSON", jsonStr);
+                            String success = response.getString("success");
+                            loading.dismiss();
+                            if(success == "false"){
+                                Toast.makeText(getApplicationContext(), "Este jugador no existe.", Toast.LENGTH_SHORT).show();
+                            }
+                            else{
+                                 JSONObject player = response.getJSONObject("player");
+                                 String name = player.getString("name");
+                                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                 intent.putExtra("nombre", name);
+                                 startActivity(intent);
+                            }
+                            Log.i("success", success);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
 
-            if (jsonStr != null) {
-                try {
-                    JSONArray jsonObj = new JSONArray(jsonStr);
-
-                    for (int i = 0; i < jsonObj.length(); i++) {
-                        JSONObject c = jsonObj.getJSONObject(i);
-                        String id = c.getString("id");
-                        String nombre = c.getString("name");
+                        //Log.i("success", "hola");
 
 
-                        Log.d("Id", c.getString("id"));
-
-                        ItemJugadores e=new ItemJugadores();
-                        e.setId(id);
-                        e.setNombre(nombre);
-
-                        lista_bd.add(e);
-
+//                        resultTextView.setText("String Response : "+ response.toString());
                     }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            } else {
-                Log.e("ServiceHandler", "Esta habiendo problemas para cargar el JSON");
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                loading.dismiss();
+                VolleyLog.d("Error", "Error: " + error.getMessage());
+                Toast.makeText(JugadorActivity.this, "" + error.getMessage(), Toast.LENGTH_SHORT).show();
             }
-
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-            super.onPostExecute(result);
-            if (pDialog.isShowing()){
-                pDialog.dismiss();
-            }
-            adaptador_jugadores = new JugadoresAdapter(JugadorActivity.this,lista_bd);
-            listajugadores.setAdapter(adaptador_jugadores);
-
-        }
-
-
+        });
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        requestQueue.add(jsonObjectRequest);
     }
+
 }
