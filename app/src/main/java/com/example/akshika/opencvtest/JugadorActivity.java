@@ -99,8 +99,10 @@ public class JugadorActivity extends AppCompatActivity {
                             else{
                                  JSONObject player = response.getJSONObject("player");
                                  String name = player.getString("name");
+                                 String club = player.getString("club");
                                  Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                  intent.putExtra("nombre", name);
+                                 intent.putExtra("club", club);
                                  startActivity(intent);
                             }
                             Log.i("success", success);

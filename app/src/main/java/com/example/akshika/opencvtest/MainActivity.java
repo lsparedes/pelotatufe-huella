@@ -82,8 +82,8 @@ public class MainActivity extends AppCompatActivity {
     MatOfKeyPoint keypoints1, keypoints2;
     private static int min_dist = 10;
     private static int min_matches = 750;
-    private static String nombre;
-    TextView nombre_usuario;
+    private static String nombre, club;
+    TextView nombre_usuario, club_usuario;
 
     private static MatOfDMatch matches, matches_final_mat;
     DescriptorMatcher matcher;
@@ -106,8 +106,11 @@ public class MainActivity extends AppCompatActivity {
         huella = (ImageView) findViewById(R.id.huella);
         imagen = (ImageView) findViewById(R.id.imagen);
         nombre_usuario = (TextView) findViewById(R.id.nombre);
-        nombre= getIntent().getStringExtra("nombre");
+        club_usuario = (TextView) findViewById(R.id.equipo);
+        nombre = getIntent().getStringExtra("nombre");
+        club = getIntent().getStringExtra("club");
         nombre_usuario.setText(nombre);
+        club_usuario.setText(club);
         //consultar = (Button) findViewById(R.id.buttonScan);
         //enrolar = (Button) findViewById(R.id.enrolar);
         /*consultar.setText(Html.fromHtml("<b><big>" + "Consultar" + "</big></b>" +  "<br />" +
