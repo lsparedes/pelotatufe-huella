@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView huella, imagen;
     TextView tvMessage, texto;
     String uri;
-    Button consultar, enrolar;
+    Button consultar, enrolar, jugador_enrolado, cuenta_activada, citado;
     private static final int SCAN_FINGER = 0;
 
     private static final String TAG = "OCVSample::Activity";
@@ -82,8 +82,9 @@ public class MainActivity extends AppCompatActivity {
     MatOfKeyPoint keypoints1, keypoints2;
     private static int min_dist = 10;
     private static int min_matches = 750;
-    private static String nombre, club;
+    private static String nombre, club, fingerprint, confirmacion, hour;
     TextView nombre_usuario, club_usuario;
+
 
     private static MatOfDMatch matches, matches_final_mat;
     DescriptorMatcher matcher;
@@ -107,16 +108,39 @@ public class MainActivity extends AppCompatActivity {
         imagen = (ImageView) findViewById(R.id.imagen);
         nombre_usuario = (TextView) findViewById(R.id.nombre);
         club_usuario = (TextView) findViewById(R.id.equipo);
+        consultar = (Button) findViewById(R.id.validar);
+        enrolar = (Button) findViewById(R.id.enrolar);
+        jugador_enrolado = (Button) findViewById(R.id.jugador_enrolado);
+        cuenta_activada = (Button) findViewById(R.id.cuenta);
+        citado = (Button) findViewById(R.id.citacion);
         nombre = getIntent().getStringExtra("nombre");
         club = getIntent().getStringExtra("club");
+        fingerprint = getIntent().getStringExtra("fingerprint");
+        confirmacion = getIntent().getStringExtra("confirmacion");
+        hour = getIntent().getStringExtra("hour");
+        //Toast.makeText(getApplicationContext(), fingerprint, Toast.LENGTH_SHORT).show();
         nombre_usuario.setText(nombre);
         club_usuario.setText(club);
-        //consultar = (Button) findViewById(R.id.buttonScan);
-        //enrolar = (Button) findViewById(R.id.enrolar);
-        /*consultar.setText(Html.fromHtml("<b><big>" + "Consultar" + "</big></b>" +  "<br />" +
-                "<small>" + "Validar huella digital" + "</small>" + "<br />"));
-        enrolar.setText(Html.fromHtml("<b><big>" + "Enrolar" + "</big></b>" +  "<br />" +
-                "<small>" + "Registrar huella digital" + "</small>" + "<br />"));*/
+
+
+        if(fingerprint.equals("null")){
+            enrolar.setVisibility(View.VISIBLE);
+            jugador_enrolado.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_cancel_24, 0);
+        }else{
+            consultar.setVisibility(View.VISIBLE);
+            jugador_enrolado.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_check_circle_24, 0);
+        }
+        if(confirmacion.equals("null")){
+            cuenta_activada.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_cancel_24, 0);
+        }else{
+
+            cuenta_activada.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_check_circle_24, 0);
+        }
+        if(hour.equals("no citado")){
+            citado.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_cancel_24, 0);
+        }else{
+            citado.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_check_circle_24, 0);
+        }
         requestAppPermissions();
 
 

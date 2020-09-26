@@ -2,6 +2,7 @@ package com.example.akshika.opencvtest;
 
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -16,6 +17,17 @@ import android.util.Log;
 import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.util.Base64;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -34,7 +46,7 @@ public class ScanActivity extends Activity  {
     private TextView tvStatus;
     private TextView tvError;
     private Fingerprint fingerprint;
-    String idRecibidoScan;
+    String idRecibidoScan, encodedString;
 
 
     public ScanActivity() {
@@ -137,8 +149,9 @@ public class ScanActivity extends Activity  {
             if (status == Status.SUCCESS) {
                 image = msg.getData().getByteArray("img");
                 //intent.putExtra("img", image);
-                Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0, image.length);
-                storeImage(bitmap);
+                encodedString = Base64.encodeToString(image, Base64.DEFAULT);
+                //Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0, image.length);
+                //storeImage(bitmap);
 
             } else {
                 errorMessage = msg.getData().getString("errorMessage");
@@ -148,6 +161,62 @@ public class ScanActivity extends Activity  {
             finish();
         }
     };
+
+    public void IngresoImagen(){
+        final ProgressDialog loading = new ProgressDialog(ScanActivity.this);
+        loading.setMessage("Please Wait...");
+        loading.setCanceledOnTouchOutside(false);
+        loading.show();
+
+        JSONObject object = new JSONObject();
+        try {
+            //input your API parameters
+            object.put("image",encodedString);
+            object.put("id", idRecibidoScan);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        // Enter the correct url for your api service site
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, "http://proyectos.drup.cl/pelotatufe/api/v1/players/enroll", object,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+//                        Toast.makeText(Login_screen.this,"String Response : "+ response.toString(),Toast.LENGTH_LONG).show();
+
+                        //Log.i("JSON", String.valueOf(response));
+                        //loading.dismiss();
+                        try {
+
+                            String success = response.getString("success");
+                            loading.dismiss();
+                            Log.i("success", success);
+                            if(success == "false"){
+                                Toast.makeText(getApplicationContext(), "No Enrolado.", Toast.LENGTH_SHORT).show();
+                            }
+                            else{
+                                Toast.makeText(getApplicationContext(), "Enrolado.", Toast.LENGTH_SHORT).show();
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                        //Log.i("success", "hola");
+
+
+//                        resultTextView.setText("String Response : "+ response.toString());
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                loading.dismiss();
+                VolleyLog.d("Error", "Error: " + error.getMessage());
+                Toast.makeText(ScanActivity.this, "" + error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        requestQueue.add(jsonObjectRequest);
+    }
 
 
     private void storeImage(Bitmap image) {

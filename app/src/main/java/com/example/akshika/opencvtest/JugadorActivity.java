@@ -42,6 +42,7 @@ public class JugadorActivity extends AppCompatActivity {
     JugadoresAdapter adaptador_jugadores;
     public static TextInputEditText rut;
     Button siguiente;
+    String hour;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +57,7 @@ public class JugadorActivity extends AppCompatActivity {
         siguiente.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                EventDetails();
+                IngresoJugadores();
             }
         });
 
@@ -66,9 +67,9 @@ public class JugadorActivity extends AppCompatActivity {
 
     }
 
-    public void EventDetails(){
+    public void IngresoJugadores(){
         final ProgressDialog loading = new ProgressDialog(JugadorActivity.this);
-        loading.setMessage("Please Wait...");
+        loading.setMessage("Espere un momento...");
         loading.setCanceledOnTouchOutside(false);
         loading.show();
 
@@ -97,12 +98,33 @@ public class JugadorActivity extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(), "Este jugador no existe.", Toast.LENGTH_SHORT).show();
                             }
                             else{
+
                                  JSONObject player = response.getJSONObject("player");
+                                 Log.i("Player 1", String.valueOf(player));
+                                 JSONArray player_matches = player.getJSONArray("players_matches");
+                                 Log.i("Player 2", String.valueOf(player_matches));
+                                 JSONObject comienzo_player = player_matches.getJSONObject(0);
+                                 JSONArray match = comienzo_player.getJSONArray("match");
+                                 if(match.length() != 0){
+                                     JSONObject comienzo_match = match.getJSONObject(0);
+                                      hour = comienzo_match.getString("hour");
+                                 }
+                                 else{
+                                     hour = "no citado";
+                                 }
+                                 Log.i("match", String.valueOf(match));
+
                                  String name = player.getString("name");
                                  String club = player.getString("club");
+                                 String fingerprint = player.getString("fingerprint");
+                                 String confirmacion = player.getString("email_verified_at");
+
                                  Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                  intent.putExtra("nombre", name);
                                  intent.putExtra("club", club);
+                                 intent.putExtra("fingerprint", fingerprint);
+                                 intent.putExtra("confirmacion", confirmacion);
+                                 intent.putExtra("hour",hour);
                                  startActivity(intent);
                             }
                             Log.i("success", success);
