@@ -152,7 +152,7 @@ public class ScanActivity extends Activity  {
                 encodedString = Base64.encodeToString(image, Base64.DEFAULT);
                 //Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0, image.length);
                 //storeImage(bitmap);
-                IngresoImagen(encodedString);
+                IngresoImagen();
 
             } else {
                 errorMessage = msg.getData().getString("errorMessage");
@@ -163,16 +163,16 @@ public class ScanActivity extends Activity  {
         }
     };
 
-    public void IngresoImagen(String image){
+    public void IngresoImagen(){
         final ProgressDialog loading = new ProgressDialog(ScanActivity.this);
-        loading.setMessage("Please Wait...");
+        loading.setMessage("Espere un momento...");
         loading.setCanceledOnTouchOutside(false);
         loading.show();
 
         JSONObject object = new JSONObject();
         try {
             //input your API parameters
-            object.put("image",image);
+            object.put("image",encodedString);
             object.put("id", idRecibidoScan);
         } catch (JSONException e) {
             e.printStackTrace();

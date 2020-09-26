@@ -114,12 +114,14 @@ public class JugadorActivity extends AppCompatActivity {
                                  }
                                  Log.i("match", String.valueOf(match));
 
+                                 String id = player.getString("id");
                                  String name = player.getString("name");
                                  String club = player.getString("club");
                                  String fingerprint = player.getString("fingerprint");
                                  String confirmacion = player.getString("email_verified_at");
 
                                  Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                 intent.putExtra("id", id);
                                  intent.putExtra("nombre", name);
                                  intent.putExtra("club", club);
                                  intent.putExtra("fingerprint", fingerprint);
