@@ -152,7 +152,6 @@ public class MainActivity extends AppCompatActivity {
         idRecibido = getIntent().getStringExtra("id");
         Toast.makeText(getApplicationContext(), idRecibido, Toast.LENGTH_SHORT).show();
         intent.putExtra("id_scan", idRecibido);
-        intent.putExtra("SCAN_FINGER", SCAN_FINGER);
         startActivity(intent);
 
     }

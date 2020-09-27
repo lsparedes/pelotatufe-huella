@@ -73,7 +73,7 @@ public class ScanActivity extends Activity  {
 
     @Override
    protected void onStart() {
-        fingerprint.scan(this, printHandler, null);
+        fingerprint.scan(this, printHandler, updateHandler);
         //Toast.makeText(getApplicationContext(), (CharSequence) printHandler, Toast.LENGTH_LONG).show();
        super.onStart();
     }
@@ -84,27 +84,83 @@ public class ScanActivity extends Activity  {
         super.onStop();
     }
 
+    Handler updateHandler = new Handler(Looper.getMainLooper()) {
+        @Override
+        public void handleMessage(Message msg) {
+            int status = msg.getData().getInt("status");
+
+            switch (status) {
+                case Status.INITIALISED:
+                   // Toast.makeText(getApplicationContext(),"Setting up reader", Toast.LENGTH_SHORT);
+                    tvStatus.setText("Setting up reader");
+                    break;
+                case Status.SCANNER_POWERED_ON:
+                    //Toast.makeText(getApplicationContext(),"Reader powered on", Toast.LENGTH_SHORT);
+                    tvStatus.setText("Reader powered on");
+                    break;
+                case Status.READY_TO_SCAN:
+                    //Toast.makeText(getApplicationContext(),"Ready to scan finger", Toast.LENGTH_SHORT);
+                    tvStatus.setText("Ready to scan finger");
+                    break;
+                case Status.FINGER_DETECTED:
+                    //Toast.makeText(getApplicationContext(),"Finger detected", Toast.LENGTH_SHORT);
+                    tvStatus.setText("Finger detected");
+                    break;
+                case Status.RECEIVING_IMAGE:
+                    //Toast.makeText(getApplicationContext(),"Receiving image", Toast.LENGTH_SHORT);
+                    tvStatus.setText("Receiving image");
+                    break;
+                case Status.FINGER_LIFTED:
+                    //Toast.makeText(getApplicationContext(),"Finger has been lifted off reader", Toast.LENGTH_SHORT);
+                    tvStatus.setText("Finger has been lifted off reader");
+                    break;
+                case Status.SCANNER_POWERED_OFF:
+                    //Toast.makeText(getApplicationContext(),"Reader is off", Toast.LENGTH_SHORT);
+                    tvStatus.setText("Reader is off");
+                    break;
+                case Status.SUCCESS:
+                    //Toast.makeText(getApplicationContext(),"Fingerprint successfully captured", Toast.LENGTH_SHORT);
+                    tvStatus.setText("Fingerprint successfully captured");
+                    break;
+                case Status.ERROR:
+                    //Toast.makeText(getApplicationContext(),"Error "+msg.getData().getString("errorMessage"), Toast.LENGTH_SHORT);
+                    tvStatus.setText("Error");
+                    tvError.setText(msg.getData().getString("errorMessage"));
+                    break;
+                default:
+                    //Toast.makeText(getApplicationContext(),"Error "+ msg.getData().getString("errorMessage"), Toast.LENGTH_SHORT);
+                    tvStatus.setText(String.valueOf(status));
+                    tvError.setText(msg.getData().getString("errorMessage"));
+                    break;
+
+
+            }
+        }
+    };
 
     Handler printHandler = new Handler(Looper.getMainLooper()) {
         @Override
         public void handleMessage(Message msg) {
             byte[] image;
-            //String errorMessage = "empty";
-            //int status = msg.getData().getInt("status");
+            String errorMessage = "empty";
+            int status = msg.getData().getInt("status");
             //Intent intent = new Intent();
             //intent.putExtra("status", status);
-            //if (status == Status.SUCCESS) {
+            if (status == Status.SUCCESS) {
                 image = msg.getData().getByteArray("img");
                 //intent.putExtra("img", image);
                 encodedString = Base64.encodeToString(image, Base64.DEFAULT);
                 //Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0, image.length);
                 //storeImage(bitmap);
                 IngresoImagen();
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                Toast.makeText(getApplicationContext(),"Enrolado con exito", Toast.LENGTH_SHORT);
+                startActivity(intent);
 
-            //} else {
-              //  errorMessage = msg.getData().getString("errorMessage");
+            } else {
+                errorMessage = msg.getData().getString("errorMessage");
                 //intent.putExtra("errorMessage", errorMessage);
-            //}
+            }
             //setResult(RESULT_OK, intent);
             finish();
         }
