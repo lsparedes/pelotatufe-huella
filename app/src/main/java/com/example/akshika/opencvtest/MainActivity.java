@@ -156,6 +156,16 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
+
+    public void startScan2(View view) {
+        Intent intent = new Intent(this, ScanActivity2.class);
+        idRecibido = getIntent().getStringExtra("id");
+        Toast.makeText(getApplicationContext(), idRecibido, Toast.LENGTH_SHORT).show();
+        intent.putExtra("id_scan", idRecibido);
+        intent.putExtra("SCAN_FINGER", SCAN_FINGER);
+        startActivity(intent);
+
+    }
 //
 //    @Override
 //    public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -223,19 +233,19 @@ public class MainActivity extends AppCompatActivity {
         img2 = new Mat();
 
         //imagen1
-        FileInputStream istr = new FileInputStream("src/main/assets/imagen_1.txt");
-        //InputStream istr = new ByteArrayInputStream(Base64.decode(imagen_1.getBytes(), Base64.DEFAULT));
+
+        InputStream istr = new ByteArrayInputStream(Base64.decode(fingerprint.getBytes(), Base64.DEFAULT));
         //AssetManager assetManager = getAssets();
-        //InputStream istr = assetManager.open("dedo2.png");
+
+        //FileInputStream istr = new FileInputStream());
+        //InputStream istr = assetManager.open("imagen_1.txt");
         Log.d(TAG, "Istr" +istr);
 
         //imagen2
-        FileInputStream istr2 = new FileInputStream("src/main/assets/imagen_2.txt");
-        //InputStream istr2 = new ByteArrayInputStream(Base64.decode(imagen_2.getBytes(), Base64.DEFAULT));
-        //uri= getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES).toString();
-        //uri = uri +"/icon4.png";
-        //Log.d(TAG, "RUTA" +uri);
-        ////InputStream fileInputStream = new FileInputStream(uri);
+        uri= getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES).toString();
+        uri = uri +"/icon"+idRecibido+".png";
+        Log.d(TAG, "RUTA" +uri);
+        InputStream istr2 = new FileInputStream(uri);
         Log.d(TAG, "Istr2" +istr2);
 
         //decodeStram de las imagenes formato InputStream

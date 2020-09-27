@@ -216,7 +216,7 @@
         android:visibility="invisible"
         android:backgroundTint="@color/azul"
         android:layout_below="@+id/imagen"
-        android:onClick="startScan"
+        android:onClick="startScan2"
         />
 
     <Button

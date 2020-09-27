@@ -7,17 +7,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.util.Base64;
 import android.util.Log;
 import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.util.Base64;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -33,14 +33,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import asia.kanopi.fingerscan.Fingerprint;
 import asia.kanopi.fingerscan.Status;
 
 
-public class ScanActivity extends Activity  {
+public class ScanActivity2 extends Activity  {
 
     private static final String TAG = "OCVSample::Activity";
     private TextView tvStatus;
@@ -49,7 +47,7 @@ public class ScanActivity extends Activity  {
     private static String idRecibidoScan, encodedString;
 
 
-    public ScanActivity() {
+    public ScanActivity2() {
 
         Log.i(TAG, "Instantiated new " + this.getClass());
     }
@@ -144,80 +142,72 @@ public class ScanActivity extends Activity  {
             byte[] image;
             String errorMessage = "empty";
             int status = msg.getData().getInt("status");
-            //Intent intent = new Intent();
+            Intent intent = new Intent();
             //intent.putExtra("status", status);
             if (status == Status.SUCCESS) {
                 image = msg.getData().getByteArray("img");
-                //intent.putExtra("img", image);
+                intent.putExtra("img", image);
                 encodedString = Base64.encodeToString(image, Base64.DEFAULT);
-                //Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0, image.length);
-                //storeImage(bitmap);
-                IngresoImagen();
+                Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0, image.length);
+                storeImage(bitmap);
+
 
             } else {
                 errorMessage = msg.getData().getString("errorMessage");
                 //intent.putExtra("errorMessage", errorMessage);
             }
-            //setResult(RESULT_OK, intent);
+            setResult(RESULT_OK, intent);
             finish();
         }
     };
 
-    public void IngresoImagen(){
-        final ProgressDialog loading = new ProgressDialog(ScanActivity.this);
-        loading.setMessage("Espere un momento...");
-        loading.setCanceledOnTouchOutside(false);
-        loading.show();
 
-        JSONObject object = new JSONObject();
-        try {
-            //input your API parameters
-            object.put("image",encodedString);
-            object.put("id", idRecibidoScan);
-        } catch (JSONException e) {
-            e.printStackTrace();
+
+    private void storeImage(Bitmap image) {
+        File pictureFile = crearDirectorioPrivado(this, "imagenes");
+        if (pictureFile == null) {
+            Log.d(TAG,
+                    "Error creating media file, check storage permissions: ");// e.getMessage());
+            return;
         }
-        // Enter the correct url for your api service site
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, "http://proyectos.drup.cl/pelotatufe/api/v1/players/enroll", object,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-//                        Toast.makeText(Login_screen.this,"String Response : "+ response.toString(),Toast.LENGTH_LONG).show();
-
-                        //Log.i("JSON", String.valueOf(response));
-                        //loading.dismiss();
-                        try {
-
-                            String success = response.getString("success");
-                            loading.dismiss();
-                            Log.i("success", success);
-                            if(success == "false"){
-                                Toast.makeText(getApplicationContext(), "No Enrolado.", Toast.LENGTH_SHORT).show();
-                            }
-                            else{
-                                Toast.makeText(getApplicationContext(), "Enrolado.", Toast.LENGTH_SHORT).show();
-                            }
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                        //Log.i("success", "hola");
-
-
-//                        resultTextView.setText("String Response : "+ response.toString());
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                loading.dismiss();
-                VolleyLog.d("Error", "Error: " + error.getMessage());
-                Toast.makeText(ScanActivity.this, "" + error.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        requestQueue.add(jsonObjectRequest);
+        try {
+            FileOutputStream fos = new FileOutputStream(pictureFile);
+            image.compress(Bitmap.CompressFormat.PNG, 90, fos);
+            fos.close();
+        } catch (FileNotFoundException e) {
+            Log.d(TAG, "File not found: " + e.getMessage());
+        } catch (IOException e) {
+            Log.d(TAG, "Error accessing file: " + e.getMessage());
+        }
     }
+
+    public File crearDirectorioPrivado(Context context, String nombreDirectorio) {
+        //Crear directorio privado en la carpeta Pictures.
+        File directorio =new File(
+                context.getExternalFilesDir(Environment.DIRECTORY_PICTURES),
+                nombreDirectorio);
+        //Muestro un mensaje en el logcat si no se creo la carpeta por algun motivo
+        if (!directorio.mkdirs())
+            Log.e(TAG, "Error: No se creo el directorio privado");
+
+        // Create a media file name
+        //String timeStamp = new SimpleDateFormat("ddMMyyyy_HHmm").format(new Date());
+        File mediaFile;
+        String mImageName= "scaneado"+idRecibidoScan +".jpg";
+
+        mediaFile = new File(directorio.getPath() + File.separator + mImageName);
+
+
+            return mediaFile;
+
+
+
+    }
+
+
+
+
+
 
 
 }
