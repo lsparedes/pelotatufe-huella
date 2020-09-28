@@ -144,83 +144,28 @@ public class ScanActivity extends Activity  {
             byte[] image;
             String errorMessage = "empty";
             int status = msg.getData().getInt("status");
-            //Intent intent = new Intent();
-            //intent.putExtra("status", status);
+            Intent intent = new Intent();
+            intent.putExtra("status", status);
             if (status == Status.SUCCESS) {
                 image = msg.getData().getByteArray("img");
-                //intent.putExtra("img", image);
+                intent.putExtra("img", image);
                 encodedString = Base64.encodeToString(image, Base64.DEFAULT);
                 //Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0, image.length);
                 //storeImage(bitmap);
-                IngresoImagen();
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                Toast.makeText(getApplicationContext(),"Enrolado con exito", Toast.LENGTH_SHORT);
-                startActivity(intent);
+                //IngresoImagen();
+
+
 
             } else {
                 errorMessage = msg.getData().getString("errorMessage");
-                //intent.putExtra("errorMessage", errorMessage);
+                intent.putExtra("errorMessage", errorMessage);
             }
-            //setResult(RESULT_OK, intent);
+            setResult(RESULT_OK, intent);
             finish();
         }
     };
 
-    public void IngresoImagen(){
-        final ProgressDialog loading = new ProgressDialog(ScanActivity.this);
-        loading.setMessage("Espere un momento...");
-        loading.setCanceledOnTouchOutside(false);
-        loading.show();
 
-        JSONObject object = new JSONObject();
-        try {
-            //input your API parameters
-            object.put("image",encodedString);
-            object.put("id", idRecibidoScan);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        // Enter the correct url for your api service site
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, "http://proyectos.drup.cl/pelotatufe/api/v1/players/enroll", object,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-//                        Toast.makeText(Login_screen.this,"String Response : "+ response.toString(),Toast.LENGTH_LONG).show();
-
-                        //Log.i("JSON", String.valueOf(response));
-                        //loading.dismiss();
-                        try {
-
-                            String success = response.getString("success");
-                            loading.dismiss();
-                            Log.i("success", success);
-                            if(success == "false"){
-                                Toast.makeText(getApplicationContext(), "No Enrolado.", Toast.LENGTH_SHORT).show();
-                            }
-                            else{
-                                Toast.makeText(getApplicationContext(), "Enrolado.", Toast.LENGTH_SHORT).show();
-                            }
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                        //Log.i("success", "hola");
-
-
-//                        resultTextView.setText("String Response : "+ response.toString());
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                loading.dismiss();
-                VolleyLog.d("Error", "Error: " + error.getMessage());
-                Toast.makeText(ScanActivity.this, "" + error.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        requestQueue.add(jsonObjectRequest);
-    }
 
 
 }

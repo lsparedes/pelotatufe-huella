@@ -31,6 +31,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
@@ -68,8 +78,10 @@ public class MainActivity extends AppCompatActivity {
     ImageView huella, imagen;
     TextView tvMessage, texto;
     String uri;
+    InputStream istr, istr2;
     Button consultar, enrolar, jugador_enrolado, cuenta_activada, citado;
     private static final int SCAN_FINGER = 0;
+    byte[] img;
 
     private static final String TAG = "OCVSample::Activity";
     private static Bitmap bitmap, bitmap2;
@@ -89,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static MatOfDMatch matches, matches_final_mat;
     DescriptorMatcher matcher;
-    String idRecibido;
+    private static String idRecibido,imagen2 ;
     private static final int CODIGO_SOLICITUD_PERMISO=123;
 
     static {
@@ -115,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
         cuenta_activada = (Button) findViewById(R.id.cuenta);
         citado = (Button) findViewById(R.id.citacion);
         nombre = getIntent().getStringExtra("nombre");
+        idRecibido = getIntent().getStringExtra("id");
         club = getIntent().getStringExtra("club");
         fingerprint = getIntent().getStringExtra("fingerprint");
         confirmacion = getIntent().getStringExtra("confirmacion");
@@ -147,13 +160,77 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+//    public void startScan(View view) {
+//        Intent intent = new Intent(this, ScanActivity.class);
+//        idRecibido = getIntent().getStringExtra("id");
+//        Toast.makeText(getApplicationContext(), idRecibido, Toast.LENGTH_SHORT).show();
+//        intent.putExtra("id_scan", idRecibido);
+//        intent.putExtra("SCAN_FINGER", SCAN_FINGER);
+//        startActivity(intent);
+//
+//    }
+
     public void startScan(View view) {
         Intent intent = new Intent(this, ScanActivity.class);
-        idRecibido = getIntent().getStringExtra("id");
-        Toast.makeText(getApplicationContext(), idRecibido, Toast.LENGTH_SHORT).show();
-        intent.putExtra("id_scan", idRecibido);
-        startActivity(intent);
+        startActivityForResult(intent, SCAN_FINGER);
+    }
 
+    public void IngresoImagen(){
+        final ProgressDialog loading = new ProgressDialog(MainActivity.this);
+        loading.setMessage("Espere un momento...");
+        loading.setCanceledOnTouchOutside(false);
+        loading.show();
+
+        JSONObject object = new JSONObject();
+        try {
+            //input your API parameters
+            object.put("image",imagen2);
+            object.put("id", idRecibido);
+            Log.d(TAG, "imagen 2 es: "+imagen2);
+            Log.d(TAG, "id recibido: "+idRecibido);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        // Enter the correct url for your api service site
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, "http://proyectos.drup.cl/pelotatufe/api/v1/players/enroll", object,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+         //               Toast.makeText(Login_screen.this,"String Response : "+ response.toString(),Toast.LENGTH_LONG).show();
+
+                        //Log.i("JSON", String.valueOf(response));
+                        //loading.dismiss();
+                        try {
+
+                            String success = response.getString("success");
+                            loading.dismiss();
+                            Log.i("success", success);
+                            if(success == "false"){
+                                Toast.makeText(getApplicationContext(), "No Enrolado.", Toast.LENGTH_SHORT).show();
+                            }
+                            else{
+                                Toast.makeText(getApplicationContext(), "Enrolado.", Toast.LENGTH_SHORT).show();
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                        //Log.i("success", "hola");
+
+
+//                        resultTextView.setText("String Response : "+ response.toString());
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                loading.dismiss();
+                VolleyLog.d("Error", "Error: " + error.getMessage());
+                Toast.makeText(MainActivity.this, "" + error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        requestQueue.add(jsonObjectRequest);
     }
 
     public void startScan2(View view) {
@@ -165,36 +242,40 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
-//
-//    @Override
-//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        int status;
-//        String errorMesssage;
-//        switch (requestCode) {
-//            case (SCAN_FINGER): {
-//                if (resultCode == RESULT_OK) {
-//                    status = data.getIntExtra("status", Status.ERROR);
-//                    if (status == Status.SUCCESS) {
-//                        tvMessage.setText("Fingerprint captured");
-//                        img = data.getByteArrayExtra("img");
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        int status;
+        String errorMesssage;
+        switch (requestCode) {
+            case (SCAN_FINGER): {
+                if (resultCode == RESULT_OK) {
+                    status = data.getIntExtra("status", Status.ERROR);
+                    if (status == Status.SUCCESS) {
+                        Toast.makeText(MainActivity.this, "Hola me leyo la huellita bien :)", Toast.LENGTH_LONG).show();
+
+                        img = data.getByteArrayExtra("img");
+                        Log.d(TAG, "esto vale img: "+img);
 //                        bm = BitmapFactory.decodeByteArray(img, 0, img.length);
-//
+
 //                        AndroidBmpUtil bmpUtil = new AndroidBmpUtil();
 //                        byte[] buffer = bmpUtil.convertToBmp24bit(img);
 //
-//                        imgDecodableString = Base64.encodeToString(img, Base64.DEFAULT);
-//                        //ivFinger.setImageBitmap(bm);
-//
-//
-//                    } else {
-//                        errorMesssage = data.getStringExtra("errorMessage");
-//                        tvMessage.setText("-- Error: " + errorMesssage + " --");
-//                    }
-//                }
-//                break;
-//            }
-//        }
-//    }
+                        imagen2 = Base64.encodeToString(img, Base64.DEFAULT);
+                        Log.d(TAG, "esto vale imagen2: "+imagen2);
+                        //ivFinger.setImageBitmap(bm);
+
+                        IngresoImagen();
+                    } else {
+                        errorMesssage = data.getStringExtra("errorMessage");
+                        Toast.makeText(MainActivity.this, "Rayos, mamá ño", Toast.LENGTH_LONG).show();
+                    }
+                }
+                break;
+            }
+        }
+    }
 
     private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
         @Override
@@ -233,7 +314,7 @@ public class MainActivity extends AppCompatActivity {
 
         //imagen1
 
-        InputStream istr = new ByteArrayInputStream(Base64.decode(fingerprint.getBytes(), Base64.DEFAULT));
+        istr = new ByteArrayInputStream(Base64.decode(fingerprint.getBytes(), Base64.DEFAULT));
         //AssetManager assetManager = getAssets();
 
         //FileInputStream istr = new FileInputStream());
@@ -242,10 +323,15 @@ public class MainActivity extends AppCompatActivity {
 
         //imagen2
         uri= getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES).toString();
-        uri = uri +"/icon"+idRecibido+".png";
+
+
+        uri = uri +"/imagenes/"+idRecibido+".png";
+        //Toast.makeText(MainActivity.this, "istr:"+istr, Toast.LENGTH_LONG).show();
         Log.d(TAG, "RUTA" +uri);
-        InputStream istr2 = new FileInputStream(uri);
+
+        istr2 = new FileInputStream(uri);
         Log.d(TAG, "Istr2" +istr2);
+
 
         //decodeStram de las imagenes formato InputStream
         bitmap = BitmapFactory.decodeStream(istr);
