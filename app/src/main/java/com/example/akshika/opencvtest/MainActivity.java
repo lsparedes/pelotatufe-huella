@@ -95,8 +95,8 @@ public class MainActivity extends AppCompatActivity {
     MatOfKeyPoint keypoints1, keypoints2;
     private static int min_dist = 10;
     private static int min_matches = 750;
-    private static String nombre, club, fingerprint, confirmacion, hour;
-    TextView nombre_usuario, club_usuario;
+    private static String nombre, club, fingerprint, confirmacion, hour, serie;
+    TextView nombre_usuario, club_usuario, serie_usuario;
 
 
     private static MatOfDMatch matches, matches_final_mat;
@@ -121,20 +121,23 @@ public class MainActivity extends AppCompatActivity {
         imagen = (ImageView) findViewById(R.id.imagen);
         nombre_usuario = (TextView) findViewById(R.id.nombre);
         club_usuario = (TextView) findViewById(R.id.equipo);
+        serie_usuario = (TextView) findViewById(R.id.serie);
         consultar = (Button) findViewById(R.id.validar);
         enrolar = (Button) findViewById(R.id.enrolar);
         jugador_enrolado = (Button) findViewById(R.id.jugador_enrolado);
         cuenta_activada = (Button) findViewById(R.id.cuenta);
-        citado = (Button) findViewById(R.id.citacion);
+       // citado = (Button) findViewById(R.id.citacion);
         nombre = getIntent().getStringExtra("nombre");
         idRecibido = getIntent().getStringExtra("id");
         club = getIntent().getStringExtra("club");
         fingerprint = getIntent().getStringExtra("fingerprint");
         confirmacion = getIntent().getStringExtra("confirmacion");
-        hour = getIntent().getStringExtra("hour");
+        //hour = getIntent().getStringExtra("hour");
+        serie = getIntent().getStringExtra("serie");
         //Toast.makeText(getApplicationContext(), fingerprint, Toast.LENGTH_SHORT).show();
         nombre_usuario.setText(nombre);
         club_usuario.setText(club);
+        serie_usuario.setText(serie);
 
 
         if(fingerprint.equals("null")){
@@ -150,11 +153,11 @@ public class MainActivity extends AppCompatActivity {
 
             cuenta_activada.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_check_circle_24, 0);
         }
-        if(hour.equals("no citado")){
+      /*  if(hour.equals("no citado")){
             citado.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_cancel_24, 0);
         }else{
             citado.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_check_circle_24, 0);
-        }
+        }*/
         requestAppPermissions();
 
 

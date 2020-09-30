@@ -10,7 +10,7 @@ import android.util.Log;
 /**
  * Basic implementation of LoaderCallbackInterface.
  */
-public abstract class BaseLoaderCallback implements LoaderCallbackInterface {
+public class BaseLoaderCallback implements LoaderCallbackInterface {
 
     public BaseLoaderCallback(Context AppContext) {
         mAppContext = AppContext;

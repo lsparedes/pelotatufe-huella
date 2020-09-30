@@ -101,33 +101,37 @@ public class JugadorActivity extends AppCompatActivity {
 
                                  JSONObject player = response.getJSONObject("player");
                                  JSONObject clubjson = player.getJSONObject("club");
+                                 JSONObject seriejson = player.getJSONObject("serie");
                                  Log.i("Player 1", String.valueOf(player));
-                                 JSONObject player_matches = player.getJSONObject("players_matches");
-                                 Log.i("Player 2", String.valueOf(player_matches));
+                                 //JSONObject player_matches = player.getJSONObject("players_matches");
+                                // Log.i("Player 2", String.valueOf(player_matches));
 
-                                 JSONArray match = player_matches.getJSONArray("match");
+                                /* JSONArray match = player_matches.getJSONArray("match");
                                  if(match.length() != 0){
                                      JSONObject comienzo_match = match.getJSONObject(0);
                                       hour = comienzo_match.getString("hour");
                                  }
                                  else{
                                      hour = "no citado";
-                                 }
-                                 Log.i("match", String.valueOf(match));
+                                 }*/
+                                 //Log.i("match", String.valueOf(match));
 
                                  String id = player.getString("id");
+                                 String confirmacion = player.getString("rut");
                                  String name = player.getString("name");
                                  String club = clubjson.getString("club");
+                                 String serie = seriejson.getString("serie");
                                  String fingerprint = player.getString("fingerprint");
-                                 String confirmacion = player.getString("email_verified_at");
+
 
                                  Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                                  intent.putExtra("id", id);
                                  intent.putExtra("nombre", name);
                                  intent.putExtra("club", club);
+                                 intent.putExtra("serie", serie);
                                  intent.putExtra("fingerprint", fingerprint);
                                  intent.putExtra("confirmacion", confirmacion);
-                                 intent.putExtra("hour",hour);
+                                 //intent.putExtra("hour",hour);
                                  startActivity(intent);
                             }
                             Log.i("success", success);

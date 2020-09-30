@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Pelotatufe</string>
     <string name="rut">Rut</string>
-    <string name="helper_text">Ingrese rut sin puntos ni guión</string>
+    <string name="helper_text">Ingrese rut incluyendo puntos y guión</string>
 </resources>
