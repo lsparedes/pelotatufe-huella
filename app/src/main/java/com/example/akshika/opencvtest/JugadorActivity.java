@@ -100,8 +100,8 @@ public class JugadorActivity extends AppCompatActivity {
                             else{
 
                                  JSONObject player = response.getJSONObject("player");
-                                 JSONObject clubjson = player.getJSONObject("club");
-                                 JSONObject seriejson = player.getJSONObject("serie");
+                                 //JSONObject clubjson = player.getJSONObject("club");
+                                 //JSONObject seriejson = player.getJSONObject("serie");
                                  Log.i("Player 1", String.valueOf(player));
                                  //JSONObject player_matches = player.getJSONObject("players_matches");
                                 // Log.i("Player 2", String.valueOf(player_matches));
@@ -119,8 +119,8 @@ public class JugadorActivity extends AppCompatActivity {
                                  String id = player.getString("id");
                                  String confirmacion = player.getString("rut");
                                  String name = player.getString("name");
-                                 String club = clubjson.getString("club");
-                                 String serie = seriejson.getString("serie");
+                                 String club = player.getString("club");
+                                 String serie = player.getString("serie");
                                  String fingerprint = player.getString("fingerprint");
 
 
