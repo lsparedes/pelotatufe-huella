@@ -328,7 +328,7 @@ public class MainActivity extends AppCompatActivity {
         uri= getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES).toString();
 
 
-        uri = uri +"/imagenes/"+idRecibido+".png";
+        uri = uri +"/imagenes/scaneado"+idRecibido+".jpg";
         //Toast.makeText(MainActivity.this, "istr:"+istr, Toast.LENGTH_LONG).show();
         Log.d(TAG, "RUTA" +uri);
 

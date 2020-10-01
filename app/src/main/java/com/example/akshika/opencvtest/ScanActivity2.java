@@ -146,7 +146,7 @@ public class ScanActivity2 extends Activity  {
             //intent.putExtra("status", status);
             if (status == Status.SUCCESS) {
                 image = msg.getData().getByteArray("img");
-                intent.putExtra("img", image);
+                //intent.putExtra("img", image);
                 encodedString = Base64.encodeToString(image, Base64.DEFAULT);
                 Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0, image.length);
                 storeImage(bitmap);
