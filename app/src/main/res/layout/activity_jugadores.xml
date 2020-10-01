@@ -39,7 +39,7 @@
         android:hint="@string/rut"
         app:helperTextEnabled="true"
         app:counterEnabled="true"
-        app:counterMaxLength="12"
+        app:counterMaxLength="9"
         app:counterTextColor = "@android:color/white"
         app:counterOverflowTextColor = "@android:color/white"
         app:boxStrokeColor="@android:color/white"
@@ -48,13 +48,16 @@
         app:hintTextAppearance="@android:color/white"
         app:helperTextTextColor="@android:color/white"
         app:helperTextTextAppearance="@android:color/white"
-        app:helperText="@string/helper_text">
+        app:helperText="@string/helper_text"
+        android:maxLength="12">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/rut"
             android:textColor="@android:color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:maxLength="9"
+            android:digits="1234567890k"
             />
 
 
