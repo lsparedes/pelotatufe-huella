@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -54,6 +56,32 @@ public class JugadorActivity extends AppCompatActivity {
         //listajugadores = (ListView) findViewById(R.id.lista_jugadores);
         //listajugadores.setEmptyView(findViewById(R.id.mensajevacio));
 
+        rut.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String valortext = rut.getText().toString().trim();
+                if(valortext.equals(""))
+                {
+                    valortext = "0";
+                }
+                else
+                {
+                    valortext = FormatearRUT(valortext); //Sustituyes por la funcion que te formateara el rut
+                    Log.d("TAG","FORMATEADO"+valortext);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
         siguiente.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
@@ -65,6 +93,24 @@ public class JugadorActivity extends AppCompatActivity {
         //lista_bd = new ArrayList<>();
 
 
+    }
+
+    public String FormatearRUT(String rut) {
+
+        int cont = 0;
+        String format;
+        rut = rut.replace(".", "");
+        rut = rut.replace("-", "");
+        format = "-" + rut.substring(rut.length() - 1);
+        for (int i = rut.length() - 2; i >= 0; i--) {
+            format = rut.substring(i, i + 1) + format;
+            cont++;
+            if (cont == 3 && i != 0) {
+                format = "." + format;
+                cont = 0;
+            }
+        }
+        return format;
     }
 
     public void IngresoJugadores(){
