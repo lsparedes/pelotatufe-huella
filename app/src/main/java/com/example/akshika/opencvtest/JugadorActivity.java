@@ -45,6 +45,7 @@ public class JugadorActivity extends AppCompatActivity {
     public static TextInputEditText rut;
     Button siguiente;
     String hour;
+    private static String valortext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,12 +60,26 @@ public class JugadorActivity extends AppCompatActivity {
         rut.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                if(rut.getText().length() == 0){
+                    //siguiente.setEnabled(false);
+                    siguiente.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View v) {
+                            Log.d("TAG","DENTRO DEL BOTON");
+                            Toast.makeText(getApplicationContext(),"Debes completar el campo rut", Toast.LENGTH_SHORT).show();
+                        }
 
+                    });
+
+                    Log.d("TAG","largobefore"+rut.getText().length());
+                }else{
+                    Log.d("TAG","largobfeore"+rut.getText().length());
+                    //siguiente.setEnabled(false);
+                }
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                String valortext = rut.getText().toString().trim();
+                valortext = rut.getText().toString().trim();
                 if(valortext.equals(""))
                 {
                     valortext = "0";
@@ -78,9 +93,23 @@ public class JugadorActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
+                if(rut.getText().length() <= 8){
+                    //siguiente.setEnabled(false);
+                    siguiente.setOnClickListener(new View.OnClickListener() {
+                        public void onClick(View v) {
+                            IngresoJugadores();
+                        }
 
+                    });
+                }else{
+                    Log.d("TAG","largo"+rut.getText().length());
+                    //siguiente.setEnabled(true);
+                }
             }
         });
+
+
+
 
         //getSupportActionBar().hide();
         //lista_bd = new ArrayList<>();
@@ -115,8 +144,9 @@ public class JugadorActivity extends AppCompatActivity {
         JSONObject object = new JSONObject();
         try {
             //input your API parameters
-            object.put("rut",rut.getText().toString());
-
+            //object.put("rut",rut.getText().toString());
+            object.put("rut",valortext);
+            Log.d("TAG","Valor text"+valortext);
         } catch (JSONException e) {
             e.printStackTrace();
         }
