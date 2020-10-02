@@ -237,6 +237,52 @@ public class MainActivity extends AppCompatActivity {
         requestQueue.add(jsonObjectRequest);
     }
 
+    public void VerificacionFingerPrint(){
+        final ProgressDialog loading = new ProgressDialog(MainActivity.this);
+        loading.setMessage("Espere un momento...");
+        loading.setCanceledOnTouchOutside(false);
+        loading.show();
+
+        JSONObject object = new JSONObject();
+        try {
+            //input your API parameters
+            object.put("id", idRecibido);
+
+            Log.d(TAG, "id recibido finger: "+idRecibido);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        // Enter the correct url for your api service site
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, "http://proyectos.drup.cl/pelotatufe/api/v1/players/verified/enroll", object,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+
+                            String success = response.getString("success");
+                            loading.dismiss();
+                            Log.i("success", success);
+                            if(success == "true"){
+                                Toast.makeText(getApplicationContext(), "¡Jugador verificado con exito!.", Toast.LENGTH_SHORT).show();
+                            }
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                loading.dismiss();
+                VolleyLog.d("Error", "Error: " + error.getMessage());
+                Toast.makeText(MainActivity.this, "" + error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        requestQueue.add(jsonObjectRequest);
+    }
+
     public void startScan2(View view) {
         Intent intent = new Intent(this, ScanActivity2.class);
         idRecibido = getIntent().getStringExtra("id");
@@ -405,13 +451,13 @@ public class MainActivity extends AppCompatActivity {
             if(compare>0 && compare<1500) {
 
                 Toast.makeText(MainActivity.this, "Imágenes similares", Toast.LENGTH_LONG).show();
-
+                VerificacionFingerPrint();
                 //new asyncTask(MainActivity.this).execute();
             }
             else if(compare==0) {
                 Toast.makeText(MainActivity.this, "Imágenes exactamente iguales", Toast.LENGTH_LONG).show();
                 Log.d("valor de compare: ", String.valueOf(compare));
-
+                VerificacionFingerPrint();
             }else
                 Toast.makeText(MainActivity.this, "Imágenes diferentes", Toast.LENGTH_LONG).show();
             Log.d("valor de compare: ", String.valueOf(compare));
