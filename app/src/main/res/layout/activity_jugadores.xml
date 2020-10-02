@@ -49,7 +49,7 @@
         app:helperTextTextColor="@android:color/white"
         app:helperTextTextAppearance="@android:color/white"
         app:helperText="@string/helper_text"
-        android:maxLength="12">
+        >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/rut"

@@ -72,20 +72,13 @@ public class JugadorActivity extends AppCompatActivity {
                 else
                 {
                     valortext = FormatearRUT(valortext); //Sustituyes por la funcion que te formateara el rut
-                    Log.d("TAG","FORMATEADO"+valortext);
+                    Log.d("TAG","FORMATEADO: "+valortext);
                 }
             }
 
             @Override
             public void afterTextChanged(Editable s) {
 
-            }
-        });
-
-        siguiente.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-                IngresoJugadores();
             }
         });
 
