@@ -56,20 +56,14 @@ public class JugadorActivity extends AppCompatActivity {
         siguiente = (Button) findViewById(R.id.siguiente);
         //listajugadores = (ListView) findViewById(R.id.lista_jugadores);
         //listajugadores.setEmptyView(findViewById(R.id.mensajevacio));
-
+        siguiente.setVisibility(View.INVISIBLE);
         rut.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 if(rut.getText().length() == 0){
                     //siguiente.setEnabled(false);
-                    siguiente.setOnClickListener(new View.OnClickListener() {
-                        public void onClick(View v) {
-                            Log.d("TAG","DENTRO DEL BOTON");
-                            Toast.makeText(getApplicationContext(),"Debes completar el campo rut", Toast.LENGTH_SHORT).show();
-                        }
 
-                    });
-
+                    siguiente.setVisibility(View.INVISIBLE);
                     Log.d("TAG","largobefore"+rut.getText().length());
                 }else{
                     Log.d("TAG","largobfeore"+rut.getText().length());
@@ -86,8 +80,16 @@ public class JugadorActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    valortext = FormatearRUT(valortext); //Sustituyes por la funcion que te formateara el rut
-                    Log.d("TAG","FORMATEADO: "+valortext);
+                    if(rut.getText().length() <= 8){
+
+                        siguiente.setVisibility(View.INVISIBLE);
+
+                    }else{
+                        valortext = FormatearRUT(valortext); //Sustituyes por la funcion que te formateara el rut
+                        Log.d("TAG","FORMATEADO: "+valortext);
+                        siguiente.setVisibility(View.VISIBLE);
+                    }
+
                 }
             }
 
@@ -95,6 +97,7 @@ public class JugadorActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 if(rut.getText().length() <= 8){
                     //siguiente.setEnabled(false);
+                    siguiente.setVisibility(View.INVISIBLE);
                     siguiente.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v) {
                             IngresoJugadores();
@@ -103,7 +106,7 @@ public class JugadorActivity extends AppCompatActivity {
                     });
                 }else{
                     Log.d("TAG","largo"+rut.getText().length());
-                    //siguiente.setEnabled(true);
+
                 }
             }
         });
