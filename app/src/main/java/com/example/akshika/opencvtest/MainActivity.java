@@ -210,10 +210,10 @@ public class MainActivity extends AppCompatActivity {
                             loading.dismiss();
                             Log.i("success", success);
                             if(success == "false"){
-                                Toast.makeText(getApplicationContext(), "No Enrolado.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "Error al enrolar.", Toast.LENGTH_SHORT).show();
                             }
                             else{
-                                Toast.makeText(getApplicationContext(), "Enrolado.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "¡Enrolado con éxito!.", Toast.LENGTH_SHORT).show();
                             }
 
                         } catch (JSONException e) {
@@ -240,7 +240,7 @@ public class MainActivity extends AppCompatActivity {
     public void startScan2(View view) {
         Intent intent = new Intent(this, ScanActivity2.class);
         idRecibido = getIntent().getStringExtra("id");
-        Toast.makeText(getApplicationContext(), idRecibido, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), idRecibido, Toast.LENGTH_SHORT).show();
         intent.putExtra("id_scan", idRecibido);
         intent.putExtra("SCAN_FINGER", SCAN_FINGER);
         startActivity(intent);
@@ -257,7 +257,7 @@ public class MainActivity extends AppCompatActivity {
                 if (resultCode == RESULT_OK) {
                     status = data.getIntExtra("status", Status.ERROR);
                     if (status == Status.SUCCESS) {
-                        Toast.makeText(MainActivity.this, "Hola me leyo la huellita bien :)", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(MainActivity.this, "Hola me leyo la huellita bien :)", Toast.LENGTH_LONG).show();
 
                         img = data.getByteArrayExtra("img");
                         Log.d(TAG, "esto vale img: "+img);
@@ -273,7 +273,7 @@ public class MainActivity extends AppCompatActivity {
                         IngresoImagen();
                     } else {
                         errorMesssage = data.getStringExtra("errorMessage");
-                        Toast.makeText(MainActivity.this, "Rayos, mamá ño", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(MainActivity.this, "Rayos, mamá ño", Toast.LENGTH_LONG).show();
                     }
                 }
                 break;
