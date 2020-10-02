@@ -80,14 +80,14 @@ public class JugadorActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    if(rut.getText().length() <= 8){
-
-                        siguiente.setVisibility(View.INVISIBLE);
-
-                    }else{
+                    if(rut.getText().length() >= 8){
                         valortext = FormatearRUT(valortext); //Sustituyes por la funcion que te formateara el rut
                         Log.d("TAG","FORMATEADO: "+valortext);
                         siguiente.setVisibility(View.VISIBLE);
+
+
+                    }else{
+                        siguiente.setVisibility(View.INVISIBLE);
                     }
 
                 }
@@ -95,9 +95,9 @@ public class JugadorActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if(rut.getText().length() <= 8){
+                if(rut.getText().length() >= 8){
                     //siguiente.setEnabled(false);
-                    siguiente.setVisibility(View.INVISIBLE);
+                    siguiente.setVisibility(View.VISIBLE);
                     siguiente.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v) {
                             IngresoJugadores();
