@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
         club = getIntent().getStringExtra("club");
         fingerprint = getIntent().getStringExtra("fingerprint");
         confirmacion = getIntent().getStringExtra("confirmacion");
-        //hour = getIntent().getStringExtra("hour");
+        hour = getIntent().getStringExtra("citado_hoy");
         serie = getIntent().getStringExtra("serie");
         //Toast.makeText(getApplicationContext(), fingerprint, Toast.LENGTH_SHORT).show();
         nombre_usuario.setText(nombre);
@@ -153,11 +153,12 @@ public class MainActivity extends AppCompatActivity {
 
             cuenta_activada.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_check_circle_24, 0);
         }
-      /*  if(hour.equals("no citado")){
+       if(hour.equals("no_citado_hoy")){
+            consultar.setVisibility(View.INVISIBLE);
             citado.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_cancel_24, 0);
         }else{
             citado.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_check_circle_24, 0);
-        }*/
+        }
         requestAppPermissions();
 
 

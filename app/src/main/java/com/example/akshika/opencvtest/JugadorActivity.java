@@ -172,6 +172,7 @@ public class JugadorActivity extends AppCompatActivity {
                             else{
 
                                  JSONObject player = response.getJSONObject("player");
+                                 String citado_hoy = response.getString("citado");
                                  //JSONObject clubjson = player.getJSONObject("club");
                                  //JSONObject seriejson = player.getJSONObject("serie");
                                  Log.i("Player 1", String.valueOf(player));
@@ -203,6 +204,7 @@ public class JugadorActivity extends AppCompatActivity {
                                  intent.putExtra("serie", serie);
                                  intent.putExtra("fingerprint", fingerprint);
                                  intent.putExtra("confirmacion", confirmacion);
+                                 intent.putExtra("citado_hoy",citado_hoy);
                                  //intent.putExtra("hour",hour);
                                  startActivity(intent);
                             }
