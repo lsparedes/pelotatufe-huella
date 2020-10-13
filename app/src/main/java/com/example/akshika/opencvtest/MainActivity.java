@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
@@ -103,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
     DescriptorMatcher matcher;
     private static String idRecibido,imagen2 ;
     private static final int CODIGO_SOLICITUD_PERMISO=123;
+    TextView usuario;
 
     static {
         if (!OpenCVLoader.initDebug())
@@ -126,7 +128,9 @@ public class MainActivity extends AppCompatActivity {
         enrolar = (Button) findViewById(R.id.enrolar);
         jugador_enrolado = (Button) findViewById(R.id.jugador_enrolado);
         cuenta_activada = (Button) findViewById(R.id.cuenta);
-       // citado = (Button) findViewById(R.id.citacion);
+        citado = (Button) findViewById(R.id.citacion);
+        usuario = (TextView) findViewById(R.id.usuario);
+
         nombre = getIntent().getStringExtra("nombre");
         idRecibido = getIntent().getStringExtra("id");
         club = getIntent().getStringExtra("club");
@@ -134,7 +138,11 @@ public class MainActivity extends AppCompatActivity {
         confirmacion = getIntent().getStringExtra("confirmacion");
         hour = getIntent().getStringExtra("citado_hoy");
         serie = getIntent().getStringExtra("serie");
-        //Toast.makeText(getApplicationContext(), fingerprint, Toast.LENGTH_SHORT).show();
+
+        SharedPreferences sharedPreferences = getSharedPreferences("myKey", MODE_PRIVATE);
+        String nombre= sharedPreferences.getString("name","");
+        String rol = sharedPreferences.getString("rol", "");
+        usuario.setText(nombre+" - Rol: "+rol);
         nombre_usuario.setText(nombre);
         club_usuario.setText(club);
         serie_usuario.setText(serie);
@@ -451,13 +459,13 @@ public class MainActivity extends AppCompatActivity {
             if(compare>0 && compare<1500) {
 
                 Toast.makeText(MainActivity.this, "Imágenes similares", Toast.LENGTH_LONG).show();
-                VerificacionFingerPrint();
+                //VerificacionFingerPrint();
                 //new asyncTask(MainActivity.this).execute();
             }
             else if(compare==0) {
                 Toast.makeText(MainActivity.this, "Imágenes exactamente iguales", Toast.LENGTH_LONG).show();
                 Log.d("valor de compare: ", String.valueOf(compare));
-                VerificacionFingerPrint();
+               // VerificacionFingerPrint();
             }else
                 Toast.makeText(MainActivity.this, "Imágenes diferentes", Toast.LENGTH_LONG).show();
             Log.d("valor de compare: ", String.valueOf(compare));

@@ -23,12 +23,44 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/usuario"
+            android:text="Nombre usuario - Rol"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="@android:color/white"
+
+            />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+
+        android:background="@android:color/white"
+        />
 
         <TextView
             android:id="@+id/nombre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="LORENZO PAREDES"
+            android:text="Nombre"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="20dp"
             android:textStyle="bold"
@@ -42,7 +74,7 @@
         android:layout_marginLeft="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="UCSC"
+        android:text="Club"
         android:layout_below="@+id/nombre"
         android:textStyle="bold"
         android:textSize="20dp"
@@ -54,7 +86,7 @@
         android:id="@+id/serie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Serie Honor"
+        android:text="Serie"
         android:layout_marginLeft="20dp"
         android:layout_below="@+id/equipo"
         android:textStyle="bold"
@@ -153,7 +185,7 @@
             app:strokeColor="@android:color/white"
             android:textSize="20dp" />
 
-    <!--    <Button
+        <Button
             android:id="@+id/citacion"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="match_parent"
@@ -164,7 +196,7 @@
             app:strokeColor="@android:color/white"
             android:drawableRight="@drawable/ic_baseline_check_circle_24"
             android:text="Citado hoy"
-            android:textSize="20dp" />-->
+            android:textSize="20dp" />
 
 </LinearLayout>
   <!--  <TextView

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:background="@color/fondo">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/nombre"
+        android:text="Local"
+        android:textSize="15dp"
+        android:textColor="@android:color/white"
+        android:layout_alignParentLeft="true" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/club"
+        android:text="Club Local"
+        android:textSize="15dp"
+        android:textColor="@android:color/white"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/nombre"/>
+
+    <!--<TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/validacion"
+        android:text="Validados"
+        android:textSize="15dp"
+        android:textColor="@android:color/white"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/club"/>-->
+
+
+
+
+</RelativeLayout>

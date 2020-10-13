@@ -5,74 +5,129 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_centerInParent="true"
-    android:gravity="center"
+    android:layout_gravity="center_vertical"
     android:background="@color/fondo"
     >
 
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_below="@+id/logo"
-        android:background="@color/cardview_shadow_end_color"
-        android:backgroundTint="@android:color/white"
-        app:srcCompat="@drawable/logo_blanco" />
-
-    <TextView
-        android:id="@+id/bienvenida"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_medium"
-        android:text="Bienvenido a Pelotatufe"
-        android:textColor="@android:color/white"
-
-
-        android:textSize="22dp" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/filledTextField"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:layout_below="@+id/bienvenida"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:hint="@string/rut"
-        app:helperTextEnabled="true"
-        app:counterEnabled="true"
-        app:counterMaxLength="9"
-        app:counterTextColor = "@android:color/white"
-        app:counterOverflowTextColor = "@android:color/white"
-        app:boxStrokeColor="@android:color/white"
-        android:textColorHint="@android:color/white"
-        app:hintTextColor="@android:color/white"
-        app:hintTextAppearance="@android:color/white"
-        app:helperTextTextColor="@android:color/white"
-        app:helperTextTextAppearance="@android:color/white"
-        app:helperText="@string/helper_text"
-        >
+        android:layout_height="wrap_content">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/rut"
-            android:textColor="@android:color/white"
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:maxLength="9"
-            android:digits="1234567890k"
+            app:navigationIcon="@drawable/logo_blanco"
+            android:layout_height="?attr/actionBarSize"
+            app:title="Enrolar"
+            android:background="@color/azul"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
             />
 
+    </com.google.android.material.appbar.AppBarLayout>
 
-    </com.google.android.material.textfield.TextInputLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/usuario"
+            android:text="Nombre usuario - Rol"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="@android:color/white"
+
+            />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@android:color/white"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginTop="50dp">
+
+        <TextView
+            android:id="@+id/titulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="50dp"
+            android:text="Ingrese el rut de un jugador"
+            android:textColor="@android:color/white"
+            android:textSize="20dp"></TextView>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/filledTextField"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:hint="@string/rut"
+            android:textColorHint="@android:color/white"
+            app:boxStrokeColor="@android:color/white"
+            app:counterEnabled="true"
+            app:counterMaxLength="9"
+            app:counterOverflowTextColor="@android:color/white"
+            app:counterTextColor="@android:color/white"
+            app:helperText="@string/helper_text"
+            app:helperTextEnabled="true"
+            app:helperTextTextAppearance="@android:color/white"
+            app:helperTextTextColor="@android:color/white"
+            app:hintTextAppearance="@android:color/white"
+            app:hintTextColor="@android:color/white"
+
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/rut"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:digits="1234567890k"
+                android:maxLength="9"
+                android:textColor="@android:color/white" />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+    </LinearLayout>
+
+
+
 
     <Button
         android:id="@+id/siguiente"
+        android:layout_below="@+id/filledTextField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:text="Consultar"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_gravity="center_horizontal|center"
         android:backgroundTint="@color/azul"
-        android:layout_below="@+id/filledTextField"
+        android:text="Buscar"
 
         />
+
 
     <!--
             <LinearLayout

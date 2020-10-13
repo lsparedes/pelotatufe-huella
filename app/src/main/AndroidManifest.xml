@@ -15,11 +15,17 @@
         android:requestLegacyExternalStorage="true"
         android:networkSecurityConfig="@xml/network_security_config"
         android:theme="@style/AppTheme">
-        <activity android:name=".JugadorActivity">
+        <activity android:name=".PrincipalActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".MenuActivity">
+
+        </activity>
+        <activity android:name=".JugadorActivity">
+
         </activity>
         <activity android:name=".ScanActivity">
 
@@ -28,6 +34,15 @@
 
         </activity>
         <activity android:name=".MainActivity">
+
+        </activity>
+        <activity android:name=".PlayersActivity">
+
+        </activity>
+        <activity android:name=".TurnoActivity">
+
+        </activity>
+        <activity android:name=".ListadoJugadoresActivity">
 
         </activity>
         <!-- ATTENTION: This was auto-generated to add Google Play services to your project for
