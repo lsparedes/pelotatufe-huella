@@ -75,7 +75,7 @@ public class TurnoActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("myKey", MODE_PRIVATE);
         String nombre= sharedPreferences.getString("name","");
         String rol = sharedPreferences.getString("rol", "");
-        usuario.setText(nombre+" - Rol: "+rol);
+        usuario.setText(nombre+" (Rol "+rol+")");
 
         id = getIntent().getStringExtra("id_campeonato");
 

@@ -98,7 +98,7 @@ public class ListadoJugadoresActivity extends AppCompatActivity {
         fingerprint_recibido = sharedPreferences.getString("fingerprint", "");
 
         club = getIntent().getStringExtra("club");
-        usuario.setText(nombre+" - Rol: "+rol);
+        usuario.setText(nombre+" (Rol "+rol+")");
         partido.setText("Club "+club);
         lista_bd = new ArrayList<>();
 

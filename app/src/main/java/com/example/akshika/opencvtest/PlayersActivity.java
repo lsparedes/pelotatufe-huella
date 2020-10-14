@@ -47,7 +47,7 @@ public class PlayersActivity extends AppCompatActivity {
         String nombre= sharedPreferences.getString("name","");
         String rol = sharedPreferences.getString("rol", "");
         id = sharedPreferences.getString("id","");
-        usuario.setText(nombre+" - Rol: "+rol);
+        usuario.setText(nombre+" (Rol "+rol+")");
         lista_bd = new ArrayList<>();
 
         ConsultaPlayers();

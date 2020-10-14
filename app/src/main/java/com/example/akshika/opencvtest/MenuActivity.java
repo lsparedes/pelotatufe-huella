@@ -26,7 +26,7 @@ public class MenuActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("myKey", MODE_PRIVATE);
         String nombre= sharedPreferences.getString("name","");
         String rol = sharedPreferences.getString("rol", "");
-        usuario.setText(nombre+" - Rol: "+rol);
+        usuario.setText(nombre+" (Rol "+rol+")");
 
         enrolar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

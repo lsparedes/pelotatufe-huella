@@ -54,7 +54,7 @@ public class JugadorActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("myKey", MODE_PRIVATE);
         String nombre= sharedPreferences.getString("name","");
         String rol = sharedPreferences.getString("rol", "");
-        usuario.setText(nombre+" - Rol: "+rol);
+        usuario.setText(nombre+" (Rol "+rol+")");
 
         rut.addTextChangedListener(new TextWatcher() {
             @Override

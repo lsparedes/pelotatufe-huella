@@ -60,6 +60,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_height="wrap_content"
-        android:dividerHeight="1dp" />
+        android:dividerHeight="1dp"
+        android:background="@color/azul"/>
 
 </LinearLayout>

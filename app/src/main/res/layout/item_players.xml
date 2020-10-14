@@ -14,7 +14,8 @@
         android:text="serie"
         android:textSize="15dp"
         android:textColor="@android:color/white"
-        android:layout_alignParentLeft="true" />
+        android:layout_alignParentLeft="true"
+        />
 
     <TextView
         android:layout_width="match_parent"
