@@ -85,6 +85,7 @@ public class ListadoJugadoresActivity extends AppCompatActivity {
         listajugadores = (ListView) findViewById(R.id.lista_jugadores);
         TextView usuario = (TextView) findViewById(R.id.usuario);
         TextView partido = (TextView) findViewById(R.id.partido);
+        TextView serie_citado = (TextView) findViewById(R.id.serie);
         huella = (ImageView) findViewById(R.id.huella);
         imagen = (ImageView) findViewById(R.id.imagen);
 
@@ -100,6 +101,7 @@ public class ListadoJugadoresActivity extends AppCompatActivity {
         club = getIntent().getStringExtra("club");
         usuario.setText(nombre+" (Rol "+rol+")");
         partido.setText("Club "+club);
+        serie_citado.setText("Serie "+serie_turno);
         lista_bd = new ArrayList<>();
 
 

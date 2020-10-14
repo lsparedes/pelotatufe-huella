@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
         nombre_usuario = (TextView) findViewById(R.id.nombre);
         club_usuario = (TextView) findViewById(R.id.equipo);
         serie_usuario = (TextView) findViewById(R.id.serie);
-        consultar = (Button) findViewById(R.id.validar);
+        //consultar = (Button) findViewById(R.id.validar);
         enrolar = (Button) findViewById(R.id.enrolar);
         jugador_enrolado = (Button) findViewById(R.id.jugador_enrolado);
         cuenta_activada = (Button) findViewById(R.id.cuenta);
@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
             enrolar.setVisibility(View.VISIBLE);
             jugador_enrolado.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_cancel_24, 0);
         }else{
-            consultar.setVisibility(View.VISIBLE);
+            //consultar.setVisibility(View.VISIBLE);
             jugador_enrolado.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_check_circle_24, 0);
         }
         if(confirmacion.equals("null")){

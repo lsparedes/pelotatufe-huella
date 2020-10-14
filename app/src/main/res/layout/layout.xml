@@ -238,18 +238,18 @@
         android:layout_centerHorizontal="true"
         />
 -->
-    <Button
-        android:id="@+id/validar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:text="Validar"
-        android:visibility="invisible"
-        android:backgroundTint="@color/azul"
-        android:layout_below="@+id/imagen"
-        android:onClick="startScan2"
-        />
+<!--    <Button-->
+<!--        android:id="@+id/validar"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginLeft="20dp"-->
+<!--        android:layout_marginRight="20dp"-->
+<!--        android:text="Validar"-->
+<!--        android:visibility="invisible"-->
+<!--        android:backgroundTint="@color/azul"-->
+<!--        android:layout_below="@+id/imagen"-->
+<!--        android:onClick="startScan2"-->
+<!--        />-->
 
     <Button
         android:id="@+id/enrolar"

@@ -54,6 +54,20 @@
         android:background="@android:color/white"
         />
 
+    <TextView
+        android:id="@+id/texto-partidos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="Listado de partidos del turno"
+        android:textSize="20dp"
+        android:textColor="@android:color/white"
+
+        />
+
     <ListView
         android:id="@+id/lista_players"
         android:layout_width="fill_parent"

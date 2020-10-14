@@ -60,6 +60,35 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/texto-partidos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="20dp"
+            android:text="Listado de jugadores de la serie"
+            android:textSize="20dp"
+            android:textColor="@android:color/white"
+
+            />
+
+        <TextView
+            android:id="@+id/serie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+
+            android:text="Local Club 1"
+
+            android:textSize="15dp"
+            android:textColor="@android:color/white"
+
+            />
+
+        <TextView
             android:id="@+id/partido"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -69,7 +98,7 @@
             android:layout_marginBottom="20dp"
             android:text="Local Club 1"
             android:textStyle="bold"
-            android:textSize="15dp"
+            android:textSize="20dp"
             android:textColor="@android:color/white"
 
             />
@@ -83,7 +112,9 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_height="wrap_content"
-        android:dividerHeight="1dp" />
+        android:dividerHeight="1dp"
+        android:background="@color/azul"
+        android:textColor="@android:color/white"/>
 
     <ImageView
         android:id="@+id/huella"
