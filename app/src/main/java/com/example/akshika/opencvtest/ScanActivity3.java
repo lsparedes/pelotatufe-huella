@@ -4,6 +4,7 @@ package com.example.akshika.opencvtest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -53,9 +54,10 @@ public class ScanActivity3 extends Activity  {
         tvStatus = (TextView) findViewById(R.id.tvStatus);
         tvError = (TextView) findViewById(R.id.tvError);
         fingerprint = new Fingerprint();
-        idRecibidoScan = getIntent().getStringExtra("id_scan");
-        finger = getIntent().getStringExtra("fingerprint");
-        Toast.makeText(getApplicationContext(), "Id jugador Scan: " + idRecibidoScan, Toast.LENGTH_SHORT).show();
+
+        SharedPreferences sharedPreferences = getSharedPreferences("myKey", MODE_PRIVATE);
+        idRecibidoScan = sharedPreferences.getString("id_scan", "");
+
     }
 
     @Override

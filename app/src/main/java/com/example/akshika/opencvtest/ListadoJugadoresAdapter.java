@@ -4,11 +4,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -63,11 +65,17 @@ public class ListadoJugadoresAdapter extends BaseAdapter {
             public void onClick(View v) {
                 Intent intent=new Intent(context,ScanActivity3.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);;
                 intent.putExtra("SCAN_FINGER", SCAN_FINGER);
+
                 SharedPreferences sharedPref = context.getSharedPreferences("myKey", context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPref.edit();
                 editor.putString("id_scan", arrayList.get(position).getId());
                 editor.putString("fingerprint",arrayList.get(position).getFingerprint());
+
+                Log.d("TAG","id_scan "+arrayList.get(position).getId());
+                Log.d("TAG","fingerprint "+arrayList.get(position).getId());
+
                 editor.apply();
+
                 context.startActivity(intent);
 
             }

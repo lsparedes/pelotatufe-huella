@@ -89,17 +89,20 @@ public class ListadoJugadoresActivity extends AppCompatActivity {
         imagen = (ImageView) findViewById(R.id.imagen);
 
         SharedPreferences sharedPreferences = getSharedPreferences("myKey", MODE_PRIVATE);
+        
         String nombre= sharedPreferences.getString("name","");
         String rol = sharedPreferences.getString("rol", "");
         serie_turno= sharedPreferences.getString("serie","");
+
         id_jugador_recibido =  sharedPreferences.getString("id_scan", "");
         fingerprint_recibido = sharedPreferences.getString("fingerprint", "");
+
         club = getIntent().getStringExtra("club");
         usuario.setText(nombre+" - Rol: "+rol);
         partido.setText("Club "+club);
         lista_bd = new ArrayList<>();
 
-        Toast.makeText(getApplicationContext(), "id_scan "+id_jugador_recibido,Toast.LENGTH_LONG).show();
+
         ConsultaJugadores();
     }
 
