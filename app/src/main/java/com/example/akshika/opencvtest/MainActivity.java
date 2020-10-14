@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
         club = getIntent().getStringExtra("club");
         fingerprint = getIntent().getStringExtra("fingerprint");
         confirmacion = getIntent().getStringExtra("confirmacion");
-        hour = getIntent().getStringExtra("citado_hoy");
+        //hour = getIntent().getStringExtra("citado_hoy");
         serie = getIntent().getStringExtra("serie");
 
         SharedPreferences sharedPreferences = getSharedPreferences("myKey", MODE_PRIVATE);
@@ -232,52 +232,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 //                        resultTextView.setText("String Response : "+ response.toString());
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                loading.dismiss();
-                VolleyLog.d("Error", "Error: " + error.getMessage());
-                Toast.makeText(MainActivity.this, "" + error.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        requestQueue.add(jsonObjectRequest);
-    }
-
-    public void VerificacionFingerPrint(){
-        final ProgressDialog loading = new ProgressDialog(MainActivity.this);
-        loading.setMessage("Espere un momento...");
-        loading.setCanceledOnTouchOutside(false);
-        loading.show();
-
-        JSONObject object = new JSONObject();
-        try {
-            //input your API parameters
-            object.put("id", idRecibido);
-
-            Log.d(TAG, "id recibido finger: "+idRecibido);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        // Enter the correct url for your api service site
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, "http://proyectos.drup.cl/pelotatufe/api/v1/players/verified/enroll", object,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-
-                            String success = response.getString("success");
-                            loading.dismiss();
-                            Log.i("success", success);
-                            if(success == "true"){
-                                Toast.makeText(getApplicationContext(), "¡Jugador verificado con exito!.", Toast.LENGTH_SHORT).show();
-                            }
-
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
                     }
                 }, new Response.ErrorListener() {
             @Override

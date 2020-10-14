@@ -89,7 +89,7 @@ public class ListadoJugadoresActivity extends AppCompatActivity {
         imagen = (ImageView) findViewById(R.id.imagen);
 
         SharedPreferences sharedPreferences = getSharedPreferences("myKey", MODE_PRIVATE);
-        
+
         String nombre= sharedPreferences.getString("name","");
         String rol = sharedPreferences.getString("rol", "");
         serie_turno= sharedPreferences.getString("serie","");
