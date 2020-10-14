@@ -92,12 +92,14 @@ public class ListadoJugadoresActivity extends AppCompatActivity {
         String nombre= sharedPreferences.getString("name","");
         String rol = sharedPreferences.getString("rol", "");
         serie_turno= sharedPreferences.getString("serie","");
+        id_jugador_recibido =  sharedPreferences.getString("id_scan", "");
+        fingerprint_recibido = sharedPreferences.getString("fingerprint", "");
         club = getIntent().getStringExtra("club");
         usuario.setText(nombre+" - Rol: "+rol);
         partido.setText("Club "+club);
         lista_bd = new ArrayList<>();
 
-        //Toast.makeText(getApplicationContext(), "club "+club+"serie_turno "+serie_turno,Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "id_scan "+id_jugador_recibido,Toast.LENGTH_LONG).show();
         ConsultaJugadores();
     }
 
@@ -211,8 +213,7 @@ public class ListadoJugadoresActivity extends AppCompatActivity {
         matches = new MatOfDMatch();
         img1 = new Mat();
         img2 = new Mat();
-        id_jugador_recibido = getIntent().getStringExtra("id_jugador");
-        fingerprint_recibido = getIntent().getStringExtra("finger");
+
         //imagen1
 
         istr = new ByteArrayInputStream(Base64.decode(fingerprint_recibido.getBytes(), Base64.DEFAULT));

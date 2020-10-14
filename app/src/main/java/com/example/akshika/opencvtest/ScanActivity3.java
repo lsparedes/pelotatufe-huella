@@ -55,7 +55,7 @@ public class ScanActivity3 extends Activity  {
         fingerprint = new Fingerprint();
         idRecibidoScan = getIntent().getStringExtra("id_scan");
         finger = getIntent().getStringExtra("fingerprint");
-        //Toast.makeText(getApplicationContext(), "Id jugador Scan: " + idRecibidoScan, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Id jugador Scan: " + idRecibidoScan, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -135,8 +135,6 @@ public class ScanActivity3 extends Activity  {
             //intent.putExtra("status", status);
             if (status == Status.SUCCESS) {
                 image = msg.getData().getByteArray("img");
-                intent.putExtra("finger", finger);
-                intent.putExtra("id_jugado", idRecibidoScan);
                 encodedString = Base64.encodeToString(image, Base64.DEFAULT);
                 Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0, image.length);
                 storeImage(bitmap);

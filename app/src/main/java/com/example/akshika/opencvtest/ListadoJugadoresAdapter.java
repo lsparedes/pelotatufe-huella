@@ -63,8 +63,11 @@ public class ListadoJugadoresAdapter extends BaseAdapter {
             public void onClick(View v) {
                 Intent intent=new Intent(context,ScanActivity3.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);;
                 intent.putExtra("SCAN_FINGER", SCAN_FINGER);
-                intent.putExtra("id_scan", arrayList.get(position).getId());
-                intent.putExtra("fingerprint", arrayList.get(position).getFingerprint());
+                SharedPreferences sharedPref = context.getSharedPreferences("myKey", context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putString("id_scan", arrayList.get(position).getId());
+                editor.putString("fingerprint",arrayList.get(position).getFingerprint());
+                editor.apply();
                 context.startActivity(intent);
 
             }
