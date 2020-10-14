@@ -2,6 +2,7 @@ package com.example.akshika.opencvtest;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -73,7 +74,16 @@ public class PlayersAdapter extends BaseAdapter {
             public void onClick(View v) {
                 Intent intent=new Intent(context,TurnoActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 String id_campeonato = arrayList.get(position).getIdCampeonato();
+                String campeonato = arrayList.get(position).getCampeonato();
+                String fecha = arrayList.get(position).getFecha();
+                String serie = arrayList.get(position).getSerie();
                 intent.putExtra("id_campeonato", id_campeonato);
+                SharedPreferences sharedPref = context.getSharedPreferences("myKey", context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putString("serie", serie);
+                editor.putString("campeonato",campeonato);
+                editor.putString("fecha",fecha);
+                editor.apply();
                 context.startActivity(intent);
 
             }

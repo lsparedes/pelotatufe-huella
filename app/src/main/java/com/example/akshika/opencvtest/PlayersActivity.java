@@ -88,7 +88,7 @@ public class PlayersActivity extends AppCompatActivity {
                                 // adding movie to movies array
                                 ItemPlayers player = new ItemPlayers();
                                 player.setCampeonato(titulo);
-                                player.setSerie("Serie "+serie);
+                                player.setSerie(serie);
                                 player.setIdCampeonato(id);
                                 player.setFecha(hora);
                                 lista_bd.add(player);
@@ -123,7 +123,7 @@ public class PlayersActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 loading.dismiss();
                 VolleyLog.d("Error", "Error: " + error.getMessage());
-                Toast.makeText(PlayersActivity.this, "" + error.getMessage(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(PlayersActivity.this, "" + error.getMessage(), Toast.LENGTH_SHORT).show();
             }
 
         });

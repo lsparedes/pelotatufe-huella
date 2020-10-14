@@ -1,7 +1,9 @@
 package com.example.akshika.opencvtest;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,7 @@ public class ListadoJugadoresAdapter extends BaseAdapter {
     private Context context;
     private ArrayList<ItemListadoJugadores> arrayList;
     private LayoutInflater layoutInflater;
+    private static final int SCAN_FINGER = 0;
 
 
     public ListadoJugadoresAdapter(Context context, ArrayList<ItemListadoJugadores> arrayList){
@@ -48,14 +51,24 @@ public class ListadoJugadoresAdapter extends BaseAdapter {
 
         //ImageView iv_main = (ImageView) convertView.findViewById(R.id.iv_main);
         TextView nombre = (TextView) convertView.findViewById(R.id.nombre);
+        //TextView id = (TextView) convertView.findViewById(R.id.id);
         //ImageView tv_main = (ImageView) convertView.findViewById(R.id.tv_main);
 
         nombre.setText(arrayList.get(position).getNombre());
-        //iv_main.setImageResource(R.drawable.circle);
-        //int color = Color.argb(255, random.nextInt(250), random.nextInt(250), random.nextInt(250));
-        //int color = Color.argb(255, 0,0,0);
-        //iv_main.setColorFilter(color);
-        //tv_main.setImageResource(R.drawable.ic_baseline_sports_handball_24);
+        //id.setText(arrayList.get(position).getId());
+
+        convertView.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(context,ScanActivity3.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);;
+                intent.putExtra("SCAN_FINGER", SCAN_FINGER);
+                intent.putExtra("id_scan", arrayList.get(position).getId());
+                intent.putExtra("fingerprint", arrayList.get(position).getFingerprint());
+                context.startActivity(intent);
+
+            }
+        });
 
         return convertView;
     }

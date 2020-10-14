@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
         enrolar = (Button) findViewById(R.id.enrolar);
         jugador_enrolado = (Button) findViewById(R.id.jugador_enrolado);
         cuenta_activada = (Button) findViewById(R.id.cuenta);
-        citado = (Button) findViewById(R.id.citacion);
+        //citado = (Button) findViewById(R.id.citacion);
         usuario = (TextView) findViewById(R.id.usuario);
 
         nombre = getIntent().getStringExtra("nombre");
@@ -161,12 +161,12 @@ public class MainActivity extends AppCompatActivity {
 
             cuenta_activada.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_check_circle_24, 0);
         }
-       if(hour.equals("no_citado_hoy")){
+      /* if(hour.equals("no_citado_hoy")){
             consultar.setVisibility(View.INVISIBLE);
             citado.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_cancel_24, 0);
         }else{
             citado.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_check_circle_24, 0);
-        }
+        }*/
         requestAppPermissions();
 
 

@@ -75,6 +75,7 @@
             />
 
         <TextView
+            android:id="@+id/campeonato"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -89,6 +90,7 @@
 
 
         <TextView
+            android:id="@+id/fecha"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -103,54 +105,96 @@
             />
 
     </LinearLayout>
-    
-    <TextView
-        android:layout_width="match_parent"
+
+    <com.google.android.material.card.MaterialCardView
+        android:clickable="true"
+        android:focusable="true"
+        android:id="@+id/card_local"
+        android:checkable="true"
         android:layout_height="wrap_content"
-        android:id="@+id/nombre"
-        android:text="Local"
-        android:textSize="15dp"
-        android:textColor="@android:color/white"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"/>
-
-
-    <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/club"
-        android:text="Club Local"
-        android:textSize="15dp"
-        android:textColor="@android:color/white"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/nombre"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"/>
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="20dp"
+        android:backgroundTint="@color/azul">
 
-    <TextView
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/nombre"
+                android:text="Local"
+                android:textSize="15dp"
+                android:textColor="@android:color/white"
+                android:layout_alignParentLeft="true"
+                />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/club"
+                android:text="Club Local"
+                android:textSize="15dp"
+                android:textColor="@android:color/white"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/nombre" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:clickable="true"
+        android:focusable="true"
+        android:checkable="true"
+        android:id="@+id/card_visita"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/azul"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/nombre_visita"
-        android:text="Visita"
-        android:textSize="15dp"
-        android:textColor="@android:color/white"
-        android:layout_alignParentLeft="true"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"/>
+        android:layout_marginRight="20dp">
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/club_visita"
-        android:text="Club Visita"
-        android:textSize="15dp"
-        android:textColor="@android:color/white"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/nombre"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/nombre_visita"
+                android:text="Visita"
+                android:textSize="15dp"
+                android:textColor="@android:color/white"
+                android:layout_alignParentLeft="true"
+                />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/club_visita"
+                android:text="Club Visita"
+                android:textSize="15dp"
+                android:textColor="@android:color/white"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/nombre_visita"
+             />
+
+        </LinearLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
 
 <!--    <ListView
         android:id="@+id/lista_turno"
