@@ -72,7 +72,7 @@ public class ListadoJugadoresAdapter extends BaseAdapter {
                 editor.putString("fingerprint",arrayList.get(position).getFingerprint());
 
                 Log.d("TAG","id_scan "+arrayList.get(position).getId());
-                Log.d("TAG","fingerprint "+arrayList.get(position).getId());
+                Log.d("TAG","fingerprint "+arrayList.get(position).getFingerprint());
 
                 editor.apply();
 
