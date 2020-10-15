@@ -83,6 +83,7 @@ public class ListadoJugadoresActivity extends AppCompatActivity {
         setContentView(R.layout.activity_listado);
 
         listajugadores = (ListView) findViewById(R.id.lista_jugadores);
+        listajugadores.setEmptyView(findViewById(R.id.mensajevacio));
         TextView usuario = (TextView) findViewById(R.id.usuario);
         TextView partido = (TextView) findViewById(R.id.partido);
         TextView serie_citado = (TextView) findViewById(R.id.serie);

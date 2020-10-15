@@ -116,6 +116,15 @@
         android:background="@color/azul"
         android:textColor="@android:color/white"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mensajevacio"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="Aún no existen jugadores asociados."
+        />
+
     <ImageView
         android:id="@+id/huella"
         android:layout_width="14dp"

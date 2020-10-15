@@ -41,6 +41,7 @@ public class PlayersActivity extends AppCompatActivity {
         setContentView(R.layout.activity_players);
 
         listaplayers = (ListView) findViewById(R.id.lista_players);
+        listaplayers.setEmptyView(findViewById(R.id.mensajevacio));
         usuario = (TextView) findViewById(R.id.usuario);
 
         SharedPreferences sharedPreferences = getSharedPreferences("myKey", MODE_PRIVATE);
