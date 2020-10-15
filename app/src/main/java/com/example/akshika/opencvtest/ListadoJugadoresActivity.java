@@ -305,7 +305,7 @@ public class ListadoJugadoresActivity extends AppCompatActivity {
             matcher.match(descriptors1, descriptors2, matches);
             Log.d("LOG!", "Matches Size " + matches.size());
 
-            if(compare>0 && compare<1500) {
+            if(compare>0 && compare<2000) {
 
                 Toast.makeText(ListadoJugadoresActivity.this, "Huella reconocida con exito!", Toast.LENGTH_LONG).show();
                 //VerificacionFingerPrint();
