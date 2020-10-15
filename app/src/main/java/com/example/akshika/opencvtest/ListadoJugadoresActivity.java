@@ -307,20 +307,21 @@ public class ListadoJugadoresActivity extends AppCompatActivity {
 
             if(compare>0 && compare<1500) {
 
-                Toast.makeText(ListadoJugadoresActivity.this, "Imágenes similares", Toast.LENGTH_LONG).show();
+                Toast.makeText(ListadoJugadoresActivity.this, "Huella reconocida con exito!", Toast.LENGTH_LONG).show();
                 //VerificacionFingerPrint();
+                Log.d("compare similares: ", String.valueOf(compare));
                 //new asyncTask(MainActivity.this).execute();
             }
             else if(compare==0) {
-                Toast.makeText(ListadoJugadoresActivity.this, "Imágenes exactamente iguales", Toast.LENGTH_LONG).show();
-                Log.d("valor de compare: ", String.valueOf(compare));
+                Toast.makeText(ListadoJugadoresActivity.this, "Huella reconocida con exito!", Toast.LENGTH_LONG).show();
+                Log.d("compare iguales: ", String.valueOf(compare));
                 // VerificacionFingerPrint();
             }else
-                Toast.makeText(ListadoJugadoresActivity.this, "Imágenes diferentes", Toast.LENGTH_LONG).show();
-            Log.d("valor de compare: ", String.valueOf(compare));
+                Toast.makeText(ListadoJugadoresActivity.this, "Huella no encontrada!", Toast.LENGTH_LONG).show();
+            Log.d("compare diferentes: ", String.valueOf(compare));
             //startTime = System.currentTimeMillis();
         } else
-            Toast.makeText(ListadoJugadoresActivity.this, "No hay imágenes seleccionadas.", Toast.LENGTH_LONG).show();
+            Toast.makeText(ListadoJugadoresActivity.this, "Vuelve a intentarlo!.", Toast.LENGTH_LONG).show();
 
 
     }

@@ -424,20 +424,22 @@ public class MainActivity extends AppCompatActivity {
 
             if(compare>0 && compare<1500) {
 
-                Toast.makeText(MainActivity.this, "Imágenes similares", Toast.LENGTH_LONG).show();
+                //Toast.makeText(MainActivity.this, "Imágenes similares", Toast.LENGTH_LONG).show();
                 //VerificacionFingerPrint();
                 //new asyncTask(MainActivity.this).execute();
             }
             else if(compare==0) {
-                Toast.makeText(MainActivity.this, "Imágenes exactamente iguales", Toast.LENGTH_LONG).show();
+                //Toast.makeText(MainActivity.this, "Imágenes exactamente iguales", Toast.LENGTH_LONG).show();
                 Log.d("valor de compare: ", String.valueOf(compare));
                // VerificacionFingerPrint();
             }else
-                Toast.makeText(MainActivity.this, "Imágenes diferentes", Toast.LENGTH_LONG).show();
+               // Toast.makeText(MainActivity.this, "Imágenes diferentes", Toast.LENGTH_LONG).show();
             Log.d("valor de compare: ", String.valueOf(compare));
             //startTime = System.currentTimeMillis();
-        } else
-            Toast.makeText(MainActivity.this, "No hay imágenes seleccionadas.", Toast.LENGTH_LONG).show();
+        }
+
+        //else
+            //Toast.makeText(MainActivity.this, "No hay imágenes seleccionadas.", Toast.LENGTH_LONG).show();
 
 
     }
