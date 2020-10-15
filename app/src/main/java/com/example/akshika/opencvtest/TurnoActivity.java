@@ -35,7 +35,7 @@ public class TurnoActivity extends AppCompatActivity {
     private static ListView listaturno;
     private static ArrayList<ItemTurno> lista_bd;
     private static TurnoAdapter adaptador_turno;
-    private static String id, club_local, club_visita;
+    private static String id, club_local, club_visita, id_versus;
     private static TextView nombre, club, nombre_visita;
     CardView card_local, card_visita;
 
@@ -123,7 +123,11 @@ public class TurnoActivity extends AppCompatActivity {
                                 JSONObject turno = response.getJSONObject("local");
                                 loading.dismiss();
                                 club_local = turno.getString("club");
-
+                                id_versus = turno.getString("id_versus");
+                                SharedPreferences sharedPref = getSharedPreferences("myKey", MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sharedPref.edit();
+                                editor.putString("id_versus", id_versus);
+                                editor.apply();
                                 //ItemTurno turno_players = new ItemTurno();
                                 //turno_players.setNombre(club);
                                 //lista_bd.add(turno_players);

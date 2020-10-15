@@ -56,7 +56,7 @@ public class ListadoJugadoresActivity extends AppCompatActivity {
     private static ListView listajugadores;
     private static ArrayList<ItemListadoJugadores> lista_bd;
     private static ListadoJugadoresAdapter adaptador_listado;
-    private static String serie_turno, club, id_jugador, fingerprint, id_jugador_recibido, fingerprint_recibido;
+    private static String serie_turno, club, id_jugador, fingerprint, id_jugador_recibido, fingerprint_recibido, versus;
 
     ImageView huella, imagen;
     Mat descriptors2, descriptors1;
@@ -94,11 +94,12 @@ public class ListadoJugadoresActivity extends AppCompatActivity {
         String nombre= sharedPreferences.getString("name","");
         String rol = sharedPreferences.getString("rol", "");
         serie_turno= sharedPreferences.getString("serie","");
-
+        versus = sharedPreferences.getString("id_versus","");
         id_jugador_recibido =  sharedPreferences.getString("id_scan", "");
         fingerprint_recibido = sharedPreferences.getString("fingerprint", "");
 
         club = getIntent().getStringExtra("club");
+
         usuario.setText(nombre+" (Rol "+rol+")");
         partido.setText("Club "+club);
         serie_citado.setText("Serie "+serie_turno);
@@ -310,11 +311,13 @@ public class ListadoJugadoresActivity extends AppCompatActivity {
                 Toast.makeText(ListadoJugadoresActivity.this, "Huella reconocida con exito!", Toast.LENGTH_LONG).show();
                 //VerificacionFingerPrint();
                 Log.d("compare similares: ", String.valueOf(compare));
+                IngresoMatch();
                 //new asyncTask(MainActivity.this).execute();
             }
             else if(compare==0) {
                 Toast.makeText(ListadoJugadoresActivity.this, "Huella reconocida con exito!", Toast.LENGTH_LONG).show();
                 Log.d("compare iguales: ", String.valueOf(compare));
+                IngresoMatch();
                 // VerificacionFingerPrint();
             }else
                 Toast.makeText(ListadoJugadoresActivity.this, "Huella no encontrada!", Toast.LENGTH_LONG).show();
@@ -323,6 +326,46 @@ public class ListadoJugadoresActivity extends AppCompatActivity {
         } else
             Toast.makeText(ListadoJugadoresActivity.this, "Vuelve a intentarlo!.", Toast.LENGTH_LONG).show();
 
+
+    }
+
+    public void IngresoMatch(){
+
+        final ProgressDialog loading = new ProgressDialog(ListadoJugadoresActivity.this);
+        loading.setMessage("Espere un momento...");
+        loading.setCanceledOnTouchOutside(false);
+        loading.show();
+
+        JSONObject object = new JSONObject();
+        try {
+
+            object.put("id_player",id_jugador_recibido);
+            object.put("serie", serie_turno);
+            object.put("versus",versus);
+            object.put("club", club);
+
+            Log.d("TAG","serie "+serie_turno+"club "+club+"versus "+versus+"id_player "+id_jugador_recibido);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        // Enter the correct url for your api service site
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, "http://proyectos.drup.cl/pelotatufe/api/v1/matchs/ingreso", object,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                loading.dismiss();
+                VolleyLog.d("Error", "Error: " + error.getMessage());
+                ///Toast.makeText(TurnoActivity.this, "" + error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        requestQueue.add(jsonObjectRequest);
 
     }
 
