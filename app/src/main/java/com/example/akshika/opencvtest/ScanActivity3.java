@@ -140,14 +140,15 @@ public class ScanActivity3 extends Activity  {
                 encodedString = Base64.encodeToString(image, Base64.DEFAULT);
                 Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0, image.length);
                 storeImage(bitmap);
-
+                finish();
 
             } else {
+                finish();
                 errorMessage = msg.getData().getString("errorMessage");
                 //intent.putExtra("errorMessage", errorMessage);
             }
-            setResult(RESULT_OK, intent);
-            finish();
+            //setResult(RESULT_OK, intent);
+
         }
     };
 

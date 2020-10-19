@@ -1,0 +1,134 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/fondo">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar"
+            android:layout_width="match_parent"
+            app:navigationIcon="@drawable/logo_blanco"
+            android:layout_height="?attr/actionBarSize"
+            app:title="Validar"
+            android:background="@color/azul"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
+            />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:text="Nombre usuario - Rol"
+            android:textStyle="bold"
+            android:id="@+id/usuario"
+            android:textSize="20dp"
+            android:textColor="@android:color/white"
+
+            />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@android:color/white"
+        />
+
+    <TextView
+        android:id="@+id/texto-partidos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="15dp"
+        android:text="Completando equipo"
+        android:textSize="20dp"
+        android:textColor="@android:color/white"
+
+        />
+    <TextView
+        android:id="@+id/club"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="20dp"
+        android:text="Club"
+        android:textSize="15dp"
+        android:textColor="@android:color/white"
+
+        />
+    <TextView
+        android:id="@+id/serie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="Serie"
+        android:textSize="15dp"
+        android:textColor="@android:color/white"
+
+        />
+
+    <ListView
+        android:id="@+id/lista_jugadores"
+        android:layout_width="fill_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_height="wrap_content"
+        android:dividerHeight="1dp"
+        android:divider="@android:color/white"
+        android:background="@color/azul"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mensajevacio"
+        android:layout_gravity="center"
+        android:textSize="15dp"
+        android:textColor="@android:color/white"
+        android:text="Aún no existen campeonatos asociados."
+        />
+
+    <ImageView
+        android:id="@+id/huella"
+        android:layout_width="14dp"
+        android:layout_height="20dp"
+        android:scaleType="fitXY"
+        android:layout_gravity="center"
+        android:visibility="invisible"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <ImageView
+        android:id="@+id/imagen"
+        android:layout_width="14dp"
+        android:layout_height="20dp"
+        android:scaleType="fitXY"
+        android:visibility="invisible"
+        android:layout_gravity="center"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+</LinearLayout>

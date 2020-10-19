@@ -1,6 +1,7 @@
 package com.example.akshika.opencvtest;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -8,6 +9,8 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.util.Base64;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -45,14 +48,18 @@ import org.opencv.imgproc.Imgproc;
 import org.w3c.dom.Text;
 
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
+import asia.kanopi.fingerscan.Status;
+
 public class ListadoJugadoresActivity extends AppCompatActivity {
 
     private static final String TAG = "OCVSample::Activity";
+    private static final int SCAN_FINGER = 0;
     private static ListView listajugadores;
     private static ArrayList<ItemListadoJugadores> lista_bd;
     private static ListadoJugadoresAdapter adaptador_listado;
@@ -69,6 +76,7 @@ public class ListadoJugadoresActivity extends AppCompatActivity {
     InputStream istr, istr2;
     DescriptorMatcher matcher;
     private static Bitmap bitmap, bitmap2;
+    Button completar;
 
     static {
         if (!OpenCVLoader.initDebug())
@@ -89,6 +97,7 @@ public class ListadoJugadoresActivity extends AppCompatActivity {
         TextView serie_citado = (TextView) findViewById(R.id.serie);
         huella = (ImageView) findViewById(R.id.huella);
         imagen = (ImageView) findViewById(R.id.imagen);
+        completar = (Button) findViewById(R.id.completar);
 
         SharedPreferences sharedPreferences = getSharedPreferences("myKey", MODE_PRIVATE);
 
@@ -98,16 +107,24 @@ public class ListadoJugadoresActivity extends AppCompatActivity {
         versus = sharedPreferences.getString("id_versus","");
         id_jugador_recibido =  sharedPreferences.getString("id_scan", "");
         fingerprint_recibido = sharedPreferences.getString("fingerprint", "");
+        club = sharedPreferences.getString("club", "");
 
-        club = getIntent().getStringExtra("club");
+        completar.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SeriesExtrasActivity.class);
+                startActivity(intent);
+            }
+
+        });
+
 
         usuario.setText(nombre+" (Rol "+rol+")");
         partido.setText("Club "+club);
         serie_citado.setText("Serie "+serie_turno);
         lista_bd = new ArrayList<>();
-
-
         ConsultaJugadores();
+
+
     }
 
     public void ConsultaJugadores(){
@@ -188,6 +205,7 @@ public class ListadoJugadoresActivity extends AppCompatActivity {
 
     }
 
+
     private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
         @Override
         public void onManagerConnected(int status) {
@@ -197,7 +215,6 @@ public class ListadoJugadoresActivity extends AppCompatActivity {
                     //mOpenCvCameraView.enableView();
                     try {
                         initializeOpenCVDependencies();
-
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -307,7 +324,7 @@ public class ListadoJugadoresActivity extends AppCompatActivity {
             matcher.match(descriptors1, descriptors2, matches);
             Log.d("LOG!", "Matches Size " + matches.size());
 
-            if(compare>0 && compare<1500) {
+            if(compare>0 && compare<1000) {
 
                 Toast.makeText(ListadoJugadoresActivity.this, "Huella reconocida con exito!", Toast.LENGTH_LONG).show();
                 //VerificacionFingerPrint();
@@ -320,22 +337,19 @@ public class ListadoJugadoresActivity extends AppCompatActivity {
                 Log.d("compare iguales: ", String.valueOf(compare));
                 IngresoMatch();
                 // VerificacionFingerPrint();
-            }else
+            }else {
                 Toast.makeText(ListadoJugadoresActivity.this, "Huella no encontrada!", Toast.LENGTH_LONG).show();
-            Log.d("compare diferentes: ", String.valueOf(compare));
-            //startTime = System.currentTimeMillis();
-        } else
+                Log.d("compare diferentes: ", String.valueOf(compare));
+                //startTime = System.currentTimeMillis();
+            }
+        } else {
             Toast.makeText(ListadoJugadoresActivity.this, "Vuelve a intentarlo!.", Toast.LENGTH_LONG).show();
-
+        }
 
     }
 
     public void IngresoMatch(){
 
-        final ProgressDialog loading = new ProgressDialog(ListadoJugadoresActivity.this);
-        loading.setMessage("Espere un momento...");
-        loading.setCanceledOnTouchOutside(false);
-        loading.show();
 
         JSONObject object = new JSONObject();
         try {
@@ -355,12 +369,25 @@ public class ListadoJugadoresActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
 
+                        try {
+
+                            String success = response.getString("success");
+                            Log.i("JSON SUCCESS", success);
+                            //Toast.makeText(getApplicationContext(), "¡Huella reconocida con exito!.", Toast.LENGTH_SHORT).show();
+
+                            String ruta= getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES).toString();
+                            File file = new File(ruta +"/imagenes/scaneado"+id_jugador_recibido+".jpg");
+                            file.delete();
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
 
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                loading.dismiss();
+
                 VolleyLog.d("Error", "Error: " + error.getMessage());
                 ///Toast.makeText(TurnoActivity.this, "" + error.getMessage(), Toast.LENGTH_SHORT).show();
             }
@@ -369,6 +396,8 @@ public class ListadoJugadoresActivity extends AppCompatActivity {
         requestQueue.add(jsonObjectRequest);
 
     }
+
+
 
     @Override
     public void onResume() {

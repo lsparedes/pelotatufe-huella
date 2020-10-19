@@ -58,7 +58,11 @@ public class TurnoActivity extends AppCompatActivity {
         card_local.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), ListadoJugadoresActivity.class);
-                intent.putExtra("club", club_local);
+                SharedPreferences sharedPref = getSharedPreferences("myKey", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putString("club", club_local);
+                editor.apply();
+               // intent.putExtra("club", club_local);
                 startActivity(intent);
             }
 
@@ -67,7 +71,11 @@ public class TurnoActivity extends AppCompatActivity {
         card_visita.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), ListadoJugadoresActivity.class);
-                intent.putExtra("club", club_visita);
+                SharedPreferences sharedPref = getSharedPreferences("myKey", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putString("club", club_visita);
+                editor.apply();
+                //intent.putExtra("club", club_visita);
                 startActivity(intent);
             }
 

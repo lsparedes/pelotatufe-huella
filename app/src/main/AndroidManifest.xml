@@ -21,33 +21,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MenuActivity">
-
-        </activity>
-        <activity android:name=".JugadorActivity">
-
-        </activity>
-        <activity android:name=".ScanActivity">
-
-        </activity>
-        <activity android:name=".ScanActivity2">
-
-        </activity>
-        <activity android:name=".ScanActivity3">
-
-        </activity>
-        <activity android:name=".MainActivity">
-
-        </activity>
-        <activity android:name=".PlayersActivity">
-
-        </activity>
-        <activity android:name=".TurnoActivity">
-
-        </activity>
-        <activity android:name=".ListadoJugadoresActivity">
-
-        </activity>
+        <activity android:name=".MenuActivity"></activity>
+        <activity android:name=".JugadorActivity"></activity>
+        <activity android:name=".ScanActivity"></activity>
+        <activity android:name=".ScanActivity2"></activity>
+        <activity android:name=".ScanActivity3"></activity>
+        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".PlayersActivity"></activity>
+        <activity android:name=".TurnoActivity"></activity>
+        <activity android:name=".ListadoJugadoresActivity"></activity>
+        <activity android:name=".SeriesExtrasActivity"></activity>
+        <activity android:name=".JugadoresExtrasActivity"></activity>
         <!-- ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
         <meta-data

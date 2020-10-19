@@ -75,14 +75,16 @@
         android:layout_marginRight="20dp"
         android:layout_height="wrap_content"
         android:dividerHeight="1dp"
+        android:divider="@android:color/white"
         android:background="@color/azul"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/mensajevacio"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:layout_gravity="center"
+        android:textSize="15dp"
+        android:textColor="@android:color/white"
         android:text="Aún no existen campeonatos asociados."
         />
 

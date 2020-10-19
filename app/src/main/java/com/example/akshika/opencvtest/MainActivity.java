@@ -106,12 +106,6 @@ public class MainActivity extends AppCompatActivity {
     private static final int CODIGO_SOLICITUD_PERMISO=123;
     TextView usuario;
 
-    static {
-        if (!OpenCVLoader.initDebug())
-            Log.d("ERROR", "Unable to load OpenCV");
-        else
-            Log.d("SUCCESS", "OpenCV loaded");
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
         //citado = (Button) findViewById(R.id.citacion);
         usuario = (TextView) findViewById(R.id.usuario);
 
-        nombre_jugador = getIntent().getStringExtra("nombre");
+        nombre_jugador =  nombre_jugador = getIntent().getStringExtra("nombre");
         idRecibido = getIntent().getStringExtra("id");
         club = getIntent().getStringExtra("club");
         fingerprint = getIntent().getStringExtra("fingerprint");
@@ -245,15 +239,7 @@ public class MainActivity extends AppCompatActivity {
         requestQueue.add(jsonObjectRequest);
     }
 
-    public void startScan2(View view) {
-        Intent intent = new Intent(this, ScanActivity2.class);
-        idRecibido = getIntent().getStringExtra("id");
-        //Toast.makeText(getApplicationContext(), idRecibido, Toast.LENGTH_SHORT).show();
-        intent.putExtra("id_scan", idRecibido);
-        intent.putExtra("SCAN_FINGER", SCAN_FINGER);
-        startActivity(intent);
 
-    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -289,160 +275,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
-        @Override
-        public void onManagerConnected(int status) {
-            switch (status) {
-                case LoaderCallbackInterface.SUCCESS: {
-                    Log.i(TAG, "OpenCV loaded successfully");
-                    //mOpenCvCameraView.enableView();
-                    try {
-                        initializeOpenCVDependencies();
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-                break;
-                default: {
-                    super.onManagerConnected(status);
-                }
-                break;
-            }
-        }
-    };
-
-
-
-    private void initializeOpenCVDependencies() throws IOException {
-
-
-        detector = FeatureDetector.create(FeatureDetector.ORB);
-        descriptor = DescriptorExtractor.create(DescriptorExtractor.ORB);
-        matcher = DescriptorMatcher.create(DescriptorMatcher.BRUTEFORCE_HAMMING);
-        matches = new MatOfDMatch();
-        img1 = new Mat();
-        img2 = new Mat();
-
-        //imagen1
-
-
-            istr = new ByteArrayInputStream(Base64.decode(fingerprint.getBytes(), Base64.DEFAULT));
-
-
-
-        //AssetManager assetManager = getAssets();
-
-        //FileInputStream istr = new FileInputStream());
-        //InputStream istr = assetManager.open("imagen_1.txt");
-        Log.d(TAG, "Istr" +istr);
-
-        //imagen2
-        uri= getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES).toString();
-
-
-        uri = uri +"/imagenes/scaneado"+idRecibido+".jpg";
-        //Toast.makeText(MainActivity.this, "istr:"+istr, Toast.LENGTH_LONG).show();
-        Log.d(TAG, "RUTA" +uri);
-
-        istr2 = new FileInputStream(uri);
-        Log.d(TAG, "Istr2" +istr2);
-
-
-
-
-
-
-            //decodeStram de las imagenes formato InputStream
-            bitmap = BitmapFactory.decodeStream(istr);
-            bitmap2 = BitmapFactory.decodeStream(istr2);
-
-
-            Utils.bitmapToMat(bitmap, img1);
-            Utils.bitmapToMat(bitmap2, img2);
-            imagen.setImageBitmap(bitmap);
-            huella.setImageBitmap(bitmap2);
-
-            Imgproc.cvtColor(img1, img1, Imgproc.COLOR_RGB2GRAY);
-            Imgproc.cvtColor(img2, img2, Imgproc.COLOR_RGB2GRAY);
-
-            descriptors1 = new Mat();
-            descriptors2 = new Mat();
-            keypoints1 = new MatOfKeyPoint();
-            keypoints2 = new MatOfKeyPoint();
-            detector.detect(img1, keypoints1);
-            detector.detect(img2, keypoints2);
-            descriptor.compute(img1, keypoints1, descriptors1);
-            descriptor.compute(img2, keypoints2, descriptors2);
-
-
-
-
-        if (bitmap != null && bitmap2 != null) {
-//					/*if(bmpimg1.getWidth()!=bmpimg2.getWidth()){
-//						bmpimg2 = Bitmap.createScaledBitmap(bmpimg2, bmpimg1.getWidth(), bmpimg1.getHeight(), true);
-//					}*/
-            bitmap = Bitmap.createScaledBitmap(bitmap, 100, 100, true);
-            bitmap2 = Bitmap.createScaledBitmap(bitmap2, 100, 100, true);
-            Mat img1 = new Mat();
-            Utils.bitmapToMat(bitmap, img1);
-            Mat img2 = new Mat();
-            Utils.bitmapToMat(bitmap2, img2);
-            Imgproc.cvtColor(img1, img1, Imgproc.COLOR_RGBA2GRAY);
-            Imgproc.cvtColor(img2, img2, Imgproc.COLOR_RGBA2GRAY);
-            img1.convertTo(img1, CvType.CV_32F);
-            img2.convertTo(img2, CvType.CV_32F);
-            //Log.d("ImageComparator", "img1:"+img1.rows()+"x"+img1.cols()+" img2:"+img2.rows()+"x"+img2.cols());
-            Mat hist1 = new Mat();
-            Mat hist2 = new Mat();
-            MatOfInt histSize = new MatOfInt(180);
-            MatOfInt channels = new MatOfInt(0);
-            ArrayList<Mat> bgr_planes1= new ArrayList<Mat>();
-            ArrayList<Mat> bgr_planes2= new ArrayList<Mat>();
-            Core.split(img1, bgr_planes1);
-            Core.split(img2, bgr_planes2);
-            MatOfFloat histRanges = new MatOfFloat (0f, 180f);
-            boolean accumulate = false;
-            Imgproc.calcHist(bgr_planes1, channels, new Mat(), hist1, histSize, histRanges, accumulate);
-            Core.normalize(hist1, hist1, 0, hist1.rows(), Core.NORM_MINMAX, -1, new Mat());
-            Imgproc.calcHist(bgr_planes2, channels, new Mat(), hist2, histSize, histRanges, accumulate);
-            Core.normalize(hist2, hist2, 0, hist2.rows(), Core.NORM_MINMAX, -1, new Mat());
-            img1.convertTo(img1, CvType.CV_32F);
-            img2.convertTo(img2, CvType.CV_32F);
-            hist1.convertTo(hist1, CvType.CV_32F);
-            hist2.convertTo(hist2, CvType.CV_32F);
-
-
-            double compare = Imgproc.compareHist(hist1, hist2, Imgproc.CV_COMP_CHISQR);
-            Log.d("ImageComparator", "compare: "+compare);
-            Log.d("LOG!", "number of query Keypoints= " + keypoints1.size());
-            Log.d("LOG!", "number of dup Keypoints= " + keypoints2.size());
-            Log.d("LOG!", "number of descriptors= " + descriptors1.size());
-            Log.d("LOG!", "number of dupDescriptors= " + descriptors2.size());
-            matcher.match(descriptors1, descriptors2, matches);
-            Log.d("LOG!", "Matches Size " + matches.size());
-
-            if(compare>0 && compare<1500) {
-
-                //Toast.makeText(MainActivity.this, "Imágenes similares", Toast.LENGTH_LONG).show();
-                //VerificacionFingerPrint();
-                //new asyncTask(MainActivity.this).execute();
-            }
-            else if(compare==0) {
-                //Toast.makeText(MainActivity.this, "Imágenes exactamente iguales", Toast.LENGTH_LONG).show();
-                Log.d("valor de compare: ", String.valueOf(compare));
-               // VerificacionFingerPrint();
-            }else
-               // Toast.makeText(MainActivity.this, "Imágenes diferentes", Toast.LENGTH_LONG).show();
-            Log.d("valor de compare: ", String.valueOf(compare));
-            //startTime = System.currentTimeMillis();
-        }
-
-        //else
-            //Toast.makeText(MainActivity.this, "No hay imágenes seleccionadas.", Toast.LENGTH_LONG).show();
-
-
-    }
 
 
 
@@ -473,16 +305,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (!OpenCVLoader.initDebug()) {
-            Log.d(TAG, "Internal OpenCV library not found. Using OpenCV Manager for initialization");
-            OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_3_0_0, this, mLoaderCallback);
-        } else {
-            Log.d(TAG, "OpenCV library found inside package. Using it!");
-            mLoaderCallback.onManagerConnected(LoaderCallbackInterface.SUCCESS);
-        }
-    }
+
 
 }

@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -65,7 +66,8 @@ public class ScanActivity2 extends Activity  {
         tvStatus = (TextView) findViewById(R.id.tvStatus);
         tvError = (TextView) findViewById(R.id.tvError);
         fingerprint = new Fingerprint();
-        idRecibidoScan = getIntent().getStringExtra("id_scan");
+        SharedPreferences sharedPreferences = getSharedPreferences("myKey", MODE_PRIVATE);
+        idRecibidoScan = sharedPreferences.getString("id_jugador_extra", "");
         //Toast.makeText(getApplicationContext(), "Id jugador Scan: " + idRecibidoScan, Toast.LENGTH_SHORT).show();
     }
 
