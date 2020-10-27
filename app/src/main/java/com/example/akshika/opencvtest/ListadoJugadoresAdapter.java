@@ -63,8 +63,8 @@ public class ListadoJugadoresAdapter extends BaseAdapter {
 
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(context,ScanActivity3.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);;
-                intent.putExtra("SCAN_FINGER", SCAN_FINGER);
+                Intent intent=new Intent(context,CamisetaActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);;
+                //intent.putExtra("SCAN_FINGER", SCAN_FINGER);
 
                 SharedPreferences sharedPref = context.getSharedPreferences("myKey", context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPref.edit();

@@ -161,7 +161,7 @@
 
 
 
-        <Button
+       <!-- <Button
             android:id="@+id/cuenta"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="match_parent"
@@ -171,7 +171,7 @@
             android:text="Cuenta activa"
             android:textColor="@android:color/white"
             app:strokeColor="@android:color/white"
-            android:textSize="20dp" />
+            android:textSize="20dp" />-->
 
         <Button
             android:id="@+id/jugador_enrolado"

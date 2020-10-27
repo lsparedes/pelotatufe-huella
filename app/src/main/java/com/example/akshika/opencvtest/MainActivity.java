@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
         //consultar = (Button) findViewById(R.id.validar);
         enrolar = (Button) findViewById(R.id.enrolar);
         jugador_enrolado = (Button) findViewById(R.id.jugador_enrolado);
-        cuenta_activada = (Button) findViewById(R.id.cuenta);
+        //cuenta_activada = (Button) findViewById(R.id.cuenta);
         //citado = (Button) findViewById(R.id.citacion);
         usuario = (TextView) findViewById(R.id.usuario);
 
@@ -149,12 +149,12 @@ public class MainActivity extends AppCompatActivity {
             //consultar.setVisibility(View.VISIBLE);
             jugador_enrolado.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_check_circle_24, 0);
         }
-        if(confirmacion.equals("null")){
-            cuenta_activada.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_cancel_24, 0);
-        }else{
+        //if(confirmacion.equals("null")){
+          //  cuenta_activada.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_cancel_24, 0);
+        //}else{
 
-            cuenta_activada.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_check_circle_24, 0);
-        }
+          //  cuenta_activada.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_check_circle_24, 0);
+        //}
       /* if(hour.equals("no_citado_hoy")){
             consultar.setVisibility(View.INVISIBLE);
             citado.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_cancel_24, 0);
