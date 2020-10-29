@@ -83,7 +83,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="192.168.10.8:5555" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_2_API_28" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -129,7 +129,7 @@
     <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-10-27T20:15:01.620Z" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="memory.settings.postsync.last.time.stamp" value="1603813875142" />
+    <property name="memory.settings.postsync.last.time.stamp" value="1603936825296" />
     <property name="project.structure.last.edited" value="Dependencies" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -371,8 +371,8 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="208" y="31" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1598584958449" />
-    <state x="-1401" y="218" key="com.intellij.ide.util.TipDialog" timestamp="1603915740702">
-      <screen x="-1920" y="-120" width="1920" height="1057" />
+    <state x="389" y="284" key="com.intellij.ide.util.TipDialog" timestamp="1603936775292">
+      <screen x="0" y="23" width="1440" height="821" />
     </state>
     <state x="-1401" y="218" key="com.intellij.ide.util.TipDialog/-1920.-120.1920.1057/0.23.1440.877@-1920.-120.1920.1057" timestamp="1603915740702" />
     <state x="-1401" y="180" key="com.intellij.ide.util.TipDialog/-1920.-157.1920.1057/0.23.1440.877@-1920.-157.1920.1057" timestamp="1601260769551" />
@@ -381,7 +381,7 @@
     <state x="389" y="286" key="com.intellij.ide.util.TipDialog/0.0.1440.900@0.0.1440.900" timestamp="1602782864233" />
     <state x="-997" y="222" key="com.intellij.ide.util.TipDialog/0.23.1440.821/-1366.-15.1366.745@-1366.-15.1366.745" timestamp="1603203308067" />
     <state x="389" y="284" key="com.intellij.ide.util.TipDialog/0.23.1440.821/-1366.-15.1366.745@0.23.1440.821" timestamp="1603054988896" />
-    <state x="389" y="284" key="com.intellij.ide.util.TipDialog/0.23.1440.821@0.23.1440.821" timestamp="1603818984582" />
+    <state x="389" y="284" key="com.intellij.ide.util.TipDialog/0.23.1440.821@0.23.1440.821" timestamp="1603936775292" />
     <state x="-997" y="223" key="com.intellij.ide.util.TipDialog/0.23.1440.823/-1366.-15.1366.745@-1366.-15.1366.745" timestamp="1602682611499" />
     <state x="389" y="286" key="com.intellij.ide.util.TipDialog/0.23.1440.823/-1366.-15.1366.745@0.23.1440.823" timestamp="1601422066804" />
     <state x="389" y="286" key="com.intellij.ide.util.TipDialog/0.23.1440.823@0.23.1440.823" timestamp="1601646061328" />

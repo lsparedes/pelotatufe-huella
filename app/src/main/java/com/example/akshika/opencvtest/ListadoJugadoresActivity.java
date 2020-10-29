@@ -63,7 +63,7 @@ public class ListadoJugadoresActivity extends AppCompatActivity {
     private static ListView listajugadores;
     private static ArrayList<ItemListadoJugadores> lista_bd;
     private static ListadoJugadoresAdapter adaptador_listado;
-    private static String serie_turno, club, id_jugador, fingerprint, id_jugador_recibido, fingerprint_recibido, versus;
+    private static String serie_turno, club, id_jugador, fingerprint, id_jugador_recibido, fingerprint_recibido, versus, numero_camiseta;
 
     ImageView huella, imagen;
     Mat descriptors2, descriptors1;
@@ -107,6 +107,7 @@ public class ListadoJugadoresActivity extends AppCompatActivity {
         versus = sharedPreferences.getString("id_versus","");
         id_jugador_recibido =  sharedPreferences.getString("id_scan", "");
         fingerprint_recibido = sharedPreferences.getString("fingerprint", "");
+        numero_camiseta =  sharedPreferences.getString("numero_camiseta", "");
         club = sharedPreferences.getString("club", "");
 
         completar.setOnClickListener(new View.OnClickListener() {
@@ -358,6 +359,7 @@ public class ListadoJugadoresActivity extends AppCompatActivity {
             object.put("serie", serie_turno);
             object.put("versus",versus);
             object.put("club", club);
+            object.put("numero", numero_camiseta);
 
             Log.d("TAG","serie "+serie_turno+"club "+club+"versus "+versus+"id_player "+id_jugador_recibido);
         } catch (JSONException e) {
