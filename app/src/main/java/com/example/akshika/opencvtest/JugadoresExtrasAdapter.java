@@ -17,7 +17,6 @@ public class JugadoresExtrasAdapter extends BaseAdapter {
     private Context context;
     private ArrayList<ItemJugadoresExtras> arrayList;
     private LayoutInflater layoutInflater;
-    private static final int SCAN_FINGER = 0;
 
 
     public JugadoresExtrasAdapter(Context context, ArrayList<ItemJugadoresExtras> arrayList){

@@ -19,12 +19,12 @@ public class CamisetaActivityExtra extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.actvity_camiseta);
+        setContentView(R.layout.activity_camiseta_extra);
 
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        Spinner spinner = (Spinner) findViewById(R.id.spinner2);
         siguiente = (Button) findViewById(R.id.siguiente);
 
-        ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.planets_array, R.layout.item_camiseta);
+        ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.planets_array2, R.layout.item_camiseta_extra);
         spinner.setAdapter(adapter);
 
         spinner.setOnItemSelectedListener(
