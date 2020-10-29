@@ -110,6 +110,8 @@ public class ListadoJugadoresActivity extends AppCompatActivity {
         numero_camiseta =  sharedPreferences.getString("numero_camiseta", "");
         club = sharedPreferences.getString("club", "");
 
+        Toast.makeText(getApplicationContext(),numero_camiseta,Toast.LENGTH_LONG).show();
+
         completar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), SeriesExtrasActivity.class);
@@ -342,6 +344,8 @@ public class ListadoJugadoresActivity extends AppCompatActivity {
                 Toast.makeText(ListadoJugadoresActivity.this, "Huella no encontrada!", Toast.LENGTH_LONG).show();
                 Log.d("compare diferentes: ", String.valueOf(compare));
                 //startTime = System.currentTimeMillis();
+
+
             }
         } else {
             Toast.makeText(ListadoJugadoresActivity.this, "Vuelve a intentarlo!.", Toast.LENGTH_LONG).show();
@@ -361,7 +365,7 @@ public class ListadoJugadoresActivity extends AppCompatActivity {
             object.put("club", club);
             object.put("numero", numero_camiseta);
 
-            Log.d("TAG","serie "+serie_turno+"club "+club+"versus "+versus+"id_player "+id_jugador_recibido);
+            Log.d("TAG","serie "+serie_turno+"club "+club+"versus "+versus+"id_player "+id_jugador_recibido +"numero_camiseta"+numero_camiseta);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -374,7 +378,7 @@ public class ListadoJugadoresActivity extends AppCompatActivity {
                         try {
 
                             String success = response.getString("success");
-                            Log.i("JSON SUCCESS", success);
+                            Log.d("JSON SUCCESS", String.valueOf(response));
                             //Toast.makeText(getApplicationContext(), "¡Huella reconocida con exito!.", Toast.LENGTH_SHORT).show();
 
                             String ruta= getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES).toString();

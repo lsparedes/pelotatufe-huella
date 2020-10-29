@@ -3,16 +3,16 @@
     <string name="rut">Rut</string>
     <string name="helper_text">Ingrese rut sin puntos ni guión</string>
     <string-array name="planets_array">
-        <item>Número 1</item>
-        <item>Número 2</item>
-        <item>Número 3</item>
-        <item>Número 4</item>
-        <item>Número 5</item>
-        <item>Número 6</item>
-        <item>Número 7</item>
-        <item>Número 8</item>
-        <item>Número 9</item>
-        <item>Número 10</item>
-        <item>Número 11</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
     </string-array>
 </resources>
