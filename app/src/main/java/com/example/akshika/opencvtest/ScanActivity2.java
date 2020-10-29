@@ -144,7 +144,8 @@ public class ScanActivity2 extends Activity  {
             byte[] image;
             String errorMessage = "empty";
             int status = msg.getData().getInt("status");
-            Intent intent = new Intent();
+            Intent intent = new Intent(getApplicationContext(),JugadoresExtrasActivity.class);
+            //Intent intent = new Intent();
             //intent.putExtra("status", status);
             if (status == Status.SUCCESS) {
                 image = msg.getData().getByteArray("img");
@@ -158,7 +159,8 @@ public class ScanActivity2 extends Activity  {
                 errorMessage = msg.getData().getString("errorMessage");
                 //intent.putExtra("errorMessage", errorMessage);
             }
-            setResult(RESULT_OK, intent);
+            //setResult(RESULT_OK, intent);
+            startActivity(intent);
             finish();
         }
     };

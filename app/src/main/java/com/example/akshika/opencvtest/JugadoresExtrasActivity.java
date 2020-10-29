@@ -54,7 +54,7 @@ import java.util.List;
 public class JugadoresExtrasActivity extends AppCompatActivity {
 
     String serie_seleccionada, series_jugadores;
-    public static String url_seleccionada, fingerprint_extra, id_extra, serie_extra,versus_extra;
+    public static String url_seleccionada, fingerprint_extra, id_extra, serie_extra,versus_extra,camiseta_extra;
     private static ListView lista;
     private static ArrayList<ItemJugadoresExtras> lista_jugadores;
     private static JugadoresExtrasAdapter adaptador_jugadores;
@@ -104,6 +104,7 @@ public class JugadoresExtrasActivity extends AppCompatActivity {
         fingerprint_extra = sharedPreferences.getString("fingerprint_extra", "");
         serie_extra= sharedPreferences.getString("serie","");
         versus_extra = sharedPreferences.getString("id_versus","");
+        camiseta_extra = sharedPreferences.getString("camiseta_extra","");
 
         usuario.setText(nombre+" (Rol "+rol+")");
         club.setText(club_jugadores);
@@ -373,6 +374,7 @@ public class JugadoresExtrasActivity extends AppCompatActivity {
             object.put("serie", serie_extra);
             object.put("versus",versus_extra);
             object.put("club", club);
+            object.put("numero", camiseta_extra);
 
         } catch (JSONException e) {
             e.printStackTrace();

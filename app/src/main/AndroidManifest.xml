@@ -33,6 +33,7 @@
         <activity android:name=".SeriesExtrasActivity"></activity>
         <activity android:name=".JugadoresExtrasActivity"></activity>
         <activity android:name=".CamisetaActivity"></activity>
+        <activity android:name=".CamisetaActivityExtra"></activity>
         <!-- ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
         <meta-data
