@@ -53,7 +53,7 @@ import java.util.List;
 
 public class JugadoresExtrasActivity extends AppCompatActivity {
 
-    String serie_seleccionada, series_jugadores;
+    private static String serie_seleccionada, series_jugadores, club_jugadores;
     public static String url_seleccionada, fingerprint_extra, id_extra, serie_extra,versus_extra,camiseta_extra;
     private static ListView lista;
     private static ArrayList<ItemJugadoresExtras> lista_jugadores;
@@ -96,7 +96,7 @@ public class JugadoresExtrasActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("myKey", MODE_PRIVATE);
         String nombre= sharedPreferences.getString("name","");
         String rol = sharedPreferences.getString("rol", "");
-        String club_jugadores = sharedPreferences.getString("club", "");
+        club_jugadores = sharedPreferences.getString("club", "");
         String series_jugadores = sharedPreferences.getString("serie","");
         serie_seleccionada = getIntent().getStringExtra("listado_serie");
         series_jugadores = sharedPreferences.getString("serie","");
@@ -155,13 +155,13 @@ public class JugadoresExtrasActivity extends AppCompatActivity {
             url_seleccionada ="http://proyectos.drup.cl/pelotatufe/api/v1/segunda/adulta";
         }
         else if(serie_seleccionada.equals("Super Seniors") && series_jugadores.equals("Honor")){
-            url_seleccionada ="http://proyectos.drup.cl/pelotatufe/api/v1//super/seniors";
+            url_seleccionada ="http://proyectos.drup.cl/pelotatufe/api/v1/super/seniors";
         }
         else if(serie_seleccionada.equals("Super Seniors") && series_jugadores.equals("Seniors")){
-            url_seleccionada ="http://proyectos.drup.cl/pelotatufe/api/v1//super/seniors";
+            url_seleccionada ="http://proyectos.drup.cl/pelotatufe/api/v1/super/seniors";
         }
         else if(serie_seleccionada.equals("Super Seniors") && series_jugadores.equals("Super seniors")){
-            url_seleccionada ="http://proyectos.drup.cl/pelotatufe/api/v1//super/seniors";
+            url_seleccionada ="http://proyectos.drup.cl/pelotatufe/api/v1/super/seniors";
         }
 
 
@@ -279,6 +279,8 @@ public class JugadoresExtrasActivity extends AppCompatActivity {
         bitmap = BitmapFactory.decodeStream(istr);
         bitmap2 = BitmapFactory.decodeStream(istr2);
 
+        if (bitmap != null && bitmap2 != null) {
+
         Utils.bitmapToMat(bitmap, img1);
         Utils.bitmapToMat(bitmap2, img2);
         imagen.setImageBitmap(bitmap);
@@ -296,7 +298,7 @@ public class JugadoresExtrasActivity extends AppCompatActivity {
         descriptor.compute(img1, keypoints1, descriptors1);
         descriptor.compute(img2, keypoints2, descriptors2);
 
-        if (bitmap != null && bitmap2 != null) {
+
 //					/*if(bmpimg1.getWidth()!=bmpimg2.getWidth()){
 //						bmpimg2 = Bitmap.createScaledBitmap(bmpimg2, bmpimg1.getWidth(), bmpimg1.getHeight(), true);
 //					}*/
@@ -357,6 +359,7 @@ public class JugadoresExtrasActivity extends AppCompatActivity {
                 Toast.makeText(JugadoresExtrasActivity.this, "Huella no encontrada!", Toast.LENGTH_LONG).show();
                 Log.d("compare diferentes: ", String.valueOf(compare));
                 //startTime = System.currentTimeMillis();
+                IngresoMatch();
             }
         } else {
             Toast.makeText(JugadoresExtrasActivity.this, "Vuelve a intentarlo!.", Toast.LENGTH_LONG).show();
@@ -373,7 +376,7 @@ public class JugadoresExtrasActivity extends AppCompatActivity {
             object.put("id_player",id_extra);
             object.put("serie", serie_extra);
             object.put("versus",versus_extra);
-            object.put("club", club);
+            object.put("club", club_jugadores);
             object.put("numero", camiseta_extra);
 
         } catch (JSONException e) {

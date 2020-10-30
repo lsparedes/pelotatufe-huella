@@ -144,27 +144,56 @@ public class ScanActivity2 extends Activity  {
             byte[] image;
             String errorMessage = "empty";
             int status = msg.getData().getInt("status");
-            Intent intent = new Intent(getApplicationContext(),JugadoresExtrasActivity.class);
-            //Intent intent = new Intent();
-            //intent.putExtra("status", status);
+            //Intent intent = new Intent(getApplicationContext(),JugadoresExtrasActivity.class);
+            Intent intent = new Intent();
+            intent.putExtra("status", status);
             if (status == Status.SUCCESS) {
                 image = msg.getData().getByteArray("img");
                 //intent.putExtra("img", image);
                 encodedString = Base64.encodeToString(image, Base64.DEFAULT);
                 Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0, image.length);
                 storeImage(bitmap);
-                finish();
+                //finish();
 
             } else {
-                finish();
+                //finish();
                 errorMessage = msg.getData().getString("errorMessage");
-                //intent.putExtra("errorMessage", errorMessage);
+                intent.putExtra("errorMessage", errorMessage);
             }
-            //setResult(RESULT_OK, intent);
-            startActivity(intent);
+            setResult(RESULT_OK, intent);
+            finish();
+            //startActivity(intent);
 
         }
     };
+
+
+  /*  Handler printHandler = new Handler(Looper.getMainLooper()) {
+        @Override
+        public void handleMessage(Message msg) {
+            byte[] image;
+            String errorMessage = "empty";
+            int status = msg.getData().getInt("status");
+            Intent intent = new Intent();
+            intent.putExtra("status", status);
+            if (status == Status.SUCCESS) {
+                image = msg.getData().getByteArray("img");
+                intent.putExtra("img", image);
+                encodedString = Base64.encodeToString(image, Base64.DEFAULT);
+                Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0, image.length);
+                storeImage(bitmap);
+                //finish();
+
+
+
+            } else {
+                errorMessage = msg.getData().getString("errorMessage");
+                intent.putExtra("errorMessage", errorMessage);
+            }
+            setResult(RESULT_OK, intent);
+            finish();
+        }
+    };*/
 
 
 

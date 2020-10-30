@@ -69,7 +69,7 @@ public class JugadoresExtrasAdapter extends BaseAdapter {
                 editor.putString("id_jugador_extra", arrayList.get(position).getIdJugadores());
                 editor.putString("fingerprint_extra", arrayList.get(position).getFingerPrint());
                 Log.d("TAG","id_jugador_extra "+arrayList.get(position).getIdJugadores());
-
+                Log.d("TAG","fingerprint_extra "+arrayList.get(position).getFingerPrint());
                 editor.apply();
 
                 context.startActivity(intent);

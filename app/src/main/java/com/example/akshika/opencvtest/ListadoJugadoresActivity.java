@@ -110,7 +110,7 @@ public class ListadoJugadoresActivity extends AppCompatActivity {
         numero_camiseta =  sharedPreferences.getString("numero_camiseta", "");
         club = sharedPreferences.getString("club", "");
 
-        Toast.makeText(getApplicationContext(),numero_camiseta,Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(),numero_camiseta,Toast.LENGTH_LONG).show();
 
         completar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
