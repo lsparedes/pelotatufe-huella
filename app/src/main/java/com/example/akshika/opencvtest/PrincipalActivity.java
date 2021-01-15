@@ -128,7 +128,7 @@ public class PrincipalActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         // Enter the correct url for your api service site
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, "http://proyectos.drup.cl/pelotatufe/api/v1/players/verified/turno", object,
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, "http://pelotatufe.cl/api/v1/players/verified/turno", object,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {

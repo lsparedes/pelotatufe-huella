@@ -147,7 +147,7 @@ public class ListadoJugadoresActivity extends AppCompatActivity {
         }
 
         // Enter the correct url for your api service site
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, "http://proyectos.drup.cl/pelotatufe/api/v1/players", object,
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, "http://pelotatufe.cl/api/v1/players", object,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -370,7 +370,7 @@ public class ListadoJugadoresActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         // Enter the correct url for your api service site
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, "http://proyectos.drup.cl/pelotatufe/api/v1/matchs/ingreso", object,
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, "http://pelotatufe.cl/api/v1/matchs/ingreso", object,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {

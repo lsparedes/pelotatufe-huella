@@ -119,7 +119,7 @@ public class TurnoActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         // Enter the correct url for your api service site
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, "http://proyectos.drup.cl/pelotatufe/api/v1/players/local", object,
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, "http://pelotatufe.cl/api/v1/players/local", object,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -177,7 +177,7 @@ public class TurnoActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         // Enter the correct url for your api service site
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, "http://proyectos.drup.cl/pelotatufe/api/v1/players/visita", object,
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, "http://pelotatufe.cl/api/v1/players/visita", object,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
