@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="pelotatufe-huella/app" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/openCVLibrary310/openCVLibrary310.iml" filepath="$PROJECT_DIR$/.idea/modules/openCVLibrary310/openCVLibrary310.iml" group="pelotatufe-huella/openCVLibrary310" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/pelotatufe-huella.iml" filepath="$PROJECT_DIR$/.idea/pelotatufe-huella.iml" group="pelotatufe-huella" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/pelotatufe-huella.iml" filepath="$PROJECT_DIR$/.idea/pelotatufe-huella.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/pelotatufe-huella.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/pelotatufe-huella.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/openCVLibrary310/pelotatufe-huella.openCVLibrary310.iml" filepath="$PROJECT_DIR$/.idea/modules/openCVLibrary310/pelotatufe-huella.openCVLibrary310.iml" />
     </modules>
   </component>
 </project>
