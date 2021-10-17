@@ -35,9 +35,10 @@ public class TurnoActivity extends AppCompatActivity {
     private static ListView listaturno;
     private static ArrayList<ItemTurno> lista_bd;
     private static TurnoAdapter adaptador_turno;
-    private static String id, club_local, club_visita, id_versus;
+    private static String id, club_local, club_visita, id_versus,id_turno;
     private static TextView nombre, club, nombre_visita;
     CardView card_local, card_visita;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +85,7 @@ public class TurnoActivity extends AppCompatActivity {
         String nombre= sharedPreferences.getString("name","");
         String rol = sharedPreferences.getString("rol", "");
         usuario.setText(nombre+" (Rol "+rol+")");
+        id_turno = sharedPreferences.getString("id","");
 
         id = getIntent().getStringExtra("id_campeonato");
 
@@ -114,12 +116,15 @@ public class TurnoActivity extends AppCompatActivity {
         try {
 
             object.put("championships",id);
+            object.put("turno",id_turno);
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+        Log.d("OBJECT","contenido del objet"+object);
         // Enter the correct url for your api service site
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, "http://pelotatufe.cl/api/v1/players/local", object,
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, "https://pelotatufe.cl/api/v1/players/local", object,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -172,12 +177,13 @@ public class TurnoActivity extends AppCompatActivity {
         try {
 
             object.put("championships",id);
+            object.put("turno",id_turno);
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
         // Enter the correct url for your api service site
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, "http://pelotatufe.cl/api/v1/players/visita", object,
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, "https://pelotatufe.cl/api/v1/players/visita", object,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {

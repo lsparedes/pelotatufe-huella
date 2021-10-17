@@ -113,55 +113,55 @@ public class JugadoresExtrasActivity extends AppCompatActivity {
         lista_jugadores = new ArrayList<>();
 
         if(serie_seleccionada.equals("Segunda Infantil") && series_jugadores.equals("Primera infantil")){
-            url_seleccionada= "http://pelotatufe.cl/api/v1/segunda/infantil";
+            url_seleccionada= "https://pelotatufe.cl/api/v1/segunda/infantil";
         }
         else if(serie_seleccionada.equals("Tercera Infantil") && series_jugadores.equals("Segunda infantil")){
-            url_seleccionada= "http://pelotatufe.cl/api/v1/tercera/infantil";
+            url_seleccionada= "https://pelotatufe.cl/api/v1/tercera/infantil";
         }
         else if(serie_seleccionada.equals("Primera Infantil") && series_jugadores.equals("Juvenil")){
-            url_seleccionada= "http://pelotatufe.cl/api/v1/primera/infantil";
+            url_seleccionada= "https://pelotatufe.cl/api/v1/primera/infantil";
         }
         else if(serie_seleccionada.equals("Primera Infantil") && series_jugadores.equals("Primera adulta")){
-            url_seleccionada= "http://pelotatufe.cl/api/v1/primera/infantil/adulta";
+            url_seleccionada= "https://pelotatufe.cl/api/v1/primera/infantil/adulta";
         }
         else if(serie_seleccionada.equals("Segunda Adulta") && series_jugadores.equals("Primera adulta")){
-            url_seleccionada= "http://pelotatufe.cl/api/v1/segunda/adulta";
+            url_seleccionada= "https://pelotatufe.cl/api/v1/segunda/adulta";
         }
         else if(serie_seleccionada.equals("Seniors") && series_jugadores.equals("Primera adulta")){
-            url_seleccionada= "http://pelotatufe.cl/api/v1/seniors";
+            url_seleccionada= "https://pelotatufe.cl/api/v1/seniors";
         }
         else if(serie_seleccionada.equals("Super Seniors") && series_jugadores.equals("Primera adulta")){
-            url_seleccionada= "http://pelotatufe.cl/api/v1/super/seniors";
+            url_seleccionada= "https://pelotatufe.cl/api/v1/super/seniors";
         }
         else if(serie_seleccionada.equals("Primera Infantil") && series_jugadores.equals("Segunda adulta")){
-            url_seleccionada= "http://pelotatufe.cl/api/v1/primera/infantil/adulta";
+            url_seleccionada= "https://pelotatufe.cl/api/v1/primera/infantil/adulta";
         }
         else if(serie_seleccionada.equals("Seniors") && series_jugadores.equals("Segunda adulta")){
-            url_seleccionada= "http://pelotatufe.cl/api/v1/seniors";
+            url_seleccionada= "https://pelotatufe.cl/api/v1/seniors";
         }
         else if(serie_seleccionada.equals("Super Seniors") && series_jugadores.equals("Segunda adulta")){
-            url_seleccionada= "http://pelotatufe.cl/api/v1/super/seniors";
+            url_seleccionada= "https://pelotatufe.cl/api/v1/super/seniors";
         }
         else if(serie_seleccionada.equals("Primera Infantil") && series_jugadores.equals("Honor")){
-            url_seleccionada= "http://pelotatufe.cl/api/v1/primera/infantil";
+            url_seleccionada= "https://pelotatufe.cl/api/v1/primera/infantil";
         }
         else if(serie_seleccionada.equals("Seniors") && series_jugadores.equals("Honor")){
-            url_seleccionada ="http://pelotatufe.cl/api/v1/seniors";
+            url_seleccionada ="https://pelotatufe.cl/api/v1/seniors";
         }
         else if(serie_seleccionada.equals("Primera Adulta") && series_jugadores.equals("Honor")){
-            url_seleccionada ="http://pelotatufe.cl/api/v1/primera/adulta";
+            url_seleccionada ="https://pelotatufe.cl/api/v1/primera/adulta";
         }
         else if(serie_seleccionada.equals("Segunda Adulta") && series_jugadores.equals("Honor")){
-            url_seleccionada ="http://pelotatufe.cl/api/v1/segunda/adulta";
+            url_seleccionada ="https://pelotatufe.cl/api/v1/segunda/adulta";
         }
         else if(serie_seleccionada.equals("Super Seniors") && series_jugadores.equals("Honor")){
-            url_seleccionada ="http://pelotatufe.cl/api/v1/super/seniors";
+            url_seleccionada ="https://pelotatufe.cl/api/v1/super/seniors";
         }
         else if(serie_seleccionada.equals("Super Seniors") && series_jugadores.equals("Seniors")){
-            url_seleccionada ="http://pelotatufe.cl/api/v1/super/seniors";
+            url_seleccionada ="https://pelotatufe.cl/api/v1/super/seniors";
         }
         else if(serie_seleccionada.equals("Super Seniors") && series_jugadores.equals("Super seniors")){
-            url_seleccionada ="http://pelotatufe.cl/api/v1/super/seniors";
+            url_seleccionada ="https://pelotatufe.cl/api/v1/super/seniors";
         }
 
 
@@ -383,7 +383,7 @@ public class JugadoresExtrasActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         // Enter the correct url for your api service site
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, "http://pelotatufe.cl/api/v1/matchs/ingreso", object,
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, "https://pelotatufe.cl/api/v1/matchs/ingreso", object,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
