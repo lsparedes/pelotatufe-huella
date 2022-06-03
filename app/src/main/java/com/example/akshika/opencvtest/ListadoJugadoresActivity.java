@@ -389,8 +389,9 @@ public class ListadoJugadoresActivity extends AppCompatActivity {
             matcher.match(descriptors1, descriptors2, matches);
             Log.d("LOG!", "Matches Size " + matches.size());
 
-            if(compare>0 && compare<1000) {
-                Toast.makeText(ListadoJugadoresActivity.this, "Huella reconocida con exito similares!", Toast.LENGTH_LONG).show();
+            if(compare>0 && compare<3500) {
+
+                Toast.makeText(ListadoJugadoresActivity.this, "Huella reconocida con exito!", Toast.LENGTH_LONG).show();
                 //VerificacionFingerPrint();
                 IngresoMatch();
                 Log.d("compare similares: ", String.valueOf(compare));

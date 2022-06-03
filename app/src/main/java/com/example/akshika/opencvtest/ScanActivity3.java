@@ -59,6 +59,7 @@ public class ScanActivity3 extends Activity  {
 
         SharedPreferences sharedPreferences = getSharedPreferences("myKey", MODE_PRIVATE);
         idRecibidoScan = sharedPreferences.getString("id_scan", "");
+        Log.d(TAG, "CARGAMOS scanactivity3 ");
 
     }
 
