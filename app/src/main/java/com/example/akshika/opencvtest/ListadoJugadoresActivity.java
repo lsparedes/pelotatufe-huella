@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
+import android.preference.PreferenceManager;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -18,6 +19,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -53,6 +56,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import asia.kanopi.fingerscan.Status;
 
@@ -64,6 +69,7 @@ public class ListadoJugadoresActivity extends AppCompatActivity {
     private static ArrayList<ItemListadoJugadores> lista_bd;
     private static ListadoJugadoresAdapter adaptador_listado;
     private static String serie_turno, club, id_jugador, fingerprint, id_jugador_recibido, fingerprint_recibido, versus, numero_camiseta;
+
 
     ImageView huella, imagen;
     Mat descriptors2, descriptors1;
@@ -77,6 +83,8 @@ public class ListadoJugadoresActivity extends AppCompatActivity {
     DescriptorMatcher matcher;
     private static Bitmap bitmap, bitmap2;
     Button completar;
+    private static SharedPreferences sharedPreferences;
+    public static int bandera = 0;
 
     static {
         if (!OpenCVLoader.initDebug())
@@ -99,7 +107,7 @@ public class ListadoJugadoresActivity extends AppCompatActivity {
         imagen = (ImageView) findViewById(R.id.imagen);
         completar = (Button) findViewById(R.id.completar);
 
-        SharedPreferences sharedPreferences = getSharedPreferences("myKey", MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("myKey", MODE_PRIVATE);
 
         String nombre= sharedPreferences.getString("name","");
         String rol = sharedPreferences.getString("rol", "");
@@ -120,7 +128,6 @@ public class ListadoJugadoresActivity extends AppCompatActivity {
 
         });
 
-
         usuario.setText(nombre+" (Rol "+rol+")");
         partido.setText("Club "+club);
         serie_citado.setText("Serie "+serie_turno);
@@ -129,6 +136,60 @@ public class ListadoJugadoresActivity extends AppCompatActivity {
 
 
     }
+
+
+    public void IngresoMatch(){
+
+        Toast.makeText(ListadoJugadoresActivity.this, "Entre a IngresoMatch!.", Toast.LENGTH_LONG).show();
+        JSONObject object = new JSONObject();
+        try {
+
+            object.put("id_player",id_jugador_recibido);
+            object.put("serie", serie_turno);
+            object.put("versus",versus);
+            object.put("club", club);
+            object.put("numero", numero_camiseta);
+            Toast.makeText(ListadoJugadoresActivity.this, "jugador" + id_jugador_recibido, Toast.LENGTH_LONG).show();
+            Log.d("TAG","serie "+serie_turno+"club "+club+"versus "+versus+"id_player "+id_jugador_recibido +"numero_camiseta"+numero_camiseta);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        // Enter the correct url for your api service site
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, "https://pelotatufe.cl/api/v1/validar/ingreso", object,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+                            Toast.makeText(ListadoJugadoresActivity.this, "response "+ String.valueOf(response), Toast.LENGTH_LONG).show();
+
+                            String success = response.getString("success");
+
+                            Log.d("JSON SUCCESS", String.valueOf(response));
+                            //Toast.makeText(getApplicationContext(), "¡Huella reconocida con exito!.", Toast.LENGTH_SHORT).show();
+
+                            String ruta= getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES).toString();
+                            File file = new File(ruta +"/imagenes/scaneado"+id_jugador_recibido+".jpg");
+                            file.delete();
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                VolleyLog.d("Error", "Error: " + error.getMessage());
+                Toast.makeText(ListadoJugadoresActivity.this, "error" + error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        requestQueue.add(jsonObjectRequest);
+
+    }
+
 
     public void ConsultaJugadores(){
         final ProgressDialog loading = new ProgressDialog(ListadoJugadoresActivity.this);
@@ -198,7 +259,7 @@ public class ListadoJugadoresActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 loading.dismiss();
                 VolleyLog.d("Error", "Error: " + error.getMessage());
-                //Toast.makeText(ListadoJugadoresActivity.this, "" + error.getMessage(), Toast.LENGTH_SHORT).show();
+               // Toast.makeText(ListadoJugadoresActivity.this, "error" + error.getMessage(), Toast.LENGTH_SHORT).show();
             }
 
         });
@@ -266,6 +327,7 @@ public class ListadoJugadoresActivity extends AppCompatActivity {
         bitmap = BitmapFactory.decodeStream(istr);
         bitmap2 = BitmapFactory.decodeStream(istr2);
 
+
         Utils.bitmapToMat(bitmap, img1);
         Utils.bitmapToMat(bitmap2, img2);
         imagen.setImageBitmap(bitmap);
@@ -328,82 +390,33 @@ public class ListadoJugadoresActivity extends AppCompatActivity {
             Log.d("LOG!", "Matches Size " + matches.size());
 
             if(compare>0 && compare<1000) {
-
-                Toast.makeText(ListadoJugadoresActivity.this, "Huella reconocida con exito!", Toast.LENGTH_LONG).show();
+                Toast.makeText(ListadoJugadoresActivity.this, "Huella reconocida con exito similares!", Toast.LENGTH_LONG).show();
                 //VerificacionFingerPrint();
-                Log.d("compare similares: ", String.valueOf(compare));
                 IngresoMatch();
+                Log.d("compare similares: ", String.valueOf(compare));
+
                 //new asyncTask(MainActivity.this).execute();
             }
             else if(compare==0) {
-                Toast.makeText(ListadoJugadoresActivity.this, "Huella reconocida con exito!", Toast.LENGTH_LONG).show();
-                Log.d("compare iguales: ", String.valueOf(compare));
-                IngresoMatch();
+               IngresoMatch();
+               Toast.makeText(ListadoJugadoresActivity.this, "Huella reconocida con exito iguales!", Toast.LENGTH_LONG).show();
+               Log.d("compare iguales: ", String.valueOf(compare));
+
                 // VerificacionFingerPrint();
             }else {
-                Toast.makeText(ListadoJugadoresActivity.this, "Huella no encontrada!", Toast.LENGTH_LONG).show();
-                Log.d("compare diferentes: ", String.valueOf(compare));
-                //startTime = System.currentTimeMillis();
+                //IngresoMatch();
 
-
-            }
+                if(bandera == 1) {
+                    Toast.makeText(ListadoJugadoresActivity.this, "Huella no encontrada!", Toast.LENGTH_LONG).show();
+                    Log.d("compare diferentes: ", String.valueOf(compare));
+                    bandera = 0;
+                }
+                }
         } else {
             Toast.makeText(ListadoJugadoresActivity.this, "Vuelve a intentarlo!.", Toast.LENGTH_LONG).show();
         }
 
     }
-
-    public void IngresoMatch(){
-
-
-        JSONObject object = new JSONObject();
-        try {
-
-            object.put("id_player",id_jugador_recibido);
-            object.put("serie", serie_turno);
-            object.put("versus",versus);
-            object.put("club", club);
-            object.put("numero", numero_camiseta);
-
-            Log.d("TAG","serie "+serie_turno+"club "+club+"versus "+versus+"id_player "+id_jugador_recibido +"numero_camiseta"+numero_camiseta);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        // Enter the correct url for your api service site
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, "https://pelotatufe.cl/api/v1/matchs/ingreso", object,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-
-                        try {
-
-                            String success = response.getString("success");
-                            Log.d("JSON SUCCESS", String.valueOf(response));
-                            //Toast.makeText(getApplicationContext(), "¡Huella reconocida con exito!.", Toast.LENGTH_SHORT).show();
-
-                            String ruta= getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES).toString();
-                            File file = new File(ruta +"/imagenes/scaneado"+id_jugador_recibido+".jpg");
-                            file.delete();
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-                VolleyLog.d("Error", "Error: " + error.getMessage());
-                ///Toast.makeText(TurnoActivity.this, "" + error.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-        requestQueue.add(jsonObjectRequest);
-
-    }
-
-
 
     @Override
     public void onResume() {

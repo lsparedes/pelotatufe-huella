@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
     TextView tvMessage, texto;
     String uri;
     InputStream istr, istr2;
-    Button consultar, enrolar, jugador_enrolado, cuenta_activada, citado;
+    Button consultar, enrolar, jugador_enrolado, cuenta_activada, citado, registrar_imagen;
     private static final int SCAN_FINGER = 0;
     byte[] img;
 
@@ -121,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
         //consultar = (Button) findViewById(R.id.validar);
         enrolar = (Button) findViewById(R.id.enrolar);
         jugador_enrolado = (Button) findViewById(R.id.jugador_enrolado);
+        registrar_imagen = (Button) findViewById((R.id.registrar_imagen));
         //cuenta_activada = (Button) findViewById(R.id.cuenta);
         //citado = (Button) findViewById(R.id.citacion);
         usuario = (TextView) findViewById(R.id.usuario);
@@ -149,6 +150,17 @@ public class MainActivity extends AppCompatActivity {
             //consultar.setVisibility(View.VISIBLE);
             jugador_enrolado.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_check_circle_24, 0);
         }
+
+        registrar_imagen.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                String url = "https://pelotatufe.cl/usuarios/general/perfil/"+idRecibido;
+
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
+            }
+
+        });
         //if(confirmacion.equals("null")){
           //  cuenta_activada.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_cancel_24, 0);
         //}else{

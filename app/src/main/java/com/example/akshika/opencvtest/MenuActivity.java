@@ -2,6 +2,7 @@ package com.example.akshika.opencvtest;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -21,6 +22,7 @@ public class MenuActivity extends AppCompatActivity {
 
         enrolar = (Button) findViewById(R.id.enrolar);
         validar = (Button) findViewById(R.id.validar);
+
         usuario = (TextView) findViewById(R.id.usuario);
 
         SharedPreferences sharedPreferences = getSharedPreferences("myKey", MODE_PRIVATE);
@@ -43,6 +45,8 @@ public class MenuActivity extends AppCompatActivity {
             }
 
         });
+
+
 
     }
 }

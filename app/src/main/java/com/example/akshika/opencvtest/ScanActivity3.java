@@ -1,6 +1,8 @@
 package com.example.akshika.opencvtest;
 
 
+import static com.example.akshika.opencvtest.ListadoJugadoresActivity.bandera;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -140,6 +142,7 @@ public class ScanActivity3 extends Activity  {
                 encodedString = Base64.encodeToString(image, Base64.DEFAULT);
                 Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0, image.length);
                 storeImage(bitmap);
+                bandera = 1;
                 finish();
 
             } else {
