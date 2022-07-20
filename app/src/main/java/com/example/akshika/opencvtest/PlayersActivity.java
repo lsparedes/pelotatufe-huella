@@ -1,13 +1,11 @@
 package com.example.akshika.opencvtest;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,7 +14,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -79,9 +76,19 @@ public class PlayersActivity extends AppCompatActivity {
                             Log.d("TAG", "response campeonato"+turno);
                             loading.dismiss();
                             for (int i = 0; i < turno.length(); i++) {
+
                                 JSONObject  campeonatos = turno.getJSONObject(i);
                                 String titulo = campeonatos.getString("championship");
                                 String hora = campeonatos.getString("start");
+                                String[] parts = hora.split(" ");
+                                String part1 = parts[0]; // fecha
+                                String part2 = parts[1]; // hora
+
+                                String[] fecha_formateada = part1.split("-");
+                                String part3 = fecha_formateada[0]; //año
+                                String part4 = fecha_formateada[1]; //mes
+                                String part5 = fecha_formateada[2]; //dia
+
                                 String serie = campeonatos.getString("serie");
                                 String id = campeonatos.getString("id");
                                 Log.d("TAG", "largo"+turno.length());
@@ -91,7 +98,7 @@ public class PlayersActivity extends AppCompatActivity {
                                 player.setCampeonato(titulo);
                                 player.setSerie(serie);
                                 player.setIdCampeonato(id);
-                                player.setFecha(hora);
+                                player.setFecha(part5+"-"+part4+"-"+part3+" "+part2);
                                 lista_bd.add(player);
                             }
 
