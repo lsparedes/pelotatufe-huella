@@ -95,6 +95,22 @@
         android:textAlignment="textStart"
         android:textColor="@android:color/white" />
 
+    <Button
+        android:id="@+id/validar_qr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:backgroundTint="@color/azul"
+        android:drawableRight="@drawable/ic_baseline_qr_code_scanner_24"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:paddingRight="30dp"
+        android:text="Validar QR"
+        android:textAlignment="textStart"
+        android:textColor="@android:color/white" />
+
 
 
 

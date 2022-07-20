@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MenuActivity extends AppCompatActivity {
 
-    Button enrolar, validar;
+    Button enrolar, validar, qr;
     TextView usuario;
 
     @Override
@@ -22,6 +22,7 @@ public class MenuActivity extends AppCompatActivity {
 
         enrolar = (Button) findViewById(R.id.enrolar);
         validar = (Button) findViewById(R.id.validar);
+        qr = (Button) findViewById(R.id.validar_qr);
 
         usuario = (TextView) findViewById(R.id.usuario);
 
@@ -46,6 +47,16 @@ public class MenuActivity extends AppCompatActivity {
 
         });
 
+
+        qr.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                String url = "https://pelotatufe.cl/jugador/validación/code/view";
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
+            }
+
+        });
 
 
     }

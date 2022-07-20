@@ -3,7 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/ic_baseline_qr_code_scanner_24.xml" value="0.152" />
+        <entry key="app/src/main/res/drawable/ic_baseline_sports_handball_24.xml" value="0.152" />
+        <entry key="app/src/main/res/layout/activity_menu.xml" value="0.28298187255859375" />
         <entry key="app/src/main/res/layout/activity_players.xml" value="0.16822742474916388" />
+        <entry key="app/src/main/res/layout/activity_principal.xml" value="0.16993243243243245" />
+        <entry key="app/src/main/res/layout/activity_scan.xml" value="0.16993243243243245" />
         <entry key="app/src/main/res/layout/activity_series_extras.xml" value="0.16020066889632106" />
         <entry key="app/src/main/res/layout/activity_turno.xml" value="0.16822742474916388" />
         <entry key="app/src/main/res/layout/item_players.xml" value="0.16822742474916388" />
