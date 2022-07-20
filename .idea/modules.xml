@@ -4,7 +4,13 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/pelotatufe-huella.iml" filepath="$PROJECT_DIR$/.idea/pelotatufe-huella.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/pelotatufe-huella.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/pelotatufe-huella.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/pelotatufe-huella.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/pelotatufe-huella.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/pelotatufe-huella.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/pelotatufe-huella.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/pelotatufe-huella.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/pelotatufe-huella.app.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/openCVLibrary310/pelotatufe-huella.openCVLibrary310.iml" filepath="$PROJECT_DIR$/.idea/modules/openCVLibrary310/pelotatufe-huella.openCVLibrary310.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/openCVLibrary310/pelotatufe-huella.openCVLibrary310.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/openCVLibrary310/pelotatufe-huella.openCVLibrary310.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/openCVLibrary310/pelotatufe-huella.openCVLibrary310.main.iml" filepath="$PROJECT_DIR$/.idea/modules/openCVLibrary310/pelotatufe-huella.openCVLibrary310.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/openCVLibrary310/pelotatufe-huella.openCVLibrary310.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/openCVLibrary310/pelotatufe-huella.openCVLibrary310.unitTest.iml" />
     </modules>
   </component>
 </project>

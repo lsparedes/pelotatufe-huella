@@ -31,12 +31,6 @@
     <output-test url="file://$MODULE_DIR$/../../../openCVLibrary310/build/intermediates/javac/debugUnitTest/classes" />
     <exclude-output />
     <content url="file://$MODULE_DIR$/../../../openCVLibrary310">
-      <sourceFolder url="file://$MODULE_DIR$/../../../openCVLibrary310/src/main/aidl" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/../../../openCVLibrary310/src/main/java" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/../../../openCVLibrary310/build/generated/aidl_source_output_dir/debug/out" isTestSource="false" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/../../../openCVLibrary310/build/generated/source/buildConfig/debug" isTestSource="false" generated="true" />
-      <sourceFolder url="file://$MODULE_DIR$/../../../openCVLibrary310/src/main/res" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/../../../openCVLibrary310/build/generated/ap_generated_sources/debug/out" isTestSource="false" generated="true" />
       <excludeFolder url="file://$MODULE_DIR$/../../../openCVLibrary310/.gradle" />
       <excludeFolder url="file://$MODULE_DIR$/../../../openCVLibrary310/build" />
     </content>

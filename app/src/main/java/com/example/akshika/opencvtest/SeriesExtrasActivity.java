@@ -47,38 +47,38 @@ public class SeriesExtrasActivity extends AppCompatActivity {
         serie.setText(series_jugadores);
 
         lista_series = new ArrayList<String>();
-        if(series_jugadores.equals("Primera Infantil")){
-            lista_series.add("Segunda Infantil");
+        if(series_jugadores.equals("PRIMERA INFANTIL")){
+            lista_series.add("SEGUNDA INFANTIL");
         }
-        else if(series_jugadores.equals("Segunda Infantil")){
-            lista_series.add("Tercera Infantil");
+        else if(series_jugadores.equals("SEGUNDA INFANTIL")){
+            lista_series.add("TERCERA INFANTIL");
         }
-        else if(series_jugadores.equals("Juvenil")){
-            lista_series.add("Primera Infantil");
+        else if(series_jugadores.equals("JUVENIL")){
+            lista_series.add("PRIMERA INFANTIL");
         }
-        else if(series_jugadores.equals("Primera Adulta")){
-            lista_series.add("Primera Infantil");
-            lista_series.add("Segunda Infantil");
-            lista_series.add("Seniors");
-            lista_series.add("Super Seniors");
+        else if(series_jugadores.equals("PRIMERA ADULTA")){
+            lista_series.add("PRIMERA INFANTIL");
+            lista_series.add("SEGUNDA INFANTIL");
+            lista_series.add("SENIORS");
+            lista_series.add("SUPER SENIORS");
         }
-        else if(series_jugadores.equals("Segunda Adulta")){
-            lista_series.add("Primera Infantil");
-            lista_series.add("Seniors");
-            lista_series.add("Super Seniors");
+        else if(series_jugadores.equals("SEGUNDA ADULTA")){
+            lista_series.add("PRIMERA INFANTIL");
+            lista_series.add("SENIORS");
+            lista_series.add("SUPER SENIORS");
         }
-        else if(series_jugadores.equals("Honor")) {
-            lista_series.add("Primera Infantil");
-            lista_series.add("Seniors");
-            lista_series.add("Primera Adulta");
-            lista_series.add("Segunda Adulta");
-            lista_series.add("Super Seniors");
+        else if(series_jugadores.equals("HONOR")) {
+            lista_series.add("PRIMERA INFANTIL");
+            lista_series.add("SENIORS");
+            lista_series.add("PRIMERA ADULTA");
+            lista_series.add("SEGUNDA ADULTA");
+            lista_series.add("SUPER SENIORS");
         }
-        else if(series_jugadores.equals("Seniors")){
-            lista_series.add("Super Seniors");
+        else if(series_jugadores.equals("SENIORS")){
+            lista_series.add("SUPER SENIORS");
         }
-        else if(series_jugadores.equals("Super seniors")){
-            lista_series.add("Super seniors");
+        else if(series_jugadores.equals("SUPER SENIORS")){
+            lista_series.add("SUPER SENIORS");
         }
         Log.d("TAG", String.valueOf(lista_series));
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.item_series_extras, R.id.nombre_serie,lista_series);

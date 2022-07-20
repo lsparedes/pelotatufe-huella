@@ -3,6 +3,7 @@
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7331a59243611197a5a8999a9776c439/jetified-fingerscan-0.1/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7331a59243611197a5a8999a9776c439/jetified-fingerscan-0.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7331a59243611197a5a8999a9776c439/jetified-fingerscan-0.1/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/asia.kanopi.tools/fingerscan/0.1/c9cfe575ab14fce366d68fc483088963a362257f/fingerscan-0.1-javadoc.jar!/" />
